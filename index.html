@@ -11,10 +11,50 @@
 </head>
 <body>
 
-  <!-- ===== LOADER ===== -->
-  <div class="loader" id="loader">
-    <div class="loader-logo">KON</div>
-    <div class="loader-bar"></div>
+  <!-- ===== CANDLE INTRO ===== -->
+  <div id="candleIntro">
+    <div class="ci-bg"></div>
+    <div class="ci-content">
+      <div class="ci-candle-wrap" id="candleWrap">
+        <!-- Flame -->
+        <div class="ci-flame-wrap" id="flameWrap">
+          <div class="ci-flame-outer"></div>
+          <div class="ci-flame-inner"></div>
+          <div class="ci-flame-core"></div>
+          <div class="ci-glow"></div>
+        </div>
+        <!-- Candle SVG -->
+        <svg class="ci-candle-svg" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Wick -->
+          <line x1="50" y1="30" x2="50" y2="55" stroke="#5a3e1b" stroke-width="2" stroke-linecap="round"/>
+          <!-- Body -->
+          <rect x="22" y="55" width="56" height="130" rx="6" fill="#1a1208" stroke="#C9A84C" stroke-width="1.2"/>
+          <!-- Shine -->
+          <rect x="30" y="62" width="8" height="116" rx="4" fill="rgba(201,168,76,0.08)"/>
+          <!-- Wax drip 1 -->
+          <path d="M22 75 Q18 85 20 95 Q21 98 22 95 Z" fill="#C9A84C" opacity="0.3"/>
+          <!-- Wax drip 2 -->
+          <path d="M78 88 Q82 98 80 108 Q79 111 78 108 Z" fill="#C9A84C" opacity="0.2"/>
+          <!-- Bottom shadow -->
+          <ellipse cx="50" cy="185" rx="30" ry="6" fill="#C9A84C" opacity="0.12"/>
+        </svg>
+      </div>
+
+      <!-- Text -->
+      <div class="ci-text-wrap">
+        <p class="ci-label">KON LUXURY</p>
+        <h1 class="ci-title" id="ciTitle">Light the Candle</h1>
+        <p class="ci-hint" id="ciHint">— اضغط لتبدأ —</p>
+      </div>
+    </div>
+
+    <!-- Explosion overlay -->
+    <div class="ci-explosion" id="ciExplosion">
+      <div class="ci-exp-ring r1"></div>
+      <div class="ci-exp-ring r2"></div>
+      <div class="ci-exp-ring r3"></div>
+      <div class="ci-exp-flash"></div>
+    </div>
   </div>
 
   <!-- ===== CUSTOM CURSOR ===== -->

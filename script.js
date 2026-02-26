@@ -2,6 +2,42 @@
 // KON LUXURY - JavaScript
 // ===========================
 
+// ===== CANDLE INTRO =====
+(function() {
+  const intro    = document.getElementById('candleIntro');
+  const flame    = document.getElementById('flameWrap');
+  const explosion = document.getElementById('ciExplosion');
+  const hint     = document.getElementById('ciHint');
+  if (!intro) return;
+
+  let fired = false;
+
+  // Step 1: Light the candle after 1.8s automatically
+  setTimeout(() => {
+    flame.classList.add('lit');
+    hint.textContent = '— اضغط لتدخل —';
+  }, 1800);
+
+  // Step 2: Click or auto-close after 5s
+  function triggerExplosion() {
+    if (fired) return;
+    fired = true;
+
+    // Explosion animation
+    explosion.classList.add('boom');
+
+    // Hide intro after explosion
+    setTimeout(() => {
+      intro.classList.add('hidden');
+    }, 900);
+  }
+
+  intro.addEventListener('click', triggerExplosion);
+
+  // Auto close after 5 seconds
+  setTimeout(triggerExplosion, 5000);
+})();
+
 // ===== LOAD SETTINGS FROM CONTROL PANEL =====
 const _saved = localStorage.getItem('konluxury_settings');
 const _settings = _saved ? JSON.parse(_saved) : null;
