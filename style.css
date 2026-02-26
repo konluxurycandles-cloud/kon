@@ -356,14 +356,16 @@ body::after {
   background: var(--gold-dim);
 }
 .hero-sub {
-  font-size: 0.72rem;
-  letter-spacing: 6px;
+  font-size: 1rem;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 20px;
   opacity: 0;
   animation: fadeUp 1s ease 0.3s forwards;
-  font-family: var(--font-en);
+  font-family: var(--font-ar);
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(201,168,76,0.4);
 }
 .hero-title {
   font-family: var(--font-en);
