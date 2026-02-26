@@ -101,34 +101,43 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="home">
-    <div class="hero-grid"></div>
-    <div class="hero-particles" id="heroParticles"></div>
-    <div class="hero-content">
-      <p class="hero-sub" data-i18n="hero_sub"></p>
-      <h1 class="hero-title glitch" data-text="KON">KON <span>LUXURY</span></h1>
-      <p class="hero-desc" data-i18n="hero_desc"></p>
-      <a href="#products" class="btn-gold shimmer" data-i18n="hero_btn"></a>
+    <div class="hero-ambient"></div>
+    <div class="hero-inner">
+      <!-- Candle Visual -->
+      <div class="hero-candle" id="heroCandle">
+        <div class="hero-candle-glow"></div>
+        <svg class="hero-candle-svg" viewBox="0 0 120 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Flame -->
+          <ellipse cx="60" cy="42" rx="10" ry="16" fill="#C9A84C" opacity="0.9"/>
+          <ellipse cx="60" cy="38" rx="6"  ry="10" fill="#FFE5A0" opacity="0.95"/>
+          <ellipse cx="60" cy="34" rx="3"  ry="6"  fill="white"   opacity="0.7"/>
+          <!-- Wick -->
+          <line x1="60" y1="58" x2="60" y2="72" stroke="#5a3e1b" stroke-width="2" stroke-linecap="round"/>
+          <!-- Body -->
+          <rect x="32" y="72" width="56" height="168" rx="6" fill="#111111" stroke="#C9A84C" stroke-width="0.8" stroke-opacity="0.4"/>
+          <!-- Shine -->
+          <rect x="40" y="82" width="8" height="148" rx="4" fill="white" opacity="0.03"/>
+          <!-- KON text on candle -->
+          <text x="60" y="160" text-anchor="middle" font-family="serif" font-size="11" fill="#C9A84C" opacity="0.35" letter-spacing="4">KON</text>
+          <!-- Wax top -->
+          <ellipse cx="60" cy="72" rx="28" ry="6" fill="#1a1a1a" stroke="#C9A84C" stroke-width="0.8" stroke-opacity="0.3"/>
+          <!-- Base shadow -->
+          <ellipse cx="60" cy="240" rx="36" ry="8" fill="#C9A84C" opacity="0.06"/>
+        </svg>
+      </div>
 
-      <!-- Hero Stats -->
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-num">500+</span>
-          <span class="hero-stat-label">عميل سعيد</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">3</span>
-          <span class="hero-stat-label">تخصصات</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">100%</span>
-          <span class="hero-stat-label">يدوي الصنع</span>
-        </div>
+      <!-- Text -->
+      <div class="hero-text" id="heroText">
+        <p class="hero-eyeline" id="heroEyeline">KON LUXURY</p>
+        <h1 class="hero-headline" id="heroHeadline" data-i18n="hero_desc">شموع فاخرة · ريزن يدوي · فخار أصيل</h1>
+        <a href="#products" class="hero-cta" id="heroCta" data-i18n="hero_btn">استعرض المنتجات</a>
       </div>
     </div>
+
+    <!-- Scroll indicator -->
     <div class="hero-scroll">
       <span></span>
     </div>
-
   </section>
 
 

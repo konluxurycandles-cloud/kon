@@ -285,26 +285,22 @@ document.querySelectorAll('a, button, .product-card, .filter-btn, .lang-btn').fo
   el.addEventListener('mouseleave', () => cursorRingEl?.classList.remove('hover'));
 });
 
-// ===== HERO PARTICLES =====
-function createParticles() {
-  const container = document.getElementById('heroParticles');
-  if (!container) return;
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 2 + 1;
-    p.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${Math.random() * 100}%;
-      bottom:-${size}px;
-      animation-delay:${Math.random() * 14}s;
-      animation-duration:${Math.random() * 12 + 10}s;
-      opacity:${Math.random() * 0.3 + 0.1};
-    `;
-    container.appendChild(p);
-  }
-}
-createParticles();
+// ===== GSAP HERO CINEMATIC ENTRANCE =====
+window.addEventListener('load', () => {
+  const tl = gsap.timeline({ delay: 0.3 });
+
+  // 1. Candle fades in slowly from below
+  tl.to('#heroCandle', {
+    opacity: 1, y: 0,
+    duration: 1.8, ease: 'power3.out',
+    from: { opacity: 0, y: 40 },
+  })
+  // 2. Text fades in
+  .to('#heroText', {
+    opacity: 1, y: 0,
+    duration: 1.4, ease: 'power3.out',
+  }, '-=1.0');
+});
 
 // ===== GSAP SCROLL ANIMATIONS =====
 // Section headers
@@ -372,31 +368,25 @@ gsap.utils.toArray('.contact-sub, .contact-buttons').forEach(el => {
 });
 
 // ===== GSAP HERO PARALLAX =====
-gsap.to('.hero-content', {
-  y: 100,
+gsap.to('.hero-inner', {
+  y: 80,
   opacity: 0,
   ease: 'none',
   scrollTrigger: {
     trigger: '.hero',
     start: 'top top',
-    end: 'bottom top',
-    scrub: 1.2,
+    end: '60% top',
+    scrub: 1.8,
   }
 });
 
-// ===== TILT ON PRODUCT CARDS =====
+// ===== SUBTLE LIFT ON PRODUCT CARDS =====
 document.querySelectorAll('.product-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(card, {
-      rotateX: y * -5, rotateY: x * 5, translateY: -6,
-      duration: 0.4, ease: 'power2.out', transformPerspective: 800,
-    });
+  card.addEventListener('mouseenter', () => {
+    gsap.to(card, { y: -6, duration: 0.7, ease: 'power3.out' });
   });
   card.addEventListener('mouseleave', () => {
-    gsap.to(card, { rotateX: 0, rotateY: 0, translateY: 0, duration: 0.6, ease: 'power3.out' });
+    gsap.to(card, { y: 0, duration: 0.9, ease: 'power3.out' });
   });
 });
 
