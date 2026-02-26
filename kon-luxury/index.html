@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KON Luxury | متجر الشموع والريزن والفخار</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+  <!-- ===== LOADER ===== -->
+  <div class="loader" id="loader">
+    <div class="loader-logo">KON</div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="cursor" id="cursorDot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:99999;">
+    <div class="cursor-dot" style="width:8px;height:8px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);"></div>
+  </div>
+  <div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0;pointer-events:none;z-index:99998;">
+    <div class="cursor-ring" id="cursorRingEl"></div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span class="logo-kon">KON</span>
+        <span class="logo-luxury">LUXURY</span>
+      </div>
+
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ar">عربي</button>
+        <button class="lang-btn" data-lang="he">עברית</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home"   data-i18n="nav_home"></a></li>
+        <li><a href="about.html" data-i18n="nav_about"></a></li>
+        <li><a href="#products" data-i18n="nav_products"></a></li>
+        <li><a href="#contact" data-i18n="nav_contact"></a></li>
+        <li><a href="ai.html" class="nav-ai-link">✦ AI</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">KON Luxury</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">صنع يدوي</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">Handcrafted</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">شموع فاخرة</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">Luxury Candles</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">ريزن وفخار</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">Made in Palestine</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">KON Luxury</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">صنع يدوي</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">Handcrafted</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">شموع فاخرة</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">Luxury Candles</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">ريزن وفخار</span><span class="marquee-item marquee-sep">✦</span>
+      <span class="marquee-item">Made in Palestine</span><span class="marquee-item marquee-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-grid"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+      <p class="hero-sub" data-i18n="hero_sub"></p>
+      <h1 class="hero-title glitch" data-text="KON">KON <span>LUXURY</span></h1>
+      <p class="hero-desc" data-i18n="hero_desc"></p>
+      <a href="#products" class="btn-gold shimmer" data-i18n="hero_btn"></a>
+    </div>
+    <div class="hero-scroll">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="gold-line"></span>
+        <h2 data-i18n="about_title"></h2>
+        <span class="gold-line"></span>
+      </div>
+      <p class="about-text" data-i18n="about_text"></p>
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-num">500+</span>
+          <span class="stat-label" data-i18n="stat1"></span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4</span>
+          <span class="stat-label" data-i18n="stat2"></span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label" data-i18n="stat3"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUCTS ===== -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-header">
+        <span class="gold-line"></span>
+        <h2 data-i18n="products_title"></h2>
+        <span class="gold-line"></span>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all" data-i18n="filter_all"></button>
+        <button class="filter-btn" data-filter="candles" data-i18n="filter_candles"></button>
+        <button class="filter-btn" data-filter="resin" data-i18n="filter_resin"></button>
+        <button class="filter-btn" data-filter="pottery" data-i18n="filter_pottery"></button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+
+        <div class="product-card" data-category="candles">
+          <div class="product-img">
+            <div class="product-placeholder candle-img">
+              <svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="110" rx="20" ry="6" fill="#c9a84c" opacity="0.3"/>
+                <rect x="28" y="50" width="24" height="60" rx="4" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
+                <rect x="34" y="50" width="12" height="60" rx="2" fill="#2a2a2a"/>
+                <line x1="40" y1="50" x2="40" y2="30" stroke="#c9a84c" stroke-width="1.5"/>
+                <ellipse cx="40" cy="26" rx="6" ry="9" fill="#c9a84c" opacity="0.8"/>
+                <ellipse cx="40" cy="22" rx="3" ry="5" fill="#fff3c4"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()"></button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod1_name"></h3>
+            <p data-i18n="prod1_desc"></p>
+            <span class="product-badge" data-i18n="badge_handmade"></span>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="candles">
+          <div class="product-img">
+            <div class="product-placeholder candle-img2">
+              <svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="110" rx="22" ry="7" fill="#c9a84c" opacity="0.3"/>
+                <rect x="22" y="55" width="36" height="55" rx="6" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
+                <rect x="30" y="55" width="20" height="55" rx="4" fill="#2a2a2a"/>
+                <line x1="40" y1="55" x2="40" y2="32" stroke="#c9a84c" stroke-width="1.5"/>
+                <ellipse cx="40" cy="28" rx="7" ry="10" fill="#c9a84c" opacity="0.8"/>
+                <ellipse cx="40" cy="23" rx="4" ry="6" fill="#fff3c4"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()"></button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod2_name"></h3>
+            <p data-i18n="prod2_desc"></p>
+            <span class="product-badge" data-i18n="badge_luxury"></span>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="resin">
+          <div class="product-img">
+            <div class="product-placeholder resin-img">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="15" y="20" width="70" height="65" rx="8" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
+                <rect x="22" y="28" width="56" height="49" rx="5" fill="#0d0d0d"/>
+                <ellipse cx="50" cy="52" rx="20" ry="20" fill="url(#resinGrad)"/>
+                <path d="M35 45 Q50 35 65 48 Q55 65 38 60 Z" fill="#c9a84c" opacity="0.4"/>
+                <path d="M42 38 Q55 32 62 50" stroke="#fff" stroke-width="1" opacity="0.3"/>
+                <defs>
+                  <radialGradient id="resinGrad" cx="40%" cy="40%">
+                    <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.8"/>
+                    <stop offset="60%" stop-color="#8b6914" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#1a1a1a"/>
+                  </radialGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()"></button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod3_name"></h3>
+            <p data-i18n="prod3_desc"></p>
+            <span class="product-badge" data-i18n="badge_unique"></span>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="resin">
+          <div class="product-img">
+            <div class="product-placeholder resin-img2">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 70 Q50 20 80 70 Q65 85 35 85 Z" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
+                <path d="M28 68 Q50 30 72 68 Q60 80 40 80 Z" fill="#0d0d0d"/>
+                <path d="M35 62 Q50 38 65 62" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+                <circle cx="50" cy="55" r="8" fill="#c9a84c" opacity="0.6"/>
+                <circle cx="50" cy="55" r="4" fill="#fff3c4" opacity="0.8"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()"></button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod4_name"></h3>
+            <p data-i18n="prod4_desc"></p>
+            <span class="product-badge" data-i18n="badge_handmade"></span>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="pottery">
+          <div class="product-img">
+            <div class="product-placeholder pottery-img">
+              <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="108" rx="24" ry="6" fill="#c9a84c" opacity="0.25"/>
+                <path d="M30 100 Q20 75 22 50 Q24 30 50 28 Q76 30 78 50 Q80 75 70 100 Z" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
+                <path d="M36 95 Q27 72 29 50 Q31 35 50 33 Q69 35 71 50 Q73 72 64 95 Z" fill="#222"/>
+                <ellipse cx="50" cy="28" rx="20" ry="8" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
+                <ellipse cx="50" cy="28" rx="14" ry="5" fill="#2a2a2a"/>
+                <path d="M35 65 Q50 58 65 65" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()"></button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod5_name"></h3>
+            <p data-i18n="prod5_desc"></p>
+            <span class="product-badge" data-i18n="badge_artisan"></span>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="pottery">
+          <div class="product-img">
+            <div class="product-placeholder pottery-img2">
+              <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="110" rx="28" ry="7" fill="#c9a84c" opacity="0.25"/>
+                <path d="M26 100 Q18 70 20 45 Q22 22 50 20 Q78 22 80 45 Q82 70 74 100 Z" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
+                <path d="M33 95 Q26 67 28 45 Q30 28 50 26 Q70 28 72 45 Q74 67 67 95 Z" fill="#222"/>
+                <ellipse cx="50" cy="20" rx="22" ry="9" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
+                <path d="M32 60 Q50 52 68 60" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+                <path d="M30 75 Q50 66 70 75" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()"></button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 data-i18n="prod6_name"></h3>
+            <p data-i18n="prod6_desc"></p>
+            <span class="product-badge" data-i18n="badge_luxury"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED PRODUCT ===== -->
+  <section class="featured" id="featured">
+    <div class="featured-inner">
+      <div class="featured-visual">
+        <div class="featured-frame">
+          <div class="featured-glow"></div>
+          <div class="featured-svg-wrap">
+            <svg viewBox="0 0 160 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="featured-svg">
+              <ellipse cx="80" cy="224" rx="44" ry="12" fill="#C9A84C" opacity="0.2"/>
+              <rect x="50" y="100" width="60" height="120" rx="8" fill="#141414" stroke="#C9A84C" stroke-width="1.5"/>
+              <rect x="62" y="100" width="36" height="120" rx="4" fill="#1C1C1C"/>
+              <rect x="56" y="108" width="6" height="104" rx="2" fill="#222" opacity="0.6"/>
+              <line x1="80" y1="100" x2="80" y2="56" stroke="#C9A84C" stroke-width="1.5"/>
+              <ellipse cx="80" cy="48" rx="13" ry="20" fill="#C9A84C" opacity="0.85"/>
+              <ellipse cx="80" cy="40" rx="7" ry="12" fill="#FFF3C4" opacity="0.9"/>
+              <ellipse cx="80" cy="34" rx="4" ry="7" fill="white" opacity="0.6"/>
+              <ellipse cx="80" cy="224" rx="44" ry="12" fill="#C9A84C" opacity="0.08"/>
+            </svg>
+          </div>
+          <div class="featured-badge-wrap">
+            <span class="featured-badge">✦ الأكثر طلباً</span>
+          </div>
+        </div>
+        <div class="featured-rings">
+          <div class="fring fring-1"></div>
+          <div class="fring fring-2"></div>
+          <div class="fring fring-3"></div>
+        </div>
+      </div>
+      <div class="featured-info">
+        <p class="featured-eyebrow">Featured — المميز</p>
+        <h2 class="featured-title">شمعة <em>Obsidian</em><br>الفاخرة</h2>
+        <p class="featured-desc">مصنوعة من شمع الصويا الطبيعي بنسبة 100٪، تدوم أكثر من 50 ساعة. عطرها الفريد يملأ المكان بدفء لا يُقاوَم. كل شمعة تحفة لا تتكرر.</p>
+        <div class="featured-specs">
+          <div class="fspec"><span class="fspec-icon">🕯️</span><span class="fspec-txt">شمع صويا طبيعي</span></div>
+          <div class="fspec"><span class="fspec-icon">⏱️</span><span class="fspec-txt">+50 ساعة احتراق</span></div>
+          <div class="fspec"><span class="fspec-icon">🤲</span><span class="fspec-txt">صنع يدوي 100%</span></div>
+          <div class="fspec"><span class="fspec-icon">🎁</span><span class="fspec-txt">تغليف فاخر مجاني</span></div>
+        </div>
+        <div class="featured-cta">
+          <button class="btn-featured-main" onclick="openWhatsapp()">اطلبها الآن</button>
+          <a href="ai.html" class="btn-featured-ghost">✦ جربي بالـ AI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="gold-line"></span>
+        <h2>آراء <span>زبائننا</span></h2>
+        <span class="gold-line"></span>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal reveal-delay-1">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"جودة لا تُصدَّق — الشمعة وصلت بتغليف فاخر جداً وريحتها أجمل من المتوقع. بالتأكيد سأطلب مرة ثانية!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">س</div>
+            <div>
+              <div class="testi-name">سارة م.</div>
+              <div class="testi-location">حيفا 🇵🇸</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal reveal-delay-2">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"اشتريت طقم هدية لصديقتي وانبهرت — القطع مصنوعة باتقان وحب واضح. هذا مش مجرد منتج، هذا فن!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">ر</div>
+            <div>
+              <div class="testi-name">رنا ع.</div>
+              <div class="testi-location">الناصرة 🇵🇸</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal reveal-delay-3">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"الريزن اللي طلبته زيّن مكتبي بشكل مجنون. كل ضيف بسألني منين اشتريته. KON Luxury مش بس متجر، هي تجربة!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">خ</div>
+            <div>
+              <div class="testi-name">خالد ن.</div>
+              <div class="testi-location">رام الله 🇵🇸</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="gold-line"></span>
+        <h2 data-i18n="contact_title"></h2>
+        <span class="gold-line"></span>
+      </div>
+      <p class="contact-sub" data-i18n="contact_sub"></p>
+      <div class="contact-buttons">
+        <button class="btn-whatsapp" onclick="openWhatsapp()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="btn_whatsapp"></span>
+        </button>
+        <button class="btn-instagram" onclick="openInstagram()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span data-i18n="btn_instagram"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <span class="logo-kon shimmer">KON</span>
+              <span class="logo-luxury">LUXURY</span>
+            </div>
+            <p class="footer-tagline">صُنع بيدين — بحب حقيقي 🖤</p>
+          </div>
+          <div class="footer-links-col">
+            <p class="footer-col-title">الصفحات</p>
+            <a href="#home" data-i18n="nav_home"></a>
+            <a href="about.html" data-i18n="nav_about"></a>
+            <a href="#products" data-i18n="nav_products"></a>
+            <a href="ai.html">✦ AI Experience</a>
+          </div>
+          <div class="footer-links-col">
+            <p class="footer-col-title">تواصل</p>
+            <a onclick="openWhatsapp()" style="cursor:pointer">واتساب</a>
+            <a onclick="openInstagram()" style="cursor:pointer">إنستغرام</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="footer-copy" data-i18n="footer_copy"></p>
+        <p class="footer-made">Made with 🖤 in Palestine</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float Button -->
+  <a class="whatsapp-float" onclick="openWhatsapp()" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="script.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
