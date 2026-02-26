@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KON Luxury — لوحة الإعدادات</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8D48A;
+      --black: #0d0d0d;
+      --dark: #141414;
+      --dark2: #1C1C1C;
+      --white: #FAF3E0;
+      --text-muted: rgba(250,243,224,0.55);
+      --border: rgba(201,168,76,0.25);
+      --success: #4CAF50;
+      --error: #f44336;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Cairo', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ===== LOGIN ===== */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at center, #1a1500 0%, #0d0d0d 70%);
+    }
+    .login-box {
+      text-align: center;
+      padding: 60px 40px;
+      border: 1px solid var(--border);
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+    }
+    .login-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 120px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .login-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      letter-spacing: 12px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .login-sub {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 14px 20px;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      text-align: center;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .login-box input[type="password"]:focus { border-color: var(--gold); }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .login-btn:hover { background: var(--gold); color: #000; }
+    .login-error {
+      color: var(--error);
+      font-size: 0.8rem;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* ===== DASHBOARD ===== */
+    #dashboard { display: none; }
+
+    .dash-header {
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .dash-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      letter-spacing: 8px;
+      color: var(--gold);
+    }
+    .dash-logo span {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      display: block;
+      text-transform: uppercase;
+    }
+    .dash-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-save-all {
+      padding: 10px 28px;
+      background: var(--gold);
+      border: none;
+      color: #000;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 1px;
+    }
+    .btn-save-all:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-preview {
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-preview:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-logout {
+      padding: 10px 16px;
+      background: transparent;
+      border: 1px solid rgba(244,67,54,0.3);
+      color: rgba(244,67,54,0.6);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-logout:hover { border-color: var(--error); color: var(--error); }
+
+    /* ===== TABS ===== */
+    .dash-tabs {
+      background: var(--dark2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 18px 28px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--white); }
+    .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ===== CONTENT ===== */
+    .dash-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    /* ===== FORM ELEMENTS ===== */
+    .field-group {
+      margin-bottom: 28px;
+    }
+    .field-label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .field-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .field-input:focus { border-color: var(--gold); }
+    .field-textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color 0.3s;
+      line-height: 1.7;
+    }
+    .field-textarea:focus { border-color: var(--gold); }
+    .field-hint {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ===== PRODUCTS GRID ===== */
+    .products-editor {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .product-editor-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      padding: 24px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .product-editor-card:hover { border-color: var(--gold); }
+    .product-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: rgba(201,168,76,0.15);
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      font-weight: 300;
+    }
+    .product-card-title {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ===== IMAGE UPLOAD ===== */
+    .img-upload-area {
+      border: 2px dashed var(--border);
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      margin-bottom: 16px;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .img-upload-area:hover { border-color: var(--gold); background: rgba(201,168,76,0.03); }
+    .img-upload-area.has-image { padding: 0; border-style: solid; border-color: var(--gold); }
+    .img-upload-area img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+    .img-upload-area input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .upload-icon { font-size: 2rem; opacity: 0.4; }
+    .upload-text { font-size: 0.78rem; color: var(--text-muted); }
+    .upload-hint { font-size: 0.68rem; color: rgba(250,243,224,0.3); }
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .img-upload-area.has-image:hover .img-overlay { opacity: 1; }
+    .img-overlay span { font-size: 0.75rem; color: var(--gold); letter-spacing: 2px; }
+
+    /* ===== ROW ===== */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
+
+    /* ===== TOAST ===== */
+    #toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--gold);
+      color: #000;
+      padding: 14px 32px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      z-index: 9999;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      letter-spacing: 1px;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+    #toast.error { background: var(--error); color: #fff; }
+
+    /* ===== BADGE SELECT ===== */
+    .badge-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .badge-opt {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .badge-opt.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+
+    /* ===== CATEGORY SELECT ===== */
+    .cat-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .cat-opt {
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cat-opt.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+
+    @media (max-width: 768px) {
+      .dash-header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+      .dash-content { padding: 24px 20px; }
+      .dash-tabs { padding: 0 20px; }
+      .field-row { grid-template-columns: 1fr; }
+      .products-editor { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">KON</div>
+    <div class="login-sub">لوحة الإعدادات</div>
+    <input type="password" id="passwordInput" placeholder="••••••" autofocus />
+    <button class="login-btn" onclick="checkPassword()">دخول</button>
+    <div class="login-error" id="loginError">كلمة السر غلط، حاول مرة ثانية</div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard">
+
+  <!-- Header -->
+  <div class="dash-header">
+    <div class="dash-logo">
+      KON LUXURY
+      <span>لوحة التحكم</span>
+    </div>
+    <div class="dash-actions">
+      <a href="index.html" target="_blank" class="btn-preview">👁 معاينة الموقع</a>
+      <button class="btn-save-all" onclick="saveAll()">💾 حفظ كل التعديلات</button>
+      <button class="btn-logout" onclick="logout()">خروج</button>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="dash-tabs">
+    <button class="tab-btn active" onclick="switchTab('products')">📦 المنتجات</button>
+    <button class="tab-btn" onclick="switchTab('texts')">✏️ النصوص</button>
+    <button class="tab-btn" onclick="switchTab('contact')">📞 التواصل</button>
+    <button class="tab-btn" onclick="switchTab('hero')">🏠 الصفحة الرئيسية</button>
+  </div>
+
+  <!-- Content -->
+  <div class="dash-content">
+
+    <!-- ===== TAB: PRODUCTS ===== -->
+    <div class="tab-panel active" id="tab-products">
+      <div class="section-title">المنتجات</div>
+      <p class="section-desc">عدّل اسم، وصف، فئة، وشارة كل منتج. لرفع صورة حقيقية اضغط على مربع الصورة.</p>
+
+      <div class="products-editor" id="productsEditor">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+
+    <!-- ===== TAB: TEXTS ===== -->
+    <div class="tab-panel" id="tab-texts">
+      <div class="section-title">نصوص الموقع</div>
+      <p class="section-desc">عدّل النصوص الظاهرة في صفحة "من نحن" وأقسام الموقع المختلفة.</p>
+
+      <div class="field-group">
+        <label class="field-label">نص "من نحن" (عربي)</label>
+        <textarea class="field-textarea" id="txt_about_ar" rows="4"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">نص "من نحن" (عبري)</label>
+        <textarea class="field-textarea" id="txt_about_he" rows="4" dir="rtl"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">نص "من نحن" (إنجليزي)</label>
+        <textarea class="field-textarea" id="txt_about_en" rows="4" dir="ltr"></textarea>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">إحصائية 1 (عربي)</label>
+          <input type="text" class="field-input" id="txt_stat1_ar" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">الرقم</label>
+          <input type="text" class="field-input" id="txt_stat1_num" placeholder="500+" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">إحصائية 2 (عربي)</label>
+          <input type="text" class="field-input" id="txt_stat2_ar" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">الرقم</label>
+          <input type="text" class="field-input" id="txt_stat2_num" placeholder="4" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">إحصائية 3 (عربي)</label>
+          <input type="text" class="field-input" id="txt_stat3_ar" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">الرقم</label>
+          <input type="text" class="field-input" id="txt_stat3_num" placeholder="100%" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: CONTACT ===== -->
+    <div class="tab-panel" id="tab-contact">
+      <div class="section-title">معلومات التواصل</div>
+      <p class="section-desc">عدّل رقم الواتساب ورابط الإنستغرام. التغييرات تطبق فوراً على الموقع.</p>
+
+      <div class="field-group">
+        <label class="field-label">رقم الواتساب (مع كود البلد، بدون +)</label>
+        <input type="text" class="field-input" id="contact_whatsapp" placeholder="9720549210470" dir="ltr" />
+        <div class="field-hint">مثال: 9720549210470 (972 = كود إسرائيل)</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">رابط الإنستغرام</label>
+        <input type="text" class="field-input" id="contact_instagram" placeholder="https://instagram.com/konluxurycandles" dir="ltr" />
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section-title" style="font-size:1.1rem; margin-bottom:8px;">رسائل الواتساب التلقائية</div>
+      <p class="section-desc">الرسالة اللي تنبعث تلقائياً لما يضغط العميل على واتساب</p>
+
+      <div class="field-group">
+        <label class="field-label">رسالة الواتساب (عربي)</label>
+        <textarea class="field-textarea" id="contact_wa_ar" rows="2"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">رسالة الواتساب (عبري)</label>
+        <textarea class="field-textarea" id="contact_wa_he" rows="2" dir="rtl"></textarea>
+      </div>
+      <div class="field-group">
+        <label class="field-label">رسالة الواتساب (إنجليزي)</label>
+        <textarea class="field-textarea" id="contact_wa_en" rows="2" dir="ltr"></textarea>
+      </div>
+    </div>
+
+    <!-- ===== TAB: HERO ===== -->
+    <div class="tab-panel" id="tab-hero">
+      <div class="section-title">الصفحة الرئيسية</div>
+      <p class="section-desc">عدّل النصوص الظاهرة في أعلى الصفحة الرئيسية (Hero Section)</p>
+
+      <div class="field-group">
+        <label class="field-label">العنوان الفرعي — عربي</label>
+        <input type="text" class="field-input" id="hero_sub_ar" />
+      </div>
+      <div class="field-group">
+        <label class="field-label">الوصف — عربي</label>
+        <input type="text" class="field-input" id="hero_desc_ar" />
+      </div>
+      <div class="field-group">
+        <label class="field-label">نص الزر — عربي</label>
+        <input type="text" class="field-input" id="hero_btn_ar" />
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-group">
+        <label class="field-label">العنوان الفرعي — عبري</label>
+        <input type="text" class="field-input" id="hero_sub_he" dir="rtl" />
+      </div>
+      <div class="field-group">
+        <label class="field-label">الوصف — عبري</label>
+        <input type="text" class="field-input" id="hero_desc_he" dir="rtl" />
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-group">
+        <label class="field-label">العنوان الفرعي — إنجليزي</label>
+        <input type="text" class="field-input" id="hero_sub_en" dir="ltr" />
+      </div>
+      <div class="field-group">
+        <label class="field-label">الوصف — إنجليزي</label>
+        <input type="text" class="field-input" id="hero_desc_en" dir="ltr" />
+      </div>
+    </div>
+
+  </div><!-- end dash-content -->
+</div><!-- end dashboard -->
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+  const PASSWORD = '010824';
+
+  // ===== LOGIN =====
+  function checkPassword() {
+    const val = document.getElementById('passwordInput').value;
+    if (val === PASSWORD) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      initDashboard();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordInput').focus();
+    }
+  }
+  document.getElementById('passwordInput').addEventListener('keypress', e => {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  function logout() {
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('passwordInput').value = '';
+  }
+
+  // ===== TABS =====
+  function switchTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ===== DEFAULT DATA =====
+  const defaultData = {
+    products: [
+      { name_ar: 'شمعة فاخرة كلاسيكية', name_en: 'Classic Luxury Candle', desc_ar: 'شمعة يدوية بعطور راقية تملأ المكان برائحة دافئة مميزة', category: 'candles', badge: 'يدوي الصنع', image: '' },
+      { name_ar: 'شمعة ديكور فخمة', name_en: 'Decorative Luxury Candle', desc_ar: 'تصميم أنيق يناسب ديكور البيت الراقي والهدايا الفاخرة', category: 'candles', badge: 'فاخر', image: '' },
+      { name_ar: 'لوحة ريزن فنية', name_en: 'Artistic Resin Panel', desc_ar: 'لوحة فنية مصنوعة يدوياً من الريزن بتشكيلات ذهبية فريدة', category: 'resin', badge: 'تحفة فريدة', image: '' },
+      { name_ar: 'إكسسوار إيبوكسي', name_en: 'Epoxy Accessory', desc_ar: 'قطع ديكورية وإكسسوارات من الإيبوكسي بألوان وأشكال مبتكرة', category: 'resin', badge: 'يدوي الصنع', image: '' },
+      { name_ar: 'إناء فخار أصيل', name_en: 'Authentic Pottery Vase', desc_ar: 'فخار يدوي بلمسات تقليدية وحديثة يزين أي ركن في منزلك', category: 'pottery', badge: 'حرفة أصيلة', image: '' },
+      { name_ar: 'مجموعة فخار فاخرة', name_en: 'Luxury Pottery Set', desc_ar: 'مجموعة متناسقة من الفخار اليدوي لأناقة لا مثيل لها', category: 'pottery', badge: 'فاخر', image: '' },
+    ],
+    contact: {
+      whatsapp: '9720549210470',
+      instagram: 'https://instagram.com/konluxurycandles',
+      wa_ar: 'مرحباً، أود الاستفسار عن منتجاتكم في KON Luxury',
+      wa_he: 'שלום, אשמח לקבל מידע על המוצרים שלכם ב-KON Luxury',
+      wa_en: 'Hello, I would like to inquire about your products at KON Luxury',
+    },
+    texts: {
+      about_ar: 'في KON Luxury نؤمن أن كل قطعة تحكي قصة. نصنع شموعنا وإبداعاتنا الريزن وفخارنا بأيدينا بعشق واتقان، لتُضيف لمسة من الجمال والفخامة لحياتكم.',
+      about_he: 'ב-KON Luxury אנו מאמינים שכל יצירה מספרת סיפור. אנחנו מייצרים את הנרות, יצירות הרזין והקרמיקה שלנו בידיים עם אהבה ומיומנות.',
+      about_en: 'At KON Luxury, we believe every piece tells a story. We handcraft our candles, resin creations, and pottery with love and dedication.',
+      stat1_ar: 'عميل سعيد', stat1_num: '500',
+      stat2_ar: 'أنواع منتجات', stat2_num: '4',
+      stat3_ar: 'يدوي الصنع', stat3_num: '100',
+    },
+    hero: {
+      sub_ar: 'مصنوع بشغف واتقان',
+      desc_ar: 'شموع فاخرة · ريزن يدوي · فخار أصيل',
+      btn_ar: 'استعرض المنتجات',
+      sub_he: 'עשוי בתשוקה ובמיומנות',
+      desc_he: 'נרות יוקרתיים · שרף בעבודת יד · קרמיקה מקורית',
+      sub_en: 'Crafted with passion & precision',
+      desc_en: 'Luxury Candles · Handmade Resin · Authentic Pottery',
+    }
+  };
+
+  // ===== LOAD DATA =====
+  function loadData() {
+    const saved = localStorage.getItem('konluxury_settings');
+    return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultData));
+  }
+
+  // ===== INIT =====
+  function initDashboard() {
+    const data = loadData();
+    buildProductsEditor(data.products);
+    fillContactFields(data.contact);
+    fillTextFields(data.texts);
+    fillHeroFields(data.hero);
+  }
+
+  // ===== PRODUCTS EDITOR =====
+  const badges = ['يدوي الصنع', 'فاخر', 'تحفة فريدة', 'حرفة أصيلة', 'جديد', 'الأكثر طلباً'];
+  const categories = [
+    { val: 'candles', label: '🕯️ شموع' },
+    { val: 'resin', label: '🔮 ريزن' },
+    { val: 'pottery', label: '🏺 فخار' },
+  ];
+
+  function buildProductsEditor(products) {
+    const container = document.getElementById('productsEditor');
+    container.innerHTML = '';
+    products.forEach((prod, i) => {
+      const card = document.createElement('div');
+      card.className = 'product-editor-card';
+      card.innerHTML = `
+        <div class="product-card-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="product-card-title">منتج ${i+1}</div>
+
+        <div class="img-upload-area ${prod.image ? 'has-image' : ''}" id="imgArea_${i}" onclick="triggerUpload(${i})">
+          ${prod.image
+            ? `<img src="${prod.image}" id="imgPreview_${i}" alt="صورة المنتج" /><div class="img-overlay"><span>تغيير الصورة</span></div>`
+            : `<div class="upload-icon">📸</div><div class="upload-text">اضغط لرفع صورة</div><div class="upload-hint">JPG, PNG — بحجم أقل من 5MB</div>`
+          }
+          <input type="file" id="imgInput_${i}" accept="image/*" style="display:none" onchange="handleImageUpload(${i}, this)" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">الاسم (عربي)</label>
+          <input type="text" class="field-input" id="prod_name_ar_${i}" value="${prod.name_ar || ''}" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">الاسم (إنجليزي)</label>
+          <input type="text" class="field-input" id="prod_name_en_${i}" value="${prod.name_en || ''}" dir="ltr" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">الوصف (عربي)</label>
+          <textarea class="field-textarea" id="prod_desc_ar_${i}" rows="2">${prod.desc_ar || ''}</textarea>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">الفئة</label>
+          <div class="cat-options">
+            ${categories.map(c => `
+              <button class="cat-opt ${prod.category === c.val ? 'selected' : ''}"
+                onclick="selectCat(${i}, '${c.val}', this)"
+                data-cat="${c.val}">${c.label}</button>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">الشارة</label>
+          <div class="badge-options">
+            ${badges.map(b => `
+              <button class="badge-opt ${prod.badge === b ? 'selected' : ''}"
+                onclick="selectBadge(${i}, '${b}', this)">${b}</button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function triggerUpload(i) {
+    document.getElementById('imgInput_' + i).click();
+  }
+
+  function handleImageUpload(i, input) {
+    const file = input.files[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) { showToast('الصورة كبيرة جداً! الحد الأقصى 5MB', true); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      const src = e.target.result;
+      const area = document.getElementById('imgArea_' + i);
+      area.classList.add('has-image');
+      area.innerHTML = `
+        <img src="${src}" id="imgPreview_${i}" alt="صورة المنتج" />
+        <div class="img-overlay"><span>تغيير الصورة</span></div>
+        <input type="file" id="imgInput_${i}" accept="image/*" style="display:none" onchange="handleImageUpload(${i}, this)" />
+      `;
+      // Save image to localStorage
+      const data = loadData();
+      data.products[i].image = src;
+      localStorage.setItem('konluxury_settings', JSON.stringify(data));
+      showToast('✅ تم رفع الصورة!');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function selectCat(i, val, btn) {
+    btn.closest('.cat-options').querySelectorAll('.cat-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  }
+
+  function selectBadge(i, val, btn) {
+    btn.closest('.badge-options').querySelectorAll('.badge-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  }
+
+  // ===== FILL FIELDS =====
+  function fillContactFields(c) {
+    document.getElementById('contact_whatsapp').value = c.whatsapp || '';
+    document.getElementById('contact_instagram').value = c.instagram || '';
+    document.getElementById('contact_wa_ar').value = c.wa_ar || '';
+    document.getElementById('contact_wa_he').value = c.wa_he || '';
+    document.getElementById('contact_wa_en').value = c.wa_en || '';
+  }
+
+  function fillTextFields(t) {
+    document.getElementById('txt_about_ar').value = t.about_ar || '';
+    document.getElementById('txt_about_he').value = t.about_he || '';
+    document.getElementById('txt_about_en').value = t.about_en || '';
+    document.getElementById('txt_stat1_ar').value = t.stat1_ar || '';
+    document.getElementById('txt_stat1_num').value = t.stat1_num || '';
+    document.getElementById('txt_stat2_ar').value = t.stat2_ar || '';
+    document.getElementById('txt_stat2_num').value = t.stat2_num || '';
+    document.getElementById('txt_stat3_ar').value = t.stat3_ar || '';
+    document.getElementById('txt_stat3_num').value = t.stat3_num || '';
+  }
+
+  function fillHeroFields(h) {
+    document.getElementById('hero_sub_ar').value = h.sub_ar || '';
+    document.getElementById('hero_desc_ar').value = h.desc_ar || '';
+    document.getElementById('hero_btn_ar').value = h.btn_ar || '';
+    document.getElementById('hero_sub_he').value = h.sub_he || '';
+    document.getElementById('hero_desc_he').value = h.desc_he || '';
+    document.getElementById('hero_sub_en').value = h.sub_en || '';
+    document.getElementById('hero_desc_en').value = h.desc_en || '';
+  }
+
+  // ===== SAVE ALL =====
+  function saveAll() {
+    const data = loadData();
+
+    // Save products
+    const count = data.products.length;
+    for (let i = 0; i < count; i++) {
+      data.products[i].name_ar = document.getElementById('prod_name_ar_' + i)?.value || '';
+      data.products[i].name_en = document.getElementById('prod_name_en_' + i)?.value || '';
+      data.products[i].desc_ar = document.getElementById('prod_desc_ar_' + i)?.value || '';
+      // category
+      const selCat = document.querySelector(`#tab-products .product-editor-card:nth-child(${i+1}) .cat-opt.selected`);
+      if (selCat) data.products[i].category = selCat.dataset.cat;
+      // badge
+      const selBadge = document.querySelector(`#tab-products .product-editor-card:nth-child(${i+1}) .badge-opt.selected`);
+      if (selBadge) data.products[i].badge = selBadge.textContent;
+    }
+
+    // Save contact
+    data.contact.whatsapp = document.getElementById('contact_whatsapp').value;
+    data.contact.instagram = document.getElementById('contact_instagram').value;
+    data.contact.wa_ar = document.getElementById('contact_wa_ar').value;
+    data.contact.wa_he = document.getElementById('contact_wa_he').value;
+    data.contact.wa_en = document.getElementById('contact_wa_en').value;
+
+    // Save texts
+    data.texts.about_ar = document.getElementById('txt_about_ar').value;
+    data.texts.about_he = document.getElementById('txt_about_he').value;
+    data.texts.about_en = document.getElementById('txt_about_en').value;
+    data.texts.stat1_ar = document.getElementById('txt_stat1_ar').value;
+    data.texts.stat1_num = document.getElementById('txt_stat1_num').value;
+    data.texts.stat2_ar = document.getElementById('txt_stat2_ar').value;
+    data.texts.stat2_num = document.getElementById('txt_stat2_num').value;
+    data.texts.stat3_ar = document.getElementById('txt_stat3_ar').value;
+    data.texts.stat3_num = document.getElementById('txt_stat3_num').value;
+
+    // Save hero
+    data.hero.sub_ar = document.getElementById('hero_sub_ar').value;
+    data.hero.desc_ar = document.getElementById('hero_desc_ar').value;
+    data.hero.btn_ar = document.getElementById('hero_btn_ar').value;
+    data.hero.sub_he = document.getElementById('hero_sub_he').value;
+    data.hero.desc_he = document.getElementById('hero_desc_he').value;
+    data.hero.sub_en = document.getElementById('hero_sub_en').value;
+    data.hero.desc_en = document.getElementById('hero_desc_en').value;
+
+    localStorage.setItem('konluxury_settings', JSON.stringify(data));
+    applyToSite(data);
+    showToast('✅ تم حفظ كل التعديلات!');
+  }
+
+  // ===== APPLY TO SITE (injects into parent/opener) =====
+  function applyToSite(data) {
+    // This applies settings when navigating to index.html
+    // script.js on index.html reads from localStorage
+    localStorage.setItem('konluxury_settings', JSON.stringify(data));
+  }
+
+  // ===== TOAST =====
+  function showToast(msg, isError = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = isError ? 'error' : '';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+</script>
+</body>
+</html>

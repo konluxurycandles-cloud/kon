@@ -1,0 +1,62 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: 'ar'
+
+collections:
+
+  # ── المنتجات ──
+  - name: "products"
+    label: "المنتجات"
+    label_singular: "منتج"
+    folder: "_data/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "اسم المنتج (عربي)", name: "name_ar", widget: "string" }
+      - { label: "اسم المنتج (إنجليزي)", name: "name_en", widget: "string" }
+      - { label: "السعر (مثال: ₪185)", name: "price", widget: "string" }
+      - label: "الفئة"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "شموع", value: "candles" }
+          - { label: "ريزن", value: "resin" }
+          - { label: "فخار", value: "pottery" }
+          - { label: "تيراتزو", value: "terrazzo" }
+      - { label: "صورة المنتج", name: "image", widget: "image" }
+      - { label: "وصف المنتج", name: "description", widget: "text" }
+      - label: "الشارة"
+        name: "badge"
+        widget: "select"
+        options:
+          - { label: "صنع يدوي", value: "handmade" }
+          - { label: "فاخر", value: "luxury" }
+          - { label: "فريد", value: "unique" }
+          - { label: "حرفي", value: "artisan" }
+
+  # ── إعدادات الموقع ──
+  - name: "settings"
+    label: "إعدادات الموقع"
+    files:
+
+      - label: "معلومات التواصل"
+        name: "contact"
+        file: "_data/contact.json"
+        fields:
+          - { label: "رقم واتساب (مع كود الدولة)", name: "whatsapp", widget: "string", hint: "مثال: 972501234567" }
+          - { label: "رابط إنستغرام", name: "instagram", widget: "string", hint: "مثال: https://instagram.com/konluxury" }
+
+      - label: "النصوص العامة"
+        name: "texts"
+        file: "_data/texts.json"
+        fields:
+          - { label: "عنوان Hero الرئيسي", name: "hero_title", widget: "string" }
+          - { label: "وصف Hero", name: "hero_desc", widget: "text" }
+          - { label: "نص من نحن", name: "about_text", widget: "text" }
+          - { label: "عدد الزبائن (الإحصائية)", name: "stat_customers", widget: "string", default: "500+" }
+          - { label: "عدد المنتجات (الإحصائية)", name: "stat_products", widget: "string", default: "4" }
