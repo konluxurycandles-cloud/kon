@@ -277,21 +277,22 @@ productCards.forEach(card => {
 });
 
 // ===== SCROLL REVEAL =====
-const revealEls = document.querySelectorAll('.products, .contact, .product-card, .featured, .testimonials');
-revealEls.forEach(el => el.classList.add('reveal'));
-
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, i * 60);
+      entry.target.classList.add('visible');
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-revealEls.forEach(el => revealObserver.observe(el));
+function addReveal(selector, delayFn) {
+  document.querySelectorAll(selector).forEach((el, i) => {
+    el.classList.add('reveal');
+    if (delayFn) el.style.transitionDelay = delayFn(i);
+    revealObserver.observe(el);
+  });
+}
 
 // ===== WHATSAPP & INSTAGRAM =====
 function openWhatsapp() {
@@ -471,16 +472,14 @@ function createParticles() {
 createParticles();
 
 // ===== SMOOTH SCROLL REVEAL with stagger =====
-document.querySelectorAll('.product-card').forEach((el, i) => {
-  el.classList.add('reveal');
-  el.style.transitionDelay = `${i * 0.07}s`;
-});
-document.querySelectorAll('.section-header').forEach(el => el.classList.add('reveal'));
-document.querySelectorAll('.contact-sub, .contact-buttons').forEach(el => el.classList.add('reveal'));
-document.querySelectorAll('.testi-card').forEach((el, i) => {
-  el.classList.add('reveal');
-  el.style.transitionDelay = `${i * 0.1}s`;
-});
+addReveal('.section-header');
+addReveal('.filter-tabs');
+addReveal('.product-card', i => `${i * 0.07}s`);
+addReveal('.contact-sub');
+addReveal('.contact-buttons');
+addReveal('.testi-card', i => `${i * 0.12}s`);
+addReveal('.featured-frame');
+addReveal('.featured-info');
 
 // ===== MAGNETIC BUTTONS =====
 document.querySelectorAll('.btn-inquire, .btn-whatsapp, .btn-instagram').forEach(btn => {
