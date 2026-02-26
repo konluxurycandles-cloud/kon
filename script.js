@@ -277,7 +277,7 @@ productCards.forEach(card => {
 });
 
 // ===== SCROLL REVEAL =====
-const revealEls = document.querySelectorAll('.about, .products, .contact, .product-card, .stat-item');
+const revealEls = document.querySelectorAll('.products, .contact, .product-card, .featured, .testimonials');
 revealEls.forEach(el => el.classList.add('reveal'));
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -285,11 +285,11 @@ const revealObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       setTimeout(() => {
         entry.target.classList.add('visible');
-      }, i * 80);
+      }, i * 60);
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
 revealEls.forEach(el => revealObserver.observe(el));
 
@@ -471,25 +471,24 @@ function createParticles() {
 createParticles();
 
 // ===== SMOOTH SCROLL REVEAL with stagger =====
-document.querySelectorAll('.stat-item').forEach((el, i) => {
-  el.classList.add('reveal');
-  el.style.transitionDelay = `${i * 0.12}s`;
-});
 document.querySelectorAll('.product-card').forEach((el, i) => {
   el.classList.add('reveal');
-  el.style.transitionDelay = `${i * 0.08}s`;
+  el.style.transitionDelay = `${i * 0.07}s`;
 });
 document.querySelectorAll('.section-header').forEach(el => el.classList.add('reveal'));
-document.querySelectorAll('.about-text').forEach(el => el.classList.add('reveal'));
 document.querySelectorAll('.contact-sub, .contact-buttons').forEach(el => el.classList.add('reveal'));
+document.querySelectorAll('.testi-card').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.style.transitionDelay = `${i * 0.1}s`;
+});
 
 // ===== MAGNETIC BUTTONS =====
-document.querySelectorAll('.btn-gold, .btn-inquire, .btn-whatsapp, .btn-instagram').forEach(btn => {
+document.querySelectorAll('.btn-inquire, .btn-whatsapp, .btn-instagram').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const rect = btn.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    btn.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
   });
   btn.addEventListener('mouseleave', () => {
     btn.style.transform = '';
@@ -500,8 +499,9 @@ document.querySelectorAll('.btn-gold, .btn-inquire, .btn-whatsapp, .btn-instagra
 window.addEventListener('scroll', () => {
   const heroContent = document.querySelector('.hero-content');
   if (heroContent && window.scrollY < window.innerHeight) {
-    heroContent.style.transform = `translateY(${window.scrollY * 0.28}px)`;
-    heroContent.style.opacity = 1 - (window.scrollY / (window.innerHeight * 0.8));
+    const progress = window.scrollY / window.innerHeight;
+    heroContent.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+    heroContent.style.opacity = Math.max(0, 1 - progress * 1.4);
   }
 });
 
