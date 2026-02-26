@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KON Luxury — من نحن</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Naskh+Arabic:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#C9A84C;--gold-l:#E2C97E;--gold-dim:rgba(201,168,76,0.6);
+  --bg:#0d0d0d;--surface:#1a1a1a;--card:#222222;
+  --border:rgba(201,168,76,0.22);--text:#FAF3E0;--text-dim:rgba(250,243,224,0.65);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Naskh Arabic',serif;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;
+  background:rgba(13,13,13,0.96);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;letter-spacing:.28em;color:var(--gold);text-decoration:none}
+.nav-logo sub{font-size:.46em;letter-spacing:.12em;color:var(--gold-dim);vertical-align:middle;border-left:1px solid var(--gold-dim);border-right:1px solid var(--gold-dim);padding:0 6px;margin:0 3px}
+.nav-links-row{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links-row a{font-family:'Cormorant Garamond',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,243,224,0.5);text-decoration:none;transition:color .3s}
+.nav-links-row a:hover,.nav-links-row a.active{color:var(--gold)}
+.nav-ai{color:var(--gold) !important;border:1px solid rgba(201,168,76,0.35);padding:5px 14px;transition:all .3s !important}
+.nav-ai:hover{background:var(--gold);color:#000 !important}
+.mnav{display:none;position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(13,13,13,.98);border-bottom:1px solid var(--border);padding:13px 20px;align-items:center;justify-content:space-between}
+.mnav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;letter-spacing:.22em;color:var(--gold)}
+.mnav-back{font-family:'Cormorant Garamond',serif;font-size:.68rem;letter-spacing:.12em;color:var(--gold-dim);text-decoration:none}
+@media(max-width:768px){nav{display:none}.mnav{display:flex}}
+
+/* ── HERO ── */
+.about-hero{
+  min-height:55vh;display:flex;align-items:flex-end;
+  padding:120px 56px 80px;position:relative;overflow:hidden;
+}
+.about-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 80%,rgba(201,168,76,0.09),transparent 70%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,168,76,0.05) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 100%,black,transparent);
+}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-eyebrow{font-family:'Cormorant Garamond',serif;font-size:.62rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px;opacity:0;animation:fadeUp .9s ease .1s forwards}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:300;line-height:1;color:var(--text);margin-bottom:24px;opacity:0;animation:fadeUp .9s ease .3s forwards}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1rem;line-height:2.1;color:var(--text-dim);max-width:520px;opacity:0;animation:fadeUp .9s ease .5s forwards}
+
+/* ── STORY ── */
+.story{
+  padding:120px 56px;background:var(--surface);
+  border-top:1px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;
+}
+.story-left{}
+.story-eyebrow{font-family:'Cormorant Garamond',serif;font-size:.62rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.story-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.8rem);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:32px}
+.story-title em{font-style:italic;color:var(--gold)}
+.story-text{font-size:.95rem;line-height:2.4;color:var(--text-dim);margin-bottom:24px}
+.story-quote{border-right:2px solid var(--gold);padding-right:24px;margin:36px 0;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--text);line-height:1.7}
+
+.story-right{position:relative}
+.story-frame{
+  width:100%;aspect-ratio:3/4;background:var(--card);
+  border:1px solid var(--border);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.story-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(201,168,76,0.1),transparent 60%)}
+.story-frame-deco{position:absolute;inset:16px;border:1px solid rgba(201,168,76,0.08)}
+.story-frame-logo{
+  font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;
+  letter-spacing:.25em;color:var(--gold);opacity:.07;text-align:center;line-height:1.5;
+  position:relative;z-index:1;
+}
+.story-badge{
+  position:absolute;bottom:-20px;left:-20px;
+  background:var(--bg);border:1px solid var(--border);
+  padding:22px 28px;
+}
+.story-badge-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--gold);line-height:1}
+.story-badge-txt{font-size:.78rem;color:var(--text-dim);margin-top:4px}
+
+@media(max-width:1024px){.story{grid-template-columns:1fr;gap:60px}.story-right{display:none}}
+@media(max-width:768px){.story{padding:72px 20px}.about-hero{padding:100px 20px 60px}}
+
+/* ── VALUES ── */
+.values{
+  padding:120px 56px;background:var(--bg);
+  border-top:1px solid var(--border);
+}
+.values-hd{text-align:center;margin-bottom:80px}
+.sec-eyebrow{font-family:'Cormorant Garamond',serif;font-size:.62rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,4rem);font-weight:300;color:var(--text);line-height:1.1}
+.sec-title em{font-style:italic;color:var(--gold)}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.value-card{
+  padding:48px 32px;background:var(--surface);
+  border:1px solid rgba(201,168,76,0.15);
+  position:relative;overflow:hidden;transition:border-color .4s;
+}
+.value-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s}
+.value-card:hover{border-color:rgba(201,168,76,0.35)}
+.value-card:hover::after{opacity:1}
+.value-icon{font-size:1.6rem;margin-bottom:20px;display:block;opacity:.7}
+.value-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--text);margin-bottom:12px}
+.value-name em{font-style:italic;color:var(--gold)}
+.value-txt{font-size:.86rem;line-height:2.1;color:var(--text-dim)}
+@media(max-width:1024px){.values-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.values{padding:72px 20px}.value-card{padding:32px 20px}}
+
+/* ── STATS ── */
+.stats-strip{
+  padding:80px 56px;background:var(--surface);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.stat-box{padding:48px 32px;text-align:center;border:1px solid rgba(201,168,76,0.1);background:var(--bg)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5rem);font-weight:300;color:var(--gold);line-height:1;display:block}
+.stat-label{font-size:.82rem;color:var(--text-dim);margin-top:10px;letter-spacing:.08em;display:block}
+@media(max-width:768px){.stats-strip{padding:56px 20px}.stats-grid{grid-template-columns:1fr 1fr}}
+
+/* ── PROCESS ── */
+.process{
+  padding:120px 56px;background:var(--bg);
+  border-top:1px solid var(--border);
+}
+.process-hd{margin-bottom:72px}
+.process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.process-step{
+  padding:48px 36px;background:var(--surface);
+  border:1px solid rgba(201,168,76,0.12);
+  position:relative;
+}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(201,168,76,0.06);line-height:1;position:absolute;top:20px;right:24px}
+.step-icon{font-size:1.8rem;margin-bottom:20px;display:block}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--text);margin-bottom:12px}
+.step-title em{font-style:italic;color:var(--gold)}
+.step-txt{font-size:.88rem;line-height:2.1;color:var(--text-dim)}
+@media(max-width:1024px){.process-steps{grid-template-columns:1fr}}
+@media(max-width:768px){.process{padding:72px 20px}}
+
+/* ── PHILOSOPHY ── */
+.philosophy{
+  padding:120px 56px;background:var(--surface);
+  border-top:1px solid var(--border);
+  text-align:center;position:relative;overflow:hidden;
+}
+.philosophy::before{
+  content:'"';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;font-size:30vw;font-weight:300;
+  color:rgba(201,168,76,0.025);line-height:1;pointer-events:none;
+}
+.phil-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold-dim),transparent);margin:0 auto 28px}
+.phil-q{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,3.5vw,2.8rem);font-weight:300;font-style:italic;
+  line-height:1.55;color:var(--text);max-width:820px;margin:0 auto 28px;
+  position:relative;z-index:1;
+}
+.phil-q strong{color:var(--gold);font-style:normal;font-weight:300}
+.phil-attr{font-size:.8rem;color:var(--text-dim);letter-spacing:.18em}
+@media(max-width:768px){.philosophy{padding:80px 20px}}
+
+/* ── TEAM ── */
+.team{
+  padding:120px 56px;background:var(--bg);
+  border-top:1px solid var(--border);
+}
+.team-hd{margin-bottom:72px}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.team-card{background:var(--surface);border:1px solid rgba(201,168,76,0.12);padding:40px 32px;text-align:center}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--text);margin-bottom:6px}
+.team-role{font-size:.78rem;color:var(--gold-dim);letter-spacing:.12em;margin-bottom:14px}
+.team-desc{font-size:.86rem;line-height:2;color:var(--text-dim)}
+@media(max-width:768px){.team{padding:72px 20px}.team-grid{grid-template-columns:1fr}}
+
+/* ── CTA ── */
+.cta{
+  padding:100px 56px;background:var(--surface);
+  border-top:1px solid var(--border);text-align:center;
+}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:var(--text);margin-bottom:14px;line-height:1.1}
+.cta-title em{font-style:italic;color:var(--gold)}
+.cta-sub{font-size:.95rem;color:var(--text-dim);line-height:1.9;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-gold{display:inline-block;padding:15px 44px;background:var(--gold);color:#000;font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;transition:background .3s}
+.btn-gold:hover{background:var(--gold-l)}
+.btn-ghost{display:inline-block;padding:15px 44px;border:1px solid rgba(201,168,76,0.3);color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;transition:all .35s}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(201,168,76,0.07)}
+@media(max-width:768px){.cta{padding:72px 20px}}
+
+/* ── FOOTER ── */
+footer{padding:36px 56px;background:var(--surface);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;letter-spacing:.28em;color:var(--gold)}
+.foot-logo sub{font-size:.46em;letter-spacing:.12em;color:var(--gold-dim);vertical-align:middle;border-left:1px solid var(--gold-dim);border-right:1px solid var(--gold-dim);padding:0 5px;margin:0 3px}
+.foot-copy{font-family:'Cormorant Garamond',serif;font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.18)}
+@media(max-width:768px){footer{padding:28px 20px;flex-direction:column;text-align:center}}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.rv{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}.rv-d3{transition-delay:.36s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">KON <sub>luxury</sub></a>
+  <ul class="nav-links-row">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="about.html" class="active">من نحن</a></li>
+    <li><a href="index.html#products">المنتجات</a></li>
+    <li><a href="index.html#contact">تواصل</a></li>
+    <li><a href="ai.html" class="nav-ai">✦ AI</a></li>
+  </ul>
+</nav>
+<div class="mnav">
+  <a href="index.html" class="mnav-back">← رجوع</a>
+  <span class="mnav-logo">KON <sub>luxury</sub></span>
+  <span style="width:44px"></span>
+</div>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Our Story — قصتنا</p>
+    <h1 class="hero-title">لم نبنِ متجراً.<br><em>بنينا فلسفة.</em></h1>
+    <p class="hero-sub">Kōn Luxury وُلدت من شغف حقيقي — حين أدركنا أن ما نصنعه ليس مجرد منتج. كل قطعة تحمل وقتها الكامل، ومواد مختارة بعناية، وتصميماً لا يتكرر.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div class="story-left rv">
+    <p class="story-eyebrow">The Beginning — البداية</p>
+    <h2 class="story-title">من لحظة صمت<br>إلى <em>حرفة كاملة</em></h2>
+    <p class="story-text">بدأت القصة في غرفة صغيرة، بيدين، وشمعة واحدة. لم يكن الهدف بناء متجر — كان الهدف فهم الجمال في أبسط صوره: الشمع الذي يذوب ببطء، الطين الذي يأخذ شكل الحلم، الراتنج الذي يحمل اللحظة داخله إلى الأبد.</p>
+    <p class="story-text">مع كل قطعة، اكتشفنا أن الحرفة ليست مجرد مهارة — هي طريقة تفكير. طريقة في احترام المادة، واحترام الوقت، واحترام الشخص الذي سيمسك بهذه القطعة يوماً ما.</p>
+    <blockquote class="story-quote">
+      "في عالم يصنع بالملايين، اخترنا أن نصنع بيدين — وهذا ما يجعل كل قطعة فريدة حقاً."
+    </blockquote>
+    <p class="story-text">اليوم، KON Luxury ليست فقط علامة تجارية — هي وعد. وعد بأن كل ما يصل إليك مصنوع بنية صادقة، ومواد حقيقية، وحب لا يُقاس.</p>
+  </div>
+  <div class="story-right rv rv-d1">
+    <div class="story-frame">
+      <div class="story-frame-deco"></div>
+      <div class="story-frame-logo">KON<br><span style="font-size:.35em;letter-spacing:.5em">luxury</span></div>
+    </div>
+    <div class="story-badge">
+      <span class="story-badge-num">500+</span>
+      <span class="story-badge-txt">عميل سعيد في فلسطين</span>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="values-hd rv">
+    <p class="sec-eyebrow">Our Values — قيمنا</p>
+    <h2 class="sec-title">ما يجعلنا <em>مختلفين</em></h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card rv">
+      <span class="value-icon">✦</span>
+      <h3 class="value-name">صنع <em>يدوي</em> بالكامل</h3>
+      <p class="value-txt">لا آلات، لا إنتاج ضخم. كل قطعة تُصنع بيدين اثنتين بوقتها الكامل وانتباهها الكامل. هذا ما يجعل كل قطعة فريدة ولا تتكرر.</p>
+    </div>
+    <div class="value-card rv rv-d1">
+      <span class="value-icon">◈</span>
+      <h3 class="value-name">مواد <em>أصيلة</em></h3>
+      <p class="value-txt">شمع صويا طبيعي، رخام حقيقي، طين فخار خالص. نختار كل مادة بمعايير صارمة بلا تنازل على الجودة أو الأصالة.</p>
+    </div>
+    <div class="value-card rv rv-d2">
+      <span class="value-icon">◇</span>
+      <h3 class="value-name">تخصيص <em>كامل</em></h3>
+      <p class="value-txt">لوناً، شكلاً، رائحة، مناسبة — كل طلب يمكن تفصيله بحسب رغبتك. نؤمن أن كل شخص يستحق قطعته الخاصة.</p>
+    </div>
+    <div class="value-card rv rv-d3">
+      <span class="value-icon">◉</span>
+      <h3 class="value-name">ضمان <em>الجودة</em></h3>
+      <p class="value-txt">كل قطعة تُفحص قبل أن تغادر أيدينا. إذا لم نكن مقتنعين بها تماماً، لا تصل إليك. جودة بلا تسوية.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip">
+  <div class="stats-grid">
+    <div class="stat-box rv">
+      <span class="stat-num">500+</span>
+      <span class="stat-label">عميل راضٍ في فلسطين</span>
+    </div>
+    <div class="stat-box rv rv-d1">
+      <span class="stat-num">4</span>
+      <span class="stat-label">أنواع منتجات فاخرة</span>
+    </div>
+    <div class="stat-box rv rv-d2">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">صنع يدوي بالكامل</span>
+    </div>
+    <div class="stat-box rv rv-d3">
+      <span class="stat-num">★ 5</span>
+      <span class="stat-label">تقييم زبائننا</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-hd rv">
+    <p class="sec-eyebrow">How We Work — كيف نعمل</p>
+    <h2 class="sec-title">من الفكرة إلى <em>يديك</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step rv">
+      <span class="step-num">01</span>
+      <span class="step-icon">💡</span>
+      <h3 class="step-title">الفكرة <em>والتصميم</em></h3>
+      <p class="step-txt">كل قطعة تبدأ بفكرة — نرسم، نجرب، ونكرر حتى نصل للتصميم المثالي الذي يوازن بين الجمال والوظيفة. لا نتسرع في هذه المرحلة أبداً.</p>
+    </div>
+    <div class="process-step rv rv-d1">
+      <span class="step-num">02</span>
+      <span class="step-icon">🤲</span>
+      <h3 class="step-title">الصنع <em>اليدوي</em></h3>
+      <p class="step-txt">بعد اختيار المواد بعناية، يبدأ العمل اليدوي. كل تفصيلة تُنفَّذ بصبر وإتقان. قد تأخذ القطعة الواحدة ساعات — وهذا الوقت يظهر في النتيجة.</p>
+    </div>
+    <div class="process-step rv rv-d2">
+      <span class="step-num">03</span>
+      <span class="step-icon">✦</span>
+      <h3 class="step-title">الفحص <em>والتسليم</em></h3>
+      <p class="step-txt">قبل التغليف، تمر كل قطعة بفحص دقيق. التغليف الفاخر جزء من التجربة — لأن اللحظة الأولى حين تفتح الصندوق يجب أن تكون مميزة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="phil-line rv"></div>
+  <blockquote class="phil-q rv">
+    "في عالم يصنع بالملايين،<br>
+    <strong>اخترنا أن نصنع بيدين."</strong>
+  </blockquote>
+  <div class="phil-line rv"></div>
+  <p class="phil-attr rv">— KON Luxury · فلسفتنا · صُنع في فلسطين 🖤</p>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="team-hd rv">
+    <p class="sec-eyebrow">The People — من خلفها</p>
+    <h2 class="sec-title">الأيدي التي <em>تصنع</em></h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card rv">
+      <div class="team-avatar">🕯️</div>
+      <h3 class="team-name">مصممة الشموع</h3>
+      <p class="team-role">Candle Artist</p>
+      <p class="team-desc">تجمع بين علم الروائح وفن التصميم لتخلق شموعاً تعيش معك وتغير جو المكان. شغفها بالتفاصيل يظهر في كل قطعة.</p>
+    </div>
+    <div class="team-card rv rv-d1">
+      <div class="team-avatar">🪨</div>
+      <h3 class="team-name">فنانة الريزن</h3>
+      <p class="team-role">Resin & Terrazzo Artist</p>
+      <p class="team-desc">تحوّل الراتنج والرخام إلى لوحات فنية قابلة للاستخدام. كل صينية وكل صحن هو قطعة فن مستقلة لا تتكرر.</p>
+    </div>
+    <div class="team-card rv rv-d2">
+      <div class="team-avatar">🏺</div>
+      <h3 class="team-name">صانعة الفخار</h3>
+      <p class="team-role">Pottery Artisan</p>
+      <p class="team-desc">بيديها وطين الأرض الفلسطينية، تشكّل أوانٍ ومزهريات تحمل روح المكان. كل قطعة تحكي قصة جذور وانتماء.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2 class="cta-title rv">جاهزة تختاري <em>قطعتك؟</em></h2>
+  <p class="cta-sub rv">تصفحي مجموعاتنا أو تواصلي معنا مباشرة لطلب مخصص يناسبك تماماً.</p>
+  <div class="cta-btns rv">
+    <a href="index.html#products" class="btn-gold">استعرضي المنتجات</a>
+    <a href="index.html#contact" class="btn-ghost">تواصلي معنا</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-logo">KON <sub>luxury</sub></span>
+  <p class="foot-copy">© 2025 KON Luxury. جميع الحقوق محفوظة — صُنع في فلسطين 🖤</p>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => entries.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); }
+}), {threshold: .08});
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
