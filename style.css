@@ -469,7 +469,7 @@ body::after {
 .nav-links a {
   font-size: 0.75rem;
   letter-spacing: 2px;
-  color: var(--ivory-dim);
+  color: var(--ivory);
   position: relative;
   transition: color var(--duration-fast) ease;
   font-family: var(--font-ar);
