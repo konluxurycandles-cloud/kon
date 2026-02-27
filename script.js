@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', applySettingsToPage);
 // ===== INIT LANGUAGE =====
 setLanguage('ar');
 
-// ===== CUSTOM CURSOR =====
+// ===== CUSTOM CURSOR — FLAME =====
 const cursorDot    = document.getElementById('cursorDot');
 const cursorRing   = document.getElementById('cursorRing');
 const cursorRingEl = document.getElementById('cursorRingEl');
@@ -268,8 +268,8 @@ document.addEventListener('mousemove', e => {
   if (cursorDot) cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 });
 (function animateRing() {
-  ringX += (mouseX - ringX) * 0.1;
-  ringY += (mouseY - ringY) * 0.1;
+  ringX += (mouseX - ringX) * 0.08;
+  ringY += (mouseY - ringY) * 0.08;
   if (cursorRing) cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
   requestAnimationFrame(animateRing);
 })();

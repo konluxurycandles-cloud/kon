@@ -61,12 +61,16 @@
     </div>
   </div>
 
-  <!-- ===== CUSTOM CURSOR ===== -->
-  <div class="cursor" id="cursorDot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:99999;">
-    <div class="cursor-dot" style="width:8px;height:8px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);"></div>
+  <!-- ===== CUSTOM CURSOR — FLAME ===== -->
+  <div id="cursorDot" class="cursor-wrap">
+    <div class="cursor-flame">
+      <div class="cf-outer"></div>
+      <div class="cf-inner"></div>
+      <div class="cf-core"></div>
+    </div>
   </div>
-  <div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0;pointer-events:none;z-index:99998;">
-    <div class="cursor-ring" id="cursorRingEl"></div>
+  <div id="cursorRing" class="cursor-wrap">
+    <div class="cursor-halo" id="cursorRingEl"></div>
   </div>
 
   <!-- ===== NAVBAR ===== -->
