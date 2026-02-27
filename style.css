@@ -413,16 +413,19 @@ body::after {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: transparent;
+  background: rgba(8,8,8,0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-faint);
   transition: background var(--duration-slow) var(--ease-out),
               border-color var(--duration-slow) ease;
   padding: 0;
 }
 .navbar.scrolled {
-  background: rgba(8,8,8,0.94);
+  background: rgba(5,5,5,0.96);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border-bottom: 1px solid var(--border-faint);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
 }
 .nav-container {
   max-width: var(--container);
