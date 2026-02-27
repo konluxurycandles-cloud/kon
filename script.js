@@ -26,7 +26,7 @@
   }
 
   intro.addEventListener('click', triggerExplosion);
-  setTimeout(triggerExplosion, 5000);
+  setTimeout(triggerExplosion, 2500);
 })();
 
 // ===== SETTINGS =====
@@ -137,13 +137,7 @@ const lenis = new Lenis({
   wheelMultiplier: 0.9,
 });
 
-function lenisRaf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(lenisRaf);
-}
-requestAnimationFrame(lenisRaf);
-
-// Hook Lenis into GSAP ScrollTrigger
+// Hook Lenis into GSAP ScrollTrigger (single RAF via GSAP ticker)
 gsap.registerPlugin(ScrollTrigger);
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add(time => lenis.raf(time * 1000));
@@ -288,23 +282,20 @@ document.querySelectorAll('a, button, .product-card, .filter-btn, .lang-btn').fo
 // ===== GSAP HERO CINEMATIC ENTRANCE =====
 window.addEventListener('load', () => {
   if (typeof gsap === 'undefined') return;
-  const tl = gsap.timeline({ delay: 0.4 });
+  const tl = gsap.timeline({ delay: 0.2 });
 
   // 1. Candle rises from below — slow, cinematic
-  tl.fromTo('#heroCandle',
-    { opacity: 0, y: 50 },
-    { opacity: 1, y: 0, duration: 2.0, ease: 'power3.out' }
+  tl.from('#heroCandle',
+    { opacity: 0, y: 50, duration: 2.0, ease: 'power3.out', clearProps: 'all' }
   )
   // 2. Text slides in — overlapping
-  .fromTo('#heroText',
-    { opacity: 0, y: 30 },
-    { opacity: 1, y: 0, duration: 1.6, ease: 'power3.out' },
+  .from('#heroText',
+    { opacity: 0, y: 30, duration: 1.6, ease: 'power3.out', clearProps: 'all' },
     '-=1.2'
   )
   // 3. Scroll indicator fades last
-  .fromTo('.hero-scroll',
-    { opacity: 0 },
-    { opacity: 0.5, duration: 1.2, ease: 'power2.out' },
+  .from('.hero-scroll',
+    { opacity: 0, duration: 1.2, ease: 'power2.out', clearProps: 'opacity' },
     '-=0.6'
   );
 });
@@ -374,16 +365,15 @@ gsap.utils.toArray('.contact-sub, .contact-buttons').forEach(el => {
   );
 });
 
-// ===== GSAP HERO PARALLAX =====
+// ===== GSAP HERO PARALLAX (subtle — no opacity) =====
 gsap.to('.hero-inner', {
-  y: 80,
-  opacity: 0,
+  y: 60,
   ease: 'none',
   scrollTrigger: {
     trigger: '.hero',
     start: 'top top',
-    end: '60% top',
-    scrub: 1.8,
+    end: '80% top',
+    scrub: 2,
   }
 });
 
