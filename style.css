@@ -264,17 +264,19 @@ button { font-family: inherit; }
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
-  z-index: 99999;
+  z-index: 9999999; /* above everything including candleIntro */
+  will-change: transform;
 }
 
 /* ---- Flame cursor ---- */
 .cursor-flame {
   position: relative;
-  width: 16px;
-  height: 26px;
-  transform: translate(-50%, -92%); /* flame tip = cursor hotspot */
-  animation: flameCursorDance 0.45s ease-in-out infinite alternate;
-  filter: drop-shadow(0 0 6px rgba(255,140,0,0.55));
+  width: 20px;
+  height: 32px;
+  transform: translate(-50%, -90%); /* flame tip = cursor hotspot */
+  animation: flameCursorDance 0.42s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 8px rgba(255,130,0,0.75))
+          drop-shadow(0 0 3px rgba(255,220,80,0.6));
 }
 /* Outer flame body */
 .cf-outer {
@@ -282,39 +284,39 @@ button { font-family: inherit; }
   inset: 0;
   background: linear-gradient(180deg,
     #fffde7 0%,
-    #ffd740 28%,
-    #ff8f00 62%,
-    rgba(201,168,76,0.25) 100%);
+    #ffd740 25%,
+    #ff8f00 58%,
+    rgba(201,168,76,0.3) 100%);
   border-radius: 50% 50% 38% 38% / 68% 68% 32% 32%;
 }
 /* Inner bright flame */
 .cf-inner {
   position: absolute;
-  bottom: 5px;
+  bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
-  width: 7px;
-  height: 12px;
-  background: linear-gradient(180deg, white 0%, #ffe066 55%, #ffaa00 100%);
+  width: 9px;
+  height: 15px;
+  background: linear-gradient(180deg, white 0%, #ffe566 50%, #ffaa00 100%);
   border-radius: 50% 50% 40% 40% / 70% 70% 30% 30%;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 /* White hot core */
 .cf-core {
   position: absolute;
-  bottom: 8px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 3px;
-  height: 5px;
+  width: 4px;
+  height: 6px;
   background: white;
   border-radius: 50%;
-  filter: blur(0.5px);
-  opacity: 0.95;
+  filter: blur(0.8px);
+  opacity: 1;
 }
 @keyframes flameCursorDance {
-  from { transform: translate(-50%, -92%) skewX(-5deg) scaleY(1); }
-  to   { transform: translate(-50%, -92%) skewX(5deg)  scaleY(1.08); }
+  from { transform: translate(-50%, -90%) skewX(-6deg) scaleY(1); }
+  to   { transform: translate(-50%, -90%) skewX(6deg)  scaleY(1.09); }
 }
 
 /* ---- Halo (follows with lag) ---- */
@@ -1597,7 +1599,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 
   .whatsapp-float { bottom: 24px; left: 24px; width: 50px; height: 50px; }
   [dir="rtl"] .whatsapp-float { left: auto; right: 24px; }
-  .cursor-wrap { display: none; }
+  .cursor-wrap { display: none !important; }
   *, *::before, *::after { cursor: auto !important; }
 }
 
