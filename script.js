@@ -130,7 +130,9 @@ function setLanguage(lang) {
 }
 
 // ===== SMOOTH SCROLL (Lenis optional — fallback to native) =====
-gsap.registerPlugin(ScrollTrigger);
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 let _lenis = null;
 try {
@@ -301,69 +303,66 @@ window.addEventListener('load', () => {
 });
 
 // ===== GSAP SCROLL ANIMATIONS =====
-// Section headers
-gsap.utils.toArray('.section-header').forEach(el => {
-  gsap.fromTo(el,
-    { opacity: 0, y: 28 },
-    { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+
+  // Section headers
+  gsap.utils.toArray('.section-header').forEach(el => {
+    gsap.from(el,
+      { opacity: 0, y: 28, duration: 1.1, ease: 'power3.out', clearProps: 'all',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
+
+  // Filter tabs
+  gsap.utils.toArray('.filter-tabs').forEach(el => {
+    gsap.from(el,
+      { opacity: 0, y: 20, duration: 0.9, ease: 'power2.out', clearProps: 'all',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+      }
+    );
+  });
+
+  // Product cards — stagger
+  gsap.utils.toArray('.product-card').forEach((card, i) => {
+    gsap.from(card,
+      { opacity: 0, y: 40, duration: 0.9, ease: 'power3.out', delay: i * 0.06, clearProps: 'all',
+        scrollTrigger: { trigger: card, start: 'top 92%', once: true }
+      }
+    );
+  });
+
+  // Featured section
+  gsap.from('.featured-frame',
+    { opacity: 0, x: -50, duration: 1.2, ease: 'power3.out', clearProps: 'all',
+      scrollTrigger: { trigger: '.featured-frame', start: 'top 80%', once: true }
     }
   );
-});
-
-// Filter tabs
-gsap.utils.toArray('.filter-tabs').forEach(el => {
-  gsap.fromTo(el,
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+  gsap.from('.featured-info',
+    { opacity: 0, x: 50, duration: 1.2, ease: 'power3.out', clearProps: 'all',
+      scrollTrigger: { trigger: '.featured-info', start: 'top 80%', once: true }
     }
   );
-});
 
-// Product cards — stagger
-gsap.utils.toArray('.product-card').forEach((card, i) => {
-  gsap.fromTo(card,
-    { opacity: 0, y: 40 },
-    { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', delay: i * 0.06,
-      scrollTrigger: { trigger: card, start: 'top 92%', once: true }
-    }
-  );
-});
+  // Testimonials
+  gsap.utils.toArray('.testi-card').forEach((card, i) => {
+    gsap.from(card,
+      { opacity: 0, y: 36, duration: 1, ease: 'power3.out', delay: i * 0.14, clearProps: 'all',
+        scrollTrigger: { trigger: card, start: 'top 88%', once: true }
+      }
+    );
+  });
 
-// Featured section
-gsap.fromTo('.featured-frame',
-  { opacity: 0, x: -50 },
-  { opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
-    scrollTrigger: { trigger: '.featured-frame', start: 'top 80%', once: true }
-  }
-);
-gsap.fromTo('.featured-info',
-  { opacity: 0, x: 50 },
-  { opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
-    scrollTrigger: { trigger: '.featured-info', start: 'top 80%', once: true }
-  }
-);
+  // Contact
+  gsap.utils.toArray('.contact-sub, .contact-buttons').forEach(el => {
+    gsap.from(el,
+      { opacity: 0, y: 24, duration: 0.9, ease: 'power2.out', clearProps: 'all',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
 
-// Testimonials
-gsap.utils.toArray('.testi-card').forEach((card, i) => {
-  gsap.fromTo(card,
-    { opacity: 0, y: 36 },
-    { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: i * 0.14,
-      scrollTrigger: { trigger: card, start: 'top 88%', once: true }
-    }
-  );
-});
-
-// Contact
-gsap.utils.toArray('.contact-sub, .contact-buttons').forEach(el => {
-  gsap.fromTo(el,
-    { opacity: 0, y: 24 },
-    { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
-    }
-  );
-});
+}
 
 // ===== GSAP HERO PARALLAX (subtle — no opacity) =====
 gsap.to('.hero-inner', {

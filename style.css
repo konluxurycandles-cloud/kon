@@ -336,6 +336,7 @@ body::after {
   gap: 24px;
   margin-bottom: 80px;
   text-align: center;
+  opacity: 1; /* GSAP fallback — always visible if JS fails */
 }
 .section-header h2 {
   font-family: var(--font-display);
@@ -1328,6 +1329,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   font-size: 0.95rem;
   line-height: 2.2;
   max-width: 440px;
+  opacity: 1; /* GSAP fallback */
 }
 .contact-buttons {
   display: flex;
@@ -1336,6 +1338,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   flex-wrap: wrap;
   position: relative;
   z-index: 1;
+  opacity: 1; /* GSAP fallback */
 }
 .btn-whatsapp,
 .btn-instagram {
