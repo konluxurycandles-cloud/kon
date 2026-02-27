@@ -48,21 +48,14 @@ const translations = {
   ar: {
     nav_home: 'الرئيسية', nav_about: 'من نحن', nav_products: 'منتجاتنا', nav_contact: 'تواصل معنا',
     hero_sub: 'مصنوع بشغف واتقان',
-    hero_desc: 'شموع فاخرة · ريزن يدوي · فخار أصيل',
-    hero_btn: 'استعرض المنتجات',
+    hero_desc: 'شموع فاخرة · خمسة عوالم · روح واحدة',
+    hero_btn: 'استعرض العوالم',
     about_title: 'من نحن',
     about_text: 'في KON Luxury نؤمن أن كل قطعة تحكي قصة.',
-    stat1: 'عميل سعيد', stat2: 'أنواع منتجات', stat3: 'يدوي الصنع',
+    stat1: 'عميل سعيد', stat2: 'عوالم حصرية', stat3: 'يدوي الصنع',
     products_title: 'منتجاتنا',
-    filter_all: 'الكل', filter_candles: 'الشموع', filter_resin: 'ريزن', filter_pottery: 'الفخار',
+    filter_all: 'الكل',
     inquire_btn: 'استفسر الآن',
-    prod1_name: 'شمعة فاخرة كلاسيكية', prod1_desc: 'شمعة يدوية بعطور راقية تملأ المكان برائحة دافئة مميزة',
-    prod2_name: 'شمعة ديكور فخمة',     prod2_desc: 'تصميم أنيق يناسب ديكور البيت الراقي والهدايا الفاخرة',
-    prod3_name: 'لوحة ريزن فنية',       prod3_desc: 'لوحة فنية مصنوعة يدوياً من الريزن بتشكيلات ذهبية فريدة',
-    prod4_name: 'إكسسوار إيبوكسي',      prod4_desc: 'قطع ديكورية وإكسسوارات من الإيبوكسي بألوان وأشكال مبتكرة',
-    prod5_name: 'إناء فخار أصيل',        prod5_desc: 'فخار يدوي بلمسات تقليدية وحديثة يزين أي ركن في منزلك',
-    prod6_name: 'مجموعة فخار فاخرة',    prod6_desc: 'مجموعة متناسقة من الفخار اليدوي لأناقة لا مثيل لها',
-    badge_handmade: 'يدوي الصنع', badge_luxury: 'فاخر', badge_unique: 'تحفة فريدة', badge_artisan: 'حرفة أصيلة',
     contact_title: 'تواصل معنا', contact_sub: 'نحن هنا للإجابة على كل استفساراتك وتلبية طلباتك',
     btn_whatsapp: 'واتساب', btn_instagram: 'إنستغرام',
     footer_copy: '© 2025 KON Luxury · جميع الحقوق محفوظة',
@@ -70,20 +63,13 @@ const translations = {
   he: {
     nav_home: 'בית', nav_about: 'אודות', nav_products: 'מוצרים', nav_contact: 'צור קשר',
     hero_sub: 'עשוי בתשוקה ובמיומנות',
-    hero_desc: 'נרות יוקרתיים · שרף בעבודת יד · קרמיקה מקורית',
-    hero_btn: 'גלה מוצרים',
+    hero_desc: 'נרות יוקרתיים · חמישה עולמות · נשמה אחת',
+    hero_btn: 'גלה עולמות',
     about_title: 'אודותינו', about_text: 'ב-KON Luxury אנו מאמינים שכל יצירה מספרת סיפור.',
-    stat1: 'לקוחות מרוצים', stat2: 'קטגוריות מוצרים', stat3: 'עבודת יד',
+    stat1: 'לקוחות מרוצים', stat2: 'עולמות ייחודיים', stat3: 'עבודת יד',
     products_title: 'המוצרים שלנו',
-    filter_all: 'הכל', filter_candles: 'נרות', filter_resin: 'שרף', filter_pottery: 'קרמיקה',
+    filter_all: 'הכל',
     inquire_btn: 'לפרטים',
-    prod1_name: 'נר קלאסי יוקרתי',   prod1_desc: 'נר בעבודת יד עם בושם עדין שממלא את החדר בריח חמים',
-    prod2_name: 'נר דקורטיבי מפואר', prod2_desc: 'עיצוב אלגנטי המתאים לדקור הבית היוקרתי',
-    prod3_name: 'ציור שרף אמנותי',    prod3_desc: 'לוח אמנות עשוי בעבודת יד משרף עם עיצובים זהב',
-    prod4_name: 'אביזר אפוקסי',       prod4_desc: 'פריטי דקור ואביזרים מאפוקסי בצבעים וצורות מקוריות',
-    prod5_name: 'כד קרמיקה מקורי',   prod5_desc: 'קרמיקה בעבודת יד עם נגיעות מסורתיות ומודרניות',
-    prod6_name: 'סט קרמיקה יוקרתי',  prod6_desc: 'קולקציה מתואמת של קרמיקה בעבודת יד',
-    badge_handmade: 'עבודת יד', badge_luxury: 'יוקרה', badge_unique: 'יצירה ייחודית', badge_artisan: 'אומנות',
     contact_title: 'צור קשר', contact_sub: 'אנחנו כאן לענות על כל שאלה',
     btn_whatsapp: 'וואטסאפ', btn_instagram: 'אינסטגרם',
     footer_copy: '© 2025 KON Luxury · כל הזכויות שמורות',
@@ -91,20 +77,13 @@ const translations = {
   en: {
     nav_home: 'Home', nav_about: 'About', nav_products: 'Products', nav_contact: 'Contact',
     hero_sub: 'Crafted with passion & precision',
-    hero_desc: 'Luxury Candles · Handmade Resin · Authentic Pottery',
-    hero_btn: 'Explore Products',
+    hero_desc: 'Luxury Candles · Five Worlds · One Soul',
+    hero_btn: 'Explore Worlds',
     about_title: 'About Us', about_text: 'At KON Luxury, we believe every piece tells a story.',
-    stat1: 'Happy Clients', stat2: 'Product Types', stat3: 'Handmade',
+    stat1: 'Happy Clients', stat2: 'Exclusive Worlds', stat3: 'Handmade',
     products_title: 'Our Products',
-    filter_all: 'All', filter_candles: 'Candles', filter_resin: 'Resin', filter_pottery: 'Pottery',
+    filter_all: 'All',
     inquire_btn: 'Inquire Now',
-    prod1_name: 'Classic Luxury Candle',    prod1_desc: 'Handcrafted candle with premium fragrances',
-    prod2_name: 'Decorative Luxury Candle', prod2_desc: 'Elegant design for luxury home decor',
-    prod3_name: 'Artistic Resin Panel',     prod3_desc: 'Handmade art piece with unique gold formations',
-    prod4_name: 'Epoxy Accessory',          prod4_desc: 'Decorative pieces made from epoxy',
-    prod5_name: 'Authentic Pottery Vase',   prod5_desc: 'Handmade pottery with traditional touches',
-    prod6_name: 'Luxury Pottery Set',       prod6_desc: 'A coordinated collection of handmade pottery',
-    badge_handmade: 'Handmade', badge_luxury: 'Luxury', badge_unique: 'One of a Kind', badge_artisan: 'Artisan Craft',
     contact_title: 'Contact Us', contact_sub: 'We are here to answer all your questions',
     btn_whatsapp: 'WhatsApp', btn_instagram: 'Instagram',
     footer_copy: '© 2025 KON Luxury · All Rights Reserved',
@@ -195,14 +174,19 @@ filterBtns.forEach(btn => {
     const filter = btn.getAttribute('data-filter');
     productCards.forEach(card => {
       const match = filter === 'all' || card.getAttribute('data-category') === filter;
-      gsap.to(card, {
-        opacity: match ? 1 : 0,
-        scale: match ? 1 : 0.95,
-        duration: 0.4,
-        ease: 'power2.inOut',
-        onComplete: () => card.classList.toggle('hidden', !match),
-      });
-      if (match) card.classList.remove('hidden');
+      if (typeof gsap !== 'undefined') {
+        gsap.to(card, {
+          opacity: match ? 1 : 0,
+          scale: match ? 1 : 0.95,
+          duration: 0.4,
+          ease: 'power2.inOut',
+          onComplete: () => card.classList.toggle('hidden', !match),
+        });
+        if (match) card.classList.remove('hidden');
+      } else {
+        card.style.opacity = match ? '1' : '0';
+        card.classList.toggle('hidden', !match);
+      }
     });
   });
 });

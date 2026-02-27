@@ -146,27 +146,36 @@
         <span class="gold-line"></span>
       </div>
 
-      <!-- Filter Tabs -->
+      <!-- Filter Tabs — KON Worlds -->
       <div class="filter-tabs">
-        <button class="filter-btn active" data-filter="all"      data-i18n="filter_all">الكل</button>
-        <button class="filter-btn"        data-filter="candles"  data-i18n="filter_candles">الشموع</button>
-        <button class="filter-btn"        data-filter="resin"    data-i18n="filter_resin">ريزن</button>
-        <button class="filter-btn"        data-filter="pottery"  data-i18n="filter_pottery">الفخار</button>
+        <button class="filter-btn active" data-filter="all">الكل</button>
+        <button class="filter-btn world-tab shadow-tab"   data-filter="shadow">Shadow</button>
+        <button class="filter-btn world-tab obsidian-tab" data-filter="obsidian">Obsidian</button>
+        <button class="filter-btn world-tab vanta-tab"    data-filter="vanta">Vanta</button>
+        <button class="filter-btn world-tab lumi-tab"     data-filter="lumi">Lumi</button>
+        <button class="filter-btn world-tab veil-tab"     data-filter="veil">Veil</button>
       </div>
 
       <!-- Products Grid -->
       <div class="products-grid" id="productsGrid">
 
-        <div class="product-card" data-category="candles">
+        <!-- ══ SHADOW ══ -->
+        <div class="product-card" data-category="shadow">
           <div class="product-img">
-            <div class="product-placeholder candle-img">
-              <svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="40" cy="110" rx="20" ry="6" fill="#c9a84c" opacity="0.3"/>
-                <rect x="28" y="50" width="24" height="60" rx="4" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
-                <rect x="34" y="50" width="12" height="60" rx="2" fill="#2a2a2a"/>
-                <line x1="40" y1="50" x2="40" y2="30" stroke="#c9a84c" stroke-width="1.5"/>
-                <ellipse cx="40" cy="26" rx="6" ry="9" fill="#c9a84c" opacity="0.8"/>
-                <ellipse cx="40" cy="22" rx="3" ry="5" fill="#fff3c4"/>
+            <div class="product-placeholder shadow-bg">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="18" ry="5" fill="#8888aa" opacity="0.2"/>
+                <rect x="28" y="52" width="24" height="70" rx="4" fill="#22223a" stroke="#9090b8" stroke-width="1"/>
+                <rect x="33" y="52" width="10" height="70" rx="2" fill="#2e2e4a" opacity="0.6"/>
+                <text x="40" y="92" text-anchor="middle" font-size="6" fill="#9090b8" opacity="0.5" letter-spacing="2">KON</text>
+                <line x1="40" y1="52" x2="40" y2="36" stroke="#7070a0" stroke-width="1.2"/>
+                <!-- smoke wisps -->
+                <path d="M40 20 C38 16 42 12 40 8" stroke="#9090b8" stroke-width="1" opacity="0.3" fill="none"/>
+                <path d="M40 18 C42 14 38 10 41 6" stroke="#9090b8" stroke-width="0.8" opacity="0.2" fill="none"/>
+                <!-- flame -->
+                <path d="M40 12 C37 18 34 23 34 28 C34 33 37 35 40 35 C43 35 46 33 46 28 C46 23 43 18 40 12Z" fill="#8080b0" opacity="0.8"/>
+                <path d="M40 18 C38 22 37 26 37 29 C37 32 39 33 40 33 C41 33 43 32 43 29 C43 26 42 22 40 18Z" fill="#c0c0e0"/>
+                <ellipse cx="40" cy="30" rx="2" ry="2.5" fill="white" opacity="0.6"/>
               </svg>
             </div>
             <div class="product-overlay">
@@ -174,22 +183,23 @@
             </div>
           </div>
           <div class="product-info">
-            <h3 data-i18n="prod1_name">شمعة فاخرة كلاسيكية</h3>
-            <p data-i18n="prod1_desc">شمعة يدوية بعطور راقية تملأ المكان برائحة دافئة مميزة</p>
-            <span class="product-badge" data-i18n="badge_handmade">يدوي الصنع</span>
+            <span class="world-label shadow-label">Shadow</span>
+            <h3>Shadow I</h3>
+            <p>من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل</p>
+            <span class="product-badge badge-shadow">غامض</span>
           </div>
         </div>
 
-        <div class="product-card" data-category="candles">
+        <div class="product-card" data-category="shadow">
           <div class="product-img">
-            <div class="product-placeholder candle-img2">
-              <svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="40" cy="110" rx="22" ry="7" fill="#c9a84c" opacity="0.3"/>
-                <rect x="22" y="55" width="36" height="55" rx="6" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
-                <rect x="30" y="55" width="20" height="55" rx="4" fill="#2a2a2a"/>
-                <line x1="40" y1="55" x2="40" y2="32" stroke="#c9a84c" stroke-width="1.5"/>
-                <ellipse cx="40" cy="28" rx="7" ry="10" fill="#c9a84c" opacity="0.8"/>
-                <ellipse cx="40" cy="23" rx="4" ry="6" fill="#fff3c4"/>
+            <div class="product-placeholder shadow-bg2">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="22" ry="6" fill="#8888aa" opacity="0.18"/>
+                <rect x="24" y="58" width="32" height="64" rx="5" fill="#1e1e32" stroke="#8080a8" stroke-width="1"/>
+                <rect x="30" y="58" width="16" height="64" rx="3" fill="#282840" opacity="0.5"/>
+                <line x1="40" y1="58" x2="40" y2="40" stroke="#7070a0" stroke-width="1.2"/>
+                <path d="M40 10 C37 18 33 25 33 31 C33 37 37 39 40 39 C43 39 47 37 47 31 C47 25 43 18 40 10Z" fill="#7070a8" opacity="0.85"/>
+                <path d="M40 18 C38 23 37 28 37 32 C37 36 39 37 40 37 C41 37 43 36 43 32 C43 28 42 23 40 18Z" fill="#b0b0d8"/>
               </svg>
             </div>
             <div class="product-overlay">
@@ -197,28 +207,26 @@
             </div>
           </div>
           <div class="product-info">
-            <h3 data-i18n="prod2_name">شمعة ديكور فخمة</h3>
-            <p data-i18n="prod2_desc">تصميم أنيق يناسب ديكور البيت الراقي والهدايا الفاخرة</p>
-            <span class="product-badge" data-i18n="badge_luxury">فاخر</span>
+            <span class="world-label shadow-label">Shadow</span>
+            <h3>Shadow II</h3>
+            <p>عمق الظلام الصامت — رائحة تأخذك لأعماق الليل الهادئ</p>
+            <span class="product-badge badge-shadow">غامض</span>
           </div>
         </div>
 
-        <div class="product-card" data-category="resin">
+        <!-- ══ OBSIDIAN ══ -->
+        <div class="product-card" data-category="obsidian">
           <div class="product-img">
-            <div class="product-placeholder resin-img">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="15" y="20" width="70" height="65" rx="8" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
-                <rect x="22" y="28" width="56" height="49" rx="5" fill="#0d0d0d"/>
-                <ellipse cx="50" cy="52" rx="20" ry="20" fill="url(#resinGrad)"/>
-                <path d="M35 45 Q50 35 65 48 Q55 65 38 60 Z" fill="#c9a84c" opacity="0.4"/>
-                <path d="M42 38 Q55 32 62 50" stroke="#fff" stroke-width="1" opacity="0.3"/>
-                <defs>
-                  <radialGradient id="resinGrad" cx="40%" cy="40%">
-                    <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.8"/>
-                    <stop offset="60%" stop-color="#8b6914" stop-opacity="0.6"/>
-                    <stop offset="100%" stop-color="#1a1a1a"/>
-                  </radialGradient>
-                </defs>
+            <div class="product-placeholder obsidian-bg">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="20" ry="5" fill="#c9a84c" opacity="0.25"/>
+                <rect x="26" y="50" width="28" height="72" rx="3" fill="#080810" stroke="#c9a84c" stroke-width="1.2"/>
+                <rect x="32" y="50" width="14" height="72" rx="2" fill="#0f0f18" opacity="0.7"/>
+                <text x="40" y="90" text-anchor="middle" font-size="7" fill="#c9a84c" opacity="0.6" letter-spacing="2">KON</text>
+                <line x1="40" y1="50" x2="40" y2="33" stroke="#c9a84c" stroke-width="1.3"/>
+                <path d="M40 8 C37 16 33 22 33 28 C33 35 37 37 40 37 C43 37 47 35 47 28 C47 22 43 16 40 8Z" fill="#ff7700" opacity="0.9"/>
+                <path d="M40 15 C38 20 37 25 37 29 C37 34 39 35 40 35 C41 35 43 34 43 29 C43 25 42 20 40 15Z" fill="#ffd740"/>
+                <ellipse cx="40" cy="31" rx="2.5" ry="3" fill="white" opacity="0.8"/>
               </svg>
             </div>
             <div class="product-overlay">
@@ -226,21 +234,23 @@
             </div>
           </div>
           <div class="product-info">
-            <h3 data-i18n="prod3_name">لوحة ريزن فنية</h3>
-            <p data-i18n="prod3_desc">لوحة فنية مصنوعة يدوياً من الريزن بتشكيلات ذهبية فريدة</p>
-            <span class="product-badge" data-i18n="badge_unique">تحفة فريدة</span>
+            <span class="world-label obsidian-label">Obsidian</span>
+            <h3>Obsidian I</h3>
+            <p>الجوهر الأسود — نقاء الصخر البركاني في شمعة فاخرة</p>
+            <span class="product-badge badge-obsidian">حصري</span>
           </div>
         </div>
 
-        <div class="product-card" data-category="resin">
+        <div class="product-card" data-category="obsidian">
           <div class="product-img">
-            <div class="product-placeholder resin-img2">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 70 Q50 20 80 70 Q65 85 35 85 Z" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
-                <path d="M28 68 Q50 30 72 68 Q60 80 40 80 Z" fill="#0d0d0d"/>
-                <path d="M35 62 Q50 38 65 62" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
-                <circle cx="50" cy="55" r="8" fill="#c9a84c" opacity="0.6"/>
-                <circle cx="50" cy="55" r="4" fill="#fff3c4" opacity="0.8"/>
+            <div class="product-placeholder obsidian-bg2">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="24" ry="6" fill="#c9a84c" opacity="0.2"/>
+                <rect x="22" y="55" width="36" height="67" rx="4" fill="#060610" stroke="#c9a84c" stroke-width="1.3"/>
+                <rect x="28" y="55" width="20" height="67" rx="3" fill="#0c0c1a" opacity="0.6"/>
+                <line x1="40" y1="55" x2="40" y2="36" stroke="#c9a84c" stroke-width="1.3"/>
+                <path d="M40 10 C36 19 32 26 32 33 C32 40 36 42 40 42 C44 42 48 40 48 33 C48 26 44 19 40 10Z" fill="#ff6600" opacity="0.95"/>
+                <path d="M40 18 C38 24 37 29 37 34 C37 39 39 40 40 40 C41 40 43 39 43 34 C43 29 42 24 40 18Z" fill="#ffd740"/>
               </svg>
             </div>
             <div class="product-overlay">
@@ -248,22 +258,25 @@
             </div>
           </div>
           <div class="product-info">
-            <h3 data-i18n="prod4_name">إكسسوار إيبوكسي</h3>
-            <p data-i18n="prod4_desc">قطع ديكورية وإكسسوارات من الإيبوكسي بألوان وأشكال مبتكرة</p>
-            <span class="product-badge" data-i18n="badge_handmade">يدوي الصنع</span>
+            <span class="world-label obsidian-label">Obsidian</span>
+            <h3>Obsidian II</h3>
+            <p>لهب البركان — حرارة الأعماق في جسم أسود اللون</p>
+            <span class="product-badge badge-obsidian">حصري</span>
           </div>
         </div>
 
-        <div class="product-card" data-category="pottery">
+        <!-- ══ VANTA ══ -->
+        <div class="product-card" data-category="vanta">
           <div class="product-img">
-            <div class="product-placeholder pottery-img">
-              <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="108" rx="24" ry="6" fill="#c9a84c" opacity="0.25"/>
-                <path d="M30 100 Q20 75 22 50 Q24 30 50 28 Q76 30 78 50 Q80 75 70 100 Z" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
-                <path d="M36 95 Q27 72 29 50 Q31 35 50 33 Q69 35 71 50 Q73 72 64 95 Z" fill="#222"/>
-                <ellipse cx="50" cy="28" rx="20" ry="8" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
-                <ellipse cx="50" cy="28" rx="14" ry="5" fill="#2a2a2a"/>
-                <path d="M35 65 Q50 58 65 65" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+            <div class="product-placeholder vanta-bg">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="18" ry="5" fill="#6633ff" opacity="0.1"/>
+                <rect x="29" y="52" width="22" height="70" rx="3" fill="#030308" stroke="#4422aa" stroke-width="0.8"/>
+                <rect x="34" y="52" width="10" height="70" rx="2" fill="#05050e" opacity="0.5"/>
+                <line x1="40" y1="52" x2="40" y2="35" stroke="#5533bb" stroke-width="1"/>
+                <path d="M40 10 C37 18 34 24 34 30 C34 36 37 38 40 38 C43 38 46 36 46 30 C46 24 43 18 40 10Z" fill="#6633ff" opacity="0.85"/>
+                <path d="M40 18 C38 23 37 27 37 31 C37 35 39 36 40 36 C41 36 43 35 43 31 C43 27 42 23 40 18Z" fill="#aa77ff"/>
+                <ellipse cx="40" cy="32" rx="2" ry="2.5" fill="#ddc8ff" opacity="0.7"/>
               </svg>
             </div>
             <div class="product-overlay">
@@ -271,22 +284,22 @@
             </div>
           </div>
           <div class="product-info">
-            <h3 data-i18n="prod5_name">إناء فخار أصيل</h3>
-            <p data-i18n="prod5_desc">فخار يدوي بلمسات تقليدية وحديثة يزين أي ركن في منزلك</p>
-            <span class="product-badge" data-i18n="badge_artisan">حرفة أصيلة</span>
+            <span class="world-label vanta-label">Vanta</span>
+            <h3>Vanta I</h3>
+            <p>العتمة المطلقة — ما وراء السواد تجد نوراً بنفسجياً خفياً</p>
+            <span class="product-badge badge-vanta">جريء</span>
           </div>
         </div>
 
-        <div class="product-card" data-category="pottery">
+        <div class="product-card" data-category="vanta">
           <div class="product-img">
-            <div class="product-placeholder pottery-img2">
-              <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="110" rx="28" ry="7" fill="#c9a84c" opacity="0.25"/>
-                <path d="M26 100 Q18 70 20 45 Q22 22 50 20 Q78 22 80 45 Q82 70 74 100 Z" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
-                <path d="M33 95 Q26 67 28 45 Q30 28 50 26 Q70 28 72 45 Q74 67 67 95 Z" fill="#222"/>
-                <ellipse cx="50" cy="20" rx="22" ry="9" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1.5"/>
-                <path d="M32 60 Q50 52 68 60" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
-                <path d="M30 75 Q50 66 70 75" stroke="#c9a84c" stroke-width="0.8" opacity="0.3"/>
+            <div class="product-placeholder vanta-bg2">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="22" ry="6" fill="#5522cc" opacity="0.1"/>
+                <rect x="25" y="55" width="30" height="67" rx="4" fill="#020205" stroke="#3311aa" stroke-width="0.8"/>
+                <line x1="40" y1="55" x2="40" y2="37" stroke="#4422aa" stroke-width="1"/>
+                <path d="M40 12 C37 20 33 27 33 34 C33 41 37 43 40 43 C43 43 47 41 47 34 C47 27 43 20 40 12Z" fill="#5522dd" opacity="0.9"/>
+                <path d="M40 20 C38 26 37 31 37 35 C37 39 39 41 40 41 C41 41 43 39 43 35 C43 31 42 26 40 20Z" fill="#9966ff"/>
               </svg>
             </div>
             <div class="product-overlay">
@@ -294,9 +307,114 @@
             </div>
           </div>
           <div class="product-info">
-            <h3 data-i18n="prod6_name">مجموعة فخار فاخرة</h3>
-            <p data-i18n="prod6_desc">مجموعة متناسقة من الفخار اليدوي لأناقة لا مثيل لها</p>
-            <span class="product-badge" data-i18n="badge_luxury">فاخر</span>
+            <span class="world-label vanta-label">Vanta</span>
+            <h3>Vanta II</h3>
+            <p>فراغ الكون — عطر صامت كالفضاء اللانهائي</p>
+            <span class="product-badge badge-vanta">جريء</span>
+          </div>
+        </div>
+
+        <!-- ══ LUMI ══ -->
+        <div class="product-card" data-category="lumi">
+          <div class="product-img">
+            <div class="product-placeholder lumi-bg">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="20" ry="6" fill="#ffd740" opacity="0.3"/>
+                <rect x="28" y="52" width="24" height="70" rx="4" fill="#e8d5a8" stroke="#d4a830" stroke-width="1"/>
+                <rect x="34" y="52" width="10" height="70" rx="2" fill="#f0e0b8" opacity="0.5"/>
+                <text x="40" y="90" text-anchor="middle" font-size="6" fill="#a07820" opacity="0.5" letter-spacing="2">KON</text>
+                <line x1="40" y1="52" x2="40" y2="34" stroke="#c09030" stroke-width="1.2"/>
+                <path d="M40 8 C37 16 33 22 33 28 C33 35 37 37 40 37 C43 37 47 35 47 28 C47 22 43 16 40 8Z" fill="#ffb300" opacity="0.9"/>
+                <path d="M40 15 C38 20 37 25 37 29 C37 34 39 35 40 35 C41 35 43 34 43 29 C43 25 42 20 40 15Z" fill="#ffd740"/>
+                <ellipse cx="40" cy="31" rx="2.5" ry="3" fill="white" opacity="0.95"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()">استفسر الآن</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="world-label lumi-label">Lumi</span>
+            <h3>Lumi I</h3>
+            <p>ضوء الفجر — دفء العنبر يملأ المكان بإشراقة صباحية</p>
+            <span class="product-badge badge-lumi">مضيء</span>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="lumi">
+          <div class="product-img">
+            <div class="product-placeholder lumi-bg2">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="24" ry="6" fill="#ffd740" opacity="0.25"/>
+                <rect x="24" y="56" width="32" height="66" rx="5" fill="#f0ddb0" stroke="#c8a020" stroke-width="1"/>
+                <rect x="30" y="56" width="18" height="66" rx="3" fill="#f8e8c0" opacity="0.4"/>
+                <line x1="40" y1="56" x2="40" y2="37" stroke="#c09030" stroke-width="1.2"/>
+                <path d="M40 10 C36 19 32 26 32 33 C32 40 36 42 40 42 C44 42 48 40 48 33 C48 26 44 19 40 10Z" fill="#ffc107" opacity="0.95"/>
+                <path d="M40 18 C38 24 37 29 37 34 C37 39 39 40 40 40 C41 40 43 39 43 34 C43 29 42 24 40 18Z" fill="#fff3c4"/>
+                <ellipse cx="40" cy="36" rx="3" ry="3.5" fill="white" opacity="0.9"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()">استفسر الآن</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="world-label lumi-label">Lumi</span>
+            <h3>Lumi II</h3>
+            <p>إشراقة العنبر — نور دافئ يحتضن كل زاوية في المكان</p>
+            <span class="product-badge badge-lumi">مضيء</span>
+          </div>
+        </div>
+
+        <!-- ══ VEIL ══ -->
+        <div class="product-card" data-category="veil">
+          <div class="product-img">
+            <div class="product-placeholder veil-bg">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="20" ry="5" fill="#a0c0e0" opacity="0.2"/>
+                <rect x="28" y="52" width="24" height="70" rx="4" fill="#c0d5e8" stroke="#8ab0cc" stroke-width="1" opacity="0.8"/>
+                <rect x="33" y="52" width="10" height="70" rx="2" fill="#d8eaf8" opacity="0.4"/>
+                <line x1="40" y1="52" x2="40" y2="34" stroke="#90b8d0" stroke-width="1"/>
+                <!-- misty effect -->
+                <path d="M30 70 Q40 65 50 70" stroke="white" stroke-width="0.5" opacity="0.3"/>
+                <path d="M32 82 Q40 77 48 82" stroke="white" stroke-width="0.5" opacity="0.2"/>
+                <path d="M40 10 C37 17 34 23 34 28 C34 34 37 36 40 36 C43 36 46 34 46 28 C46 23 43 17 40 10Z" fill="#d0e8f8" opacity="0.9"/>
+                <path d="M40 17 C38 22 37 26 37 29 C37 33 39 34 40 34 C41 34 43 33 43 29 C43 26 42 22 40 17Z" fill="white" opacity="0.95"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()">استفسر الآن</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="world-label veil-label">Veil</span>
+            <h3>Veil I</h3>
+            <p>نسمة الضباب — خفة الهواء البارد في شمعة شفافة ناعمة</p>
+            <span class="product-badge badge-veil">ناعم</span>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="veil">
+          <div class="product-img">
+            <div class="product-placeholder veil-bg2">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="40" cy="122" rx="22" ry="6" fill="#b0cce0" opacity="0.18"/>
+                <rect x="24" y="56" width="32" height="66" rx="5" fill="#bdd5ea" stroke="#88aac8" stroke-width="1" opacity="0.8"/>
+                <rect x="30" y="56" width="18" height="66" rx="3" fill="#d5e8f5" opacity="0.35"/>
+                <line x1="40" y1="56" x2="40" y2="37" stroke="#90b8cc" stroke-width="1"/>
+                <path d="M40 12 C36 20 32 27 32 33 C32 40 36 42 40 42 C44 42 48 40 48 33 C48 27 44 20 40 12Z" fill="#e0f0ff" opacity="0.9"/>
+                <path d="M40 20 C38 25 37 30 37 34 C37 39 39 40 40 40 C41 40 43 39 43 34 C43 30 42 25 40 20Z" fill="white"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-inquire" data-i18n="inquire_btn" onclick="openWhatsapp()">استفسر الآن</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="world-label veil-label">Veil</span>
+            <h3>Veil II</h3>
+            <p>حرير الهواء — عطر شفيف يترك أثراً كحلم لطيف</p>
+            <span class="product-badge badge-veil">ناعم</span>
           </div>
         </div>
 

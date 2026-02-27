@@ -856,13 +856,55 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   filter: drop-shadow(0 0 36px rgba(201,168,76,0.45));
 }
 
-/* Category backgrounds */
-.candle-img   { background: radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.07) 0%, transparent 60%); }
-.candle-img2  { background: radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.05) 0%, transparent 60%); }
-.resin-img    { background: radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 60%); }
-.resin-img2   { background: radial-gradient(ellipse at 50% 60%, rgba(139,105,20,0.09) 0%, transparent 60%); }
-.pottery-img  { background: radial-gradient(ellipse at 50% 70%, rgba(201,168,76,0.07) 0%, transparent 60%); }
-.pottery-img2 { background: radial-gradient(ellipse at 50% 70%, rgba(201,168,76,0.05) 0%, transparent 60%); }
+/* ══ KON WORLDS — Collection backgrounds ══ */
+.shadow-bg   { background: radial-gradient(ellipse at 50% 80%, rgba(120,120,180,0.12) 0%, transparent 65%); }
+.shadow-bg2  { background: radial-gradient(ellipse at 50% 75%, rgba(100,100,160,0.10) 0%, transparent 65%); }
+.obsidian-bg { background: radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.10) 0%, transparent 60%); }
+.obsidian-bg2{ background: radial-gradient(ellipse at 50% 80%, rgba(180,140,50,0.08) 0%, transparent 60%); }
+.vanta-bg    { background: radial-gradient(ellipse at 50% 80%, rgba(90,40,220,0.12) 0%, transparent 60%); }
+.vanta-bg2   { background: radial-gradient(ellipse at 50% 75%, rgba(70,30,180,0.10) 0%, transparent 60%); }
+.lumi-bg     { background: radial-gradient(ellipse at 50% 80%, rgba(255,210,80,0.18) 0%, transparent 60%); }
+.lumi-bg2    { background: radial-gradient(ellipse at 50% 80%, rgba(255,195,60,0.15) 0%, transparent 60%); }
+.veil-bg     { background: radial-gradient(ellipse at 50% 80%, rgba(160,200,240,0.15) 0%, transparent 60%); }
+.veil-bg2    { background: radial-gradient(ellipse at 50% 75%, rgba(140,190,230,0.12) 0%, transparent 60%); }
+
+/* World tab accents */
+.world-tab { font-family: var(--font-en); letter-spacing: 3px; }
+.shadow-tab.active,   .shadow-tab:hover   { color: #c0c0e8 !important; border-color: #9090c0 !important; }
+.obsidian-tab.active, .obsidian-tab:hover { color: var(--gold) !important; border-color: var(--gold) !important; }
+.vanta-tab.active,    .vanta-tab:hover    { color: #aa88ff !important; border-color: #7744cc !important; }
+.lumi-tab.active,     .lumi-tab:hover     { color: #ffd740 !important; border-color: #ffc107 !important; }
+.veil-tab.active,     .veil-tab:hover     { color: #c0ddf5 !important; border-color: #88bbdd !important; }
+
+/* World label above product name */
+.world-label {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+.shadow-label   { color: #9090c8; }
+.obsidian-label { color: var(--gold); }
+.vanta-label    { color: #9966ff; }
+.lumi-label     { color: #ffc107; }
+.veil-label     { color: #88bbdd; }
+
+/* Collection badges */
+.badge-shadow   { background: rgba(100,100,180,0.15); color: #c0c0e8; border: 1px solid rgba(120,120,200,0.25); }
+.badge-obsidian { background: rgba(201,168,76,0.1);   color: var(--gold); border: 1px solid rgba(201,168,76,0.25); }
+.badge-vanta    { background: rgba(80,40,200,0.15);   color: #aa88ff; border: 1px solid rgba(90,50,200,0.3); }
+.badge-lumi     { background: rgba(255,200,50,0.12);  color: #ffd740; border: 1px solid rgba(255,200,50,0.25); }
+.badge-veil     { background: rgba(140,190,230,0.12); color: #a8d0ee; border: 1px solid rgba(140,190,230,0.25); }
+
+/* World-specific hover glow on cards */
+[data-category="shadow"]:hover   .product-placeholder svg { filter: drop-shadow(0 0 32px rgba(120,120,200,0.5)); }
+[data-category="obsidian"]:hover .product-placeholder svg { filter: drop-shadow(0 0 36px rgba(201,168,76,0.5)); }
+[data-category="vanta"]:hover    .product-placeholder svg { filter: drop-shadow(0 0 36px rgba(100,60,240,0.55)); }
+[data-category="lumi"]:hover     .product-placeholder svg { filter: drop-shadow(0 0 40px rgba(255,200,60,0.6)); }
+[data-category="veil"]:hover     .product-placeholder svg { filter: drop-shadow(0 0 32px rgba(160,210,255,0.5)); }
 
 /* Product Overlay — on hover */
 .product-overlay {
