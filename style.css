@@ -46,8 +46,8 @@
   --transition: var(--duration-mid) var(--ease-out);
 
   /* Spacing — generous, breathing */
-  --section-pad:    180px;
-  --section-pad-sm: 100px;
+  --section-pad:    120px;
+  --section-pad-sm: 70px;
   --container:      1160px;
   --container-pad:  40px;
 }
@@ -351,7 +351,7 @@ body::after {
 
 .gold-line {
   display: block;
-  width: 60px;
+  width: 90px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
   flex-shrink: 0;
@@ -600,13 +600,23 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   width: 100%;
 }
 
+/* CSS entrance animations — reliable, no GSAP dependency */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* Candle side */
 .hero-candle {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  opacity: 1; /* visible by default — GSAP overrides if loaded */
+  animation: heroFadeUp 1.6s ease-out 0.3s both;
 }
 .hero-candle-glow {
   position: absolute;
@@ -638,7 +648,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 /* Text side */
 .hero-text {
   text-align: right;
-  opacity: 1; /* visible by default — GSAP overrides if loaded */
+  animation: heroFadeIn 1.4s ease-out 0.7s both;
 }
 [dir="ltr"] .hero-text { text-align: left; }
 

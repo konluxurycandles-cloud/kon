@@ -281,26 +281,7 @@ document.querySelectorAll('a, button, .product-card, .filter-btn, .lang-btn').fo
   el.addEventListener('mouseleave', () => cursorRingEl?.classList.remove('hover'));
 });
 
-// ===== GSAP HERO CINEMATIC ENTRANCE =====
-window.addEventListener('load', () => {
-  if (typeof gsap === 'undefined') return;
-  const tl = gsap.timeline({ delay: 0.2 });
-
-  // 1. Candle rises from below — slow, cinematic
-  tl.from('#heroCandle',
-    { opacity: 0, y: 50, duration: 2.0, ease: 'power3.out', clearProps: 'all' }
-  )
-  // 2. Text slides in — overlapping
-  .from('#heroText',
-    { opacity: 0, y: 30, duration: 1.6, ease: 'power3.out', clearProps: 'all' },
-    '-=1.2'
-  )
-  // 3. Scroll indicator fades last
-  .from('.hero-scroll',
-    { opacity: 0, duration: 1.2, ease: 'power2.out', clearProps: 'opacity' },
-    '-=0.6'
-  );
-});
+// Hero entrance is handled via CSS keyframes (heroFadeUp / heroFadeIn) — no GSAP needed.
 
 // ===== GSAP SCROLL ANIMATIONS =====
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
