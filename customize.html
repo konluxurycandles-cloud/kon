@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KON Luxury | صمّم طلبك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ===== CUSTOMIZE PAGE ===== */
+    .customize-hero {
+      min-height: 38vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 100px;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .customize-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .customize-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ivory);
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+    .customize-hero p {
+      color: var(--ivory-dim);
+      font-size: 1rem;
+      line-height: 2;
+    }
+
+    /* ===== STEPS ===== */
+    .steps-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 40px 0 0;
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+    }
+    .step-tab {
+      padding: 16px 36px;
+      font-family: var(--font-ar);
+      font-size: 0.85rem;
+      color: var(--ivory-faint);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      white-space: nowrap;
+    }
+    .step-tab .step-num {
+      display: inline-block;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--border);
+      color: var(--ivory-dim);
+      font-size: 0.7rem;
+      line-height: 22px;
+      text-align: center;
+      margin-left: 8px;
+      transition: all 0.3s ease;
+    }
+    .step-tab.active {
+      color: var(--ivory);
+      border-bottom-color: var(--gold);
+    }
+    .step-tab.active .step-num {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .step-tab.done { color: var(--ivory-dim); }
+    .step-tab.done .step-num { background: rgba(201,168,76,0.3); color: var(--gold); }
+
+    /* ===== STEP PANELS ===== */
+    .customize-body {
+      background: var(--dark);
+      min-height: 70vh;
+      padding: 60px 0 100px;
+    }
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+
+    .step-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .step-title h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ivory);
+      margin-bottom: 10px;
+    }
+    .step-title p { color: var(--ivory-dim); font-size: 0.9rem; }
+
+    /* ===== STEP 1 — MOLDS ===== */
+    .molds-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+    }
+    .mold-card {
+      background: var(--dark2);
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      padding: 28px 16px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      position: relative;
+    }
+    .mold-card:hover {
+      border-color: var(--gold-dim);
+      background: var(--dark3);
+      transform: translateY(-4px);
+    }
+    .mold-card.selected {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.06);
+    }
+    .mold-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 22px; height: 22px;
+      background: var(--gold);
+      color: var(--black);
+      border-radius: 50%;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 22px;
+    }
+    .mold-svg-wrap {
+      height: 140px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .mold-svg-wrap svg { transition: filter 0.3s ease; }
+    .mold-card:hover .mold-svg-wrap svg {
+      filter: drop-shadow(0 0 16px rgba(201,168,76,0.3));
+    }
+    .mold-name {
+      font-size: 0.78rem;
+      color: var(--ivory-dim);
+      letter-spacing: 1px;
+      font-family: var(--font-ar);
+    }
+
+    /* ===== STEP 2 — COLORS ===== */
+    .color-step-wrap {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+    }
+    .color-preview {
+      flex: 0 0 240px;
+      text-align: center;
+    }
+    .color-preview-candle {
+      width: 200px;
+      height: 280px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.08) 0%, transparent 70%);
+      border-radius: 4px;
+    }
+    .color-preview-candle svg {
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+      transition: filter 0.4s ease;
+    }
+    .preview-color-name {
+      font-family: var(--font-ar);
+      color: var(--ivory-dim);
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+    .preview-hex {
+      font-family: var(--font-en);
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+    }
+
+    .color-palette-wrap { flex: 1; min-width: 280px; }
+    .palette-section { margin-bottom: 28px; }
+    .palette-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--ivory-faint);
+      text-transform: uppercase;
+      font-family: var(--font-en);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .color-swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .swatch {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .swatch:hover { transform: scale(1.15); }
+    .swatch.selected {
+      border-color: var(--gold);
+      transform: scale(1.15);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.25);
+    }
+    .swatch[data-color="#FFFFFF"], .swatch[data-color="#F8F5F0"] {
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+    }
+    .swatch.selected[data-color="#FFFFFF"],
+    .swatch.selected[data-color="#F8F5F0"] {
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.25), inset 0 0 0 1px rgba(255,255,255,0.3);
+    }
+
+    /* ===== STEP 3 — SET ===== */
+    .set-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .set-section-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ivory);
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    .set-items { display: flex; flex-direction: column; gap: 14px; }
+    .set-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px 18px;
+    }
+    .set-item-info { display: flex; align-items: center; gap: 14px; }
+    .set-item-thumb {
+      width: 44px; height: 60px;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .set-item-name { font-size: 0.82rem; color: var(--ivory); font-family: var(--font-ar); }
+    .set-item-sub  { font-size: 0.72rem; color: var(--ivory-dim); margin-top: 3px; }
+    .qty-control { display: flex; align-items: center; gap: 10px; }
+    .qty-btn {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      color: var(--ivory);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      line-height: 28px;
+      text-align: center;
+    }
+    .qty-btn:hover { background: var(--gold); color: var(--black); }
+    .qty-num { font-size: 0.9rem; color: var(--ivory); min-width: 20px; text-align: center; }
+    .remove-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.25);
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .remove-btn:hover { color: #cc4444; }
+
+    /* Terrazzo add-on */
+    .terrazzo-card {
+      background: var(--dark2);
+      border: 2px dashed var(--border);
+      border-radius: 4px;
+      padding: 28px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .terrazzo-card:hover { border-color: var(--gold-dim); }
+    .terrazzo-card.added { border-style: solid; border-color: var(--gold); background: rgba(201,168,76,0.05); }
+    .terrazzo-svg { margin: 0 auto 16px; display: block; }
+    .terrazzo-title { font-family: var(--font-ar); color: var(--ivory); font-size: 0.9rem; margin-bottom: 6px; }
+    .terrazzo-desc  { font-size: 0.78rem; color: var(--ivory-dim); margin-bottom: 16px; line-height: 1.8; }
+    .discount-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid var(--gold-dim);
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 2px;
+      font-family: var(--font-en);
+      margin-bottom: 16px;
+    }
+    .terrazzo-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 10px 20px;
+      color: var(--ivory-dim);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: var(--font-ar);
+    }
+    .terrazzo-toggle:hover { border-color: var(--gold); color: var(--gold); }
+    .terrazzo-card.added .terrazzo-toggle { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+    /* Order summary panel */
+    .order-summary {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px 24px;
+      position: sticky;
+      top: 90px;
+    }
+    .order-summary-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ivory);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--ivory-dim);
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-faint);
+    }
+    .summary-line:last-of-type { border-bottom: none; }
+    .summary-line span:last-child { color: var(--ivory); }
+    .summary-discount { color: var(--gold) !important; }
+    .summary-empty { color: var(--ivory-faint); font-size: 0.8rem; text-align: center; padding: 20px 0; }
+
+    /* ===== STEP 4 — ORDER ===== */
+    .order-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+      text-align: center;
+    }
+    .order-confirm-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 40px;
+      margin-bottom: 32px;
+    }
+    .order-items-list { margin: 24px 0; text-align: right; }
+    .order-items-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-faint);
+      font-size: 0.85rem;
+      color: var(--ivory-dim);
+      display: flex;
+      justify-content: space-between;
+    }
+    .order-items-list li span { color: var(--ivory); }
+    .order-note {
+      background: rgba(201,168,76,0.06);
+      border: 1px solid var(--gold-dim);
+      border-radius: 3px;
+      padding: 14px 18px;
+      font-size: 0.8rem;
+      color: var(--ivory-dim);
+      text-align: right;
+      margin-bottom: 28px;
+      line-height: 2;
+    }
+    .btn-order-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #1ea952;
+      color: white;
+      padding: 18px 48px;
+      font-size: 0.85rem;
+      font-family: var(--font-ar);
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+    }
+    .btn-order-wa:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(30,169,82,0.35);
+    }
+
+    /* ===== NAV BUTTONS ===== */
+    .step-nav {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 56px;
+      padding: 0 var(--container-pad);
+    }
+    .btn-next {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 14px 48px;
+      font-family: var(--font-ar);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    .btn-next:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+    .btn-back {
+      background: transparent;
+      color: var(--ivory-dim);
+      border: 1px solid var(--border);
+      padding: 14px 32px;
+      font-family: var(--font-ar);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    .btn-back:hover { border-color: var(--ivory-dim); color: var(--ivory); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .set-wrap { grid-template-columns: 1fr; }
+      .color-step-wrap { flex-direction: column; align-items: center; }
+      .steps-bar { gap: 0; overflow-x: auto; justify-content: flex-start; padding: 0 20px; }
+      .step-tab { padding: 14px 20px; font-size: 0.78rem; }
+      .molds-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CURSOR HALO ===== -->
+  <div id="cursorRing" class="cursor-wrap">
+    <div class="cursor-halo" id="cursorRingEl"></div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-kon">KON</span>
+        <span class="logo-luxury">LUXURY</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="index.html#products">منتجاتنا</a></li>
+        <li><a href="customize.html" class="nav-ai-link">✦ صمّم طلبك</a></li>
+        <li><a href="index.html#contact">تواصل معنا</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="customize-hero">
+    <div>
+      <h1>صمّم طلبك</h1>
+      <p>اختار القالب · اختار اللون · ابنِ سيتك</p>
+    </div>
+  </section>
+
+  <!-- ===== STEPS BAR ===== -->
+  <div class="steps-bar">
+    <button class="step-tab active" data-step="1">
+      <span class="step-num">١</span> اختار القالب
+    </button>
+    <button class="step-tab" data-step="2">
+      <span class="step-num">٢</span> اختار اللون
+    </button>
+    <button class="step-tab" data-step="3">
+      <span class="step-num">٣</span> السيت
+    </button>
+    <button class="step-tab" data-step="4">
+      <span class="step-num">٤</span> تأكيد الطلب
+    </button>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <div class="customize-body">
+    <div class="container">
+
+      <!-- ══ STEP 1: CHOOSE MOLD ══ -->
+      <div class="step-panel active" id="step1">
+        <div class="step-title">
+          <h2>اختار شكل القالب</h2>
+          <p>كل القوالب تُصنع يدوياً · الصور الحقيقية قريباً</p>
+        </div>
+        <div class="molds-grid" id="moldsGrid">
+          <!-- Molds injected by JS -->
+        </div>
+        <div class="step-nav">
+          <button class="btn-next" id="btn1next" disabled onclick="goStep(2)">التالي — اختار اللون</button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 2: CHOOSE COLOR ══ -->
+      <div class="step-panel" id="step2">
+        <div class="step-title">
+          <h2>اختار اللون</h2>
+          <p>اضغط على اللون وشوف القالب يتغير مباشرة</p>
+        </div>
+        <div class="color-step-wrap">
+          <!-- Preview -->
+          <div class="color-preview">
+            <div class="color-preview-candle" id="colorPreviewWrap">
+              <!-- filled by JS -->
+            </div>
+            <div class="preview-color-name" id="previewColorName">اختار لون</div>
+            <div class="preview-hex" id="previewHex">—</div>
+          </div>
+          <!-- Palette -->
+          <div class="color-palette-wrap">
+            <div class="palette-section">
+              <span class="palette-label">ناصع · محايد</span>
+              <div class="color-swatches" id="swatchNeutral"></div>
+            </div>
+            <div class="palette-section">
+              <span class="palette-label">دافئ · ترابي</span>
+              <div class="color-swatches" id="swatchWarm"></div>
+            </div>
+            <div class="palette-section">
+              <span class="palette-label">بارد · هادئ</span>
+              <div class="color-swatches" id="swatchCool"></div>
+            </div>
+            <div class="palette-section">
+              <span class="palette-label">داكن · جريء</span>
+              <div class="color-swatches" id="swatchDark"></div>
+            </div>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goStep(1)">رجوع</button>
+          <button class="btn-next" id="btn2next" disabled onclick="goStep(3)">التالي — السيت</button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 3: BUILD SET ══ -->
+      <div class="step-panel" id="step3">
+        <div class="step-title">
+          <h2>ابنِ سيتك</h2>
+          <p>اختار الكمية وأضف قاعدة تيرازو للحصول على خصم</p>
+        </div>
+        <div class="set-wrap">
+          <div>
+            <div class="set-section-title">الشموع المختارة</div>
+            <div class="set-items" id="setItemsList"></div>
+
+            <!-- Terrazzo -->
+            <div style="margin-top: 28px;">
+              <div class="set-section-title">إضافة قاعدة تيرازو</div>
+              <div class="terrazzo-card" id="terrazzoCrd" onclick="toggleTerrazzo()">
+                <svg class="terrazzo-svg" width="80" height="24" viewBox="0 0 80 24">
+                  <rect width="80" height="24" rx="4" fill="#9a9a9a"/>
+                  <circle cx="12" cy="8"  r="3" fill="#555"/>
+                  <circle cx="30" cy="16" r="2" fill="#777"/>
+                  <circle cx="50" cy="7"  r="4" fill="#444"/>
+                  <circle cx="65" cy="15" r="2.5" fill="#666"/>
+                  <circle cx="22" cy="14" r="1.5" fill="#888"/>
+                  <circle cx="42" cy="18" r="2" fill="#555"/>
+                  <circle cx="58" cy="10" r="1.5" fill="#777"/>
+                </svg>
+                <div class="terrazzo-title">قاعدة تيرازو يدوية</div>
+                <div class="terrazzo-desc">قاعدة من التيرازو الأصلي مصنوعة يدوياً تناسب شموعك</div>
+                <div class="discount-badge">خصم 15% عند الإضافة</div>
+                <br/>
+                <button class="terrazzo-toggle" id="terrazzoBtnLabel">+ أضف للسيت</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary -->
+          <div class="order-summary" id="orderSummary">
+            <div class="order-summary-title">ملخص الطلب</div>
+            <div id="summaryContent">
+              <div class="summary-empty">أضف منتجات لتبدأ</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goStep(2)">رجوع</button>
+          <button class="btn-next" onclick="goStep(4)">التالي — تأكيد الطلب</button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 4: ORDER ══ -->
+      <div class="step-panel" id="step4">
+        <div class="step-title">
+          <h2>تأكيد الطلب</h2>
+          <p>راجع طلبك وأرسله على واتساب</p>
+        </div>
+        <div class="order-wrap">
+          <div class="order-confirm-card">
+            <div class="order-summary-title">تفاصيل طلبك</div>
+            <ul class="order-items-list" id="orderFinalList"></ul>
+          </div>
+          <div class="order-note">
+            ✦ سيتم التواصل معك لتأكيد التوفر والسعر<br/>
+            ✦ يمكنك تخصيص الرائحة عند التواصل<br/>
+            ✦ وقت التصنيع ٣-٧ أيام عمل
+          </div>
+          <button class="btn-order-wa" onclick="sendWhatsapp()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            أرسل الطلب على واتساب
+          </button>
+          <div style="margin-top: 24px;">
+            <button class="btn-back" onclick="goStep(3)">تعديل الطلب</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+  // ===== DATA =====
+  const WHATSAPP = '9720549210470';
+
+  const MOLDS = [
+    { id: 1, name: 'أسطوانة كلاسيكية', svg: moldSVG('cylinder') },
+    { id: 2, name: 'رفيعة طويلة',       svg: moldSVG('slim') },
+    { id: 3, name: 'قصيرة عريضة',       svg: moldSVG('wide') },
+    { id: 4, name: 'عمود مخروطي',       svg: moldSVG('tapered') },
+    { id: 5, name: 'عمود مربع',          svg: moldSVG('square') },
+    { id: 6, name: 'كروية',              svg: moldSVG('sphere') },
+    { id: 7, name: 'مضلّعة',             svg: moldSVG('ribbed') },
+    { id: 8, name: 'ملتوية',             svg: moldSVG('twist') },
+    { id: 9, name: 'بيضاوية',            svg: moldSVG('oval') },
+    { id: 10, name: 'مكعب',              svg: moldSVG('cube') },
+  ];
+
+  function moldSVG(type) {
+    const c = 'var(--mc, #F5F0E8)';
+    const s = { stroke: '#C9A84C', sw: '0.8', opacity: '0.4' };
+    switch(type) {
+      case 'cylinder': return `<svg viewBox="0 0 60 110" width="55" height="100">
+        <ellipse cx="30" cy="104" rx="18" ry="5" fill="#c9a84c" opacity="0.15"/>
+        <rect x="12" y="40" width="36" height="64" rx="3" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <ellipse cx="30" cy="40" rx="18" ry="5" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="30" y1="40" x2="30" y2="28" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="30" cy="24" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="30" cy="21" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      case 'slim': return `<svg viewBox="0 0 60 120" width="40" height="110">
+        <ellipse cx="30" cy="114" rx="12" ry="4" fill="#c9a84c" opacity="0.15"/>
+        <rect x="22" y="30" width="16" height="84" rx="3" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <ellipse cx="30" cy="30" rx="8" ry="3" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="30" y1="30" x2="30" y2="20" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="30" cy="16" rx="4" ry="6" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="30" cy="13" rx="2" ry="3.5" fill="#ffd740"/>
+      </svg>`;
+      case 'wide': return `<svg viewBox="0 0 80 80" width="75" height="72">
+        <ellipse cx="40" cy="75" rx="26" ry="6" fill="#c9a84c" opacity="0.15"/>
+        <rect x="14" y="34" width="52" height="41" rx="4" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <ellipse cx="40" cy="34" rx="26" ry="7" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="40" y1="34" x2="40" y2="22" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="40" cy="18" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="40" cy="15" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      case 'tapered': return `<svg viewBox="0 0 60 110" width="55" height="100">
+        <ellipse cx="30" cy="105" rx="20" ry="5" fill="#c9a84c" opacity="0.15"/>
+        <path d="M10 100 L18 40 L42 40 L50 100 Z" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <ellipse cx="30" cy="40" rx="12" ry="4" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="30" y1="40" x2="30" y2="28" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="30" cy="24" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="30" cy="21" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      case 'square': return `<svg viewBox="0 0 60 110" width="55" height="100">
+        <rect x="10" y="104" width="40" height="4" rx="2" fill="#c9a84c" opacity="0.15"/>
+        <rect x="12" y="38" width="36" height="66" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <rect x="12" y="34" width="36" height="8" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="30" y1="34" x2="30" y2="22" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="30" cy="18" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="30" cy="15" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      case 'sphere': return `<svg viewBox="0 0 80 90" width="75" height="85">
+        <ellipse cx="40" cy="85" rx="20" ry="5" fill="#c9a84c" opacity="0.15"/>
+        <circle cx="40" cy="50" r="32" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="40" y1="18" x2="40" y2="8" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="40" cy="4" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="40" cy="1" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      case 'ribbed': return `<svg viewBox="0 0 60 110" width="55" height="100">
+        <ellipse cx="30" cy="105" rx="18" ry="5" fill="#c9a84c" opacity="0.15"/>
+        <rect x="12" y="38" width="36" height="67" rx="3" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="12" y1="55" x2="48" y2="55" stroke="${s.stroke}" stroke-width="0.6" stroke-opacity="0.3"/>
+        <line x1="12" y1="68" x2="48" y2="68" stroke="${s.stroke}" stroke-width="0.6" stroke-opacity="0.3"/>
+        <line x1="12" y1="81" x2="48" y2="81" stroke="${s.stroke}" stroke-width="0.6" stroke-opacity="0.3"/>
+        <line x1="12" y1="94" x2="48" y2="94" stroke="${s.stroke}" stroke-width="0.6" stroke-opacity="0.3"/>
+        <ellipse cx="30" cy="38" rx="18" ry="5" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="30" y1="33" x2="30" y2="22" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="30" cy="18" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="30" cy="15" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      case 'twist': return `<svg viewBox="0 0 60 110" width="55" height="100">
+        <ellipse cx="30" cy="105" rx="16" ry="5" fill="#c9a84c" opacity="0.15"/>
+        <path d="M14 100 C10 80 20 65 14 50 C10 38 18 38 30 38 C42 38 50 38 46 50 C40 65 50 80 46 100 Z" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="30" y1="38" x2="30" y2="26" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="30" cy="22" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="30" cy="19" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      case 'oval': return `<svg viewBox="0 0 60 110" width="55" height="100">
+        <ellipse cx="30" cy="105" rx="16" ry="5" fill="#c9a84c" opacity="0.15"/>
+        <ellipse cx="30" cy="72" rx="20" ry="33" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="30" y1="39" x2="30" y2="27" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="30" cy="23" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="30" cy="20" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      case 'cube': return `<svg viewBox="0 0 70 100" width="65" height="92">
+        <rect x="8" y="98" width="44" height="4" rx="2" fill="#c9a84c" opacity="0.15"/>
+        <rect x="8" y="35" width="44" height="63" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <path d="M8 35 L18 25 L62 25 L52 35 Z" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <path d="M52 35 L62 25 L62 88 L52 98" fill="${c}" stroke="${s.stroke}" stroke-width="${s.sw}" stroke-opacity="${s.opacity}"/>
+        <line x1="30" y1="35" x2="30" y2="22" stroke="#c9a84c" stroke-width="1.2" opacity="0.6"/>
+        <ellipse cx="30" cy="18" rx="5" ry="7" fill="#ff8f00" opacity="0.8"/>
+        <ellipse cx="30" cy="15" rx="2.5" ry="4" fill="#ffd740"/>
+      </svg>`;
+      default: return '';
+    }
+  }
+
+  const COLORS = {
+    neutral: [
+      { hex: '#F8F5F0', name: 'أبيض ناصع' },
+      { hex: '#F0E8D8', name: 'كريمي' },
+      { hex: '#E2D5BC', name: 'بيج فاتح' },
+      { hex: '#C8B89A', name: 'رملي' },
+      { hex: '#B0A090', name: 'بيج داكن' },
+    ],
+    warm: [
+      { hex: '#C4622D', name: 'تيراكوتا' },
+      { hex: '#D4836A', name: 'وردي ترابي' },
+      { hex: '#E8B4A0', name: 'وردي فاتح' },
+      { hex: '#C8956C', name: 'خوخي' },
+      { hex: '#8B4513', name: 'بني دافئ' },
+      { hex: '#C9A84C', name: 'ذهبي' },
+    ],
+    cool: [
+      { hex: '#8FAE88', name: 'أخضر حكيمي' },
+      { hex: '#7A9CB8', name: 'أزرق مائي' },
+      { hex: '#B8A8D0', name: 'لافندر' },
+      { hex: '#4A8C8A', name: 'تيل' },
+      { hex: '#90A8C0', name: 'رمادي أزرق' },
+    ],
+    dark: [
+      { hex: '#2D2D2D', name: 'فحمي' },
+      { hex: '#111111', name: 'أسود' },
+      { hex: '#3D2B1A', name: 'بني غامق' },
+      { hex: '#7A2038', name: 'عنابي' },
+      { hex: '#1A2A4A', name: 'كحلي' },
+    ],
+  };
+
+  // ===== STATE =====
+  let selectedMold = null;
+  let selectedColor = null;
+  let candleQty = 1;
+  let terrazzoAdded = false;
+
+  // ===== INIT =====
+  function init() {
+    // Render molds
+    const grid = document.getElementById('moldsGrid');
+    MOLDS.forEach(m => {
+      const card = document.createElement('div');
+      card.className = 'mold-card';
+      card.dataset.id = m.id;
+      card.innerHTML = `<div class="mold-svg-wrap">${m.svg}</div><div class="mold-name">${m.name}</div>`;
+      card.addEventListener('click', () => selectMold(m));
+      grid.appendChild(card);
+    });
+
+    // Render color swatches
+    renderSwatches('swatchNeutral', COLORS.neutral);
+    renderSwatches('swatchWarm',    COLORS.warm);
+    renderSwatches('swatchCool',    COLORS.cool);
+    renderSwatches('swatchDark',    COLORS.dark);
+  }
+
+  function renderSwatches(containerId, colors) {
+    const el = document.getElementById(containerId);
+    colors.forEach(c => {
+      const s = document.createElement('button');
+      s.className = 'swatch';
+      s.dataset.color = c.hex;
+      s.dataset.name  = c.name;
+      s.title = c.name;
+      s.style.background = c.hex;
+      s.addEventListener('click', () => selectColor(c));
+      el.appendChild(s);
+    });
+  }
+
+  // ===== STEP NAVIGATION =====
+  function goStep(n) {
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.step-tab').forEach(t => {
+      const tn = parseInt(t.dataset.step);
+      t.classList.remove('active', 'done');
+      if (tn === n) t.classList.add('active');
+      if (tn < n)  t.classList.add('done');
+    });
+    document.getElementById(`step${n}`).classList.add('active');
+    if (n === 3) renderSetStep();
+    if (n === 4) renderFinalStep();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ===== MOLD SELECTION =====
+  function selectMold(mold) {
+    selectedMold = mold;
+    document.querySelectorAll('.mold-card').forEach(c => c.classList.remove('selected'));
+    document.querySelector(`.mold-card[data-id="${mold.id}"]`).classList.add('selected');
+    document.getElementById('btn1next').disabled = false;
+  }
+
+  // ===== COLOR SELECTION =====
+  function selectColor(color) {
+    selectedColor = color;
+
+    // Update all swatches
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+    document.querySelector(`.swatch[data-color="${color.hex}"]`).classList.add('selected');
+
+    // Update preview
+    document.getElementById('previewColorName').textContent = color.name;
+    document.getElementById('previewHex').textContent = color.hex;
+
+    // Render colored preview
+    const wrap = document.getElementById('colorPreviewWrap');
+    const svgHTML = selectedMold ? selectedMold.svg : MOLDS[0].svg;
+    wrap.innerHTML = `<div style="--mc:${color.hex}">${svgHTML.replace(/width="\d+" height="\d+"/,'width="160" height="200"')}</div>`;
+
+    document.getElementById('btn2next').disabled = false;
+  }
+
+  // ===== SET STEP =====
+  function renderSetStep() {
+    // Set items
+    const list = document.getElementById('setItemsList');
+    list.innerHTML = `
+      <div class="set-item">
+        <div class="set-item-info">
+          <div class="set-item-thumb">
+            <div style="--mc:${selectedColor.hex};width:36px">${selectedMold.svg.replace(/width="\d+" height="\d+"/,'width="36" height="50"')}</div>
+          </div>
+          <div>
+            <div class="set-item-name">${selectedMold.name}</div>
+            <div class="set-item-sub" style="color:${selectedColor.hex}">${selectedColor.name}</div>
+          </div>
+        </div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-num" id="qtyDisplay">${candleQty}</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>`;
+    updateSummary();
+  }
+
+  function changeQty(delta) {
+    candleQty = Math.max(1, Math.min(20, candleQty + delta));
+    document.getElementById('qtyDisplay').textContent = candleQty;
+    updateSummary();
+  }
+
+  function toggleTerrazzo() {
+    terrazzoAdded = !terrazzoAdded;
+    const card = document.getElementById('terrazzoCrd');
+    const btn  = document.getElementById('terrazzoBtnLabel');
+    card.classList.toggle('added', terrazzoAdded);
+    btn.textContent = terrazzoAdded ? '✓ تمت الإضافة — إلغاء' : '+ أضف للسيت';
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const el = document.getElementById('summaryContent');
+    const lines = [];
+    lines.push(`<div class="summary-line"><span>شمعة — ${selectedMold.name}</span><span>× ${candleQty}</span></div>`);
+    lines.push(`<div class="summary-line"><span>اللون</span><span style="color:${selectedColor.hex}">${selectedColor.name}</span></div>`);
+    if (terrazzoAdded) {
+      lines.push(`<div class="summary-line"><span>قاعدة تيرازو</span><span>× 1</span></div>`);
+      lines.push(`<div class="summary-line"><span>خصم السيت</span><span class="summary-discount">15% ✓</span></div>`);
+    }
+    el.innerHTML = lines.join('');
+  }
+
+  // ===== FINAL STEP =====
+  function renderFinalStep() {
+    const list = document.getElementById('orderFinalList');
+    let items = [
+      { label: 'القالب', val: selectedMold.name },
+      { label: 'اللون', val: selectedColor.name + ` (${selectedColor.hex})` },
+      { label: 'الكمية', val: `${candleQty} شمعة` },
+    ];
+    if (terrazzoAdded) {
+      items.push({ label: 'قاعدة تيرازو', val: 'مضافة ✓' });
+      items.push({ label: 'خصم السيت', val: '15%' });
+    }
+    list.innerHTML = items.map(i =>
+      `<li><span>${i.label}</span><span>${i.val}</span></li>`
+    ).join('');
+  }
+
+  // ===== WHATSAPP =====
+  function sendWhatsapp() {
+    if (!selectedMold || !selectedColor) return;
+    let msg = `مرحباً، أود الطلب من KON Luxury:\n\n`;
+    msg += `🕯️ القالب: ${selectedMold.name}\n`;
+    msg += `🎨 اللون: ${selectedColor.name} (${selectedColor.hex})\n`;
+    msg += `📦 الكمية: ${candleQty} شمعة\n`;
+    if (terrazzoAdded) {
+      msg += `🪨 قاعدة تيرازو: نعم (خصم 15%)\n`;
+    }
+    msg += `\nشكراً!`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  // ===== CURSOR HALO =====
+  const cursorRing = document.getElementById('cursorRing');
+  let mx = 0, my = 0, hx = 0, hy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function raf() {
+    hx += (mx - hx) * 0.08;
+    hy += (my - hy) * 0.08;
+    if (cursorRing) cursorRing.style.transform = `translate(${hx}px, ${hy}px)`;
+    requestAnimationFrame(raf);
+  })();
+
+  // ===== HAMBURGER =====
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  if (hamburger) hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  init();
+  </script>
+</body>
+</html>
