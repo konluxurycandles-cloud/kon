@@ -167,11 +167,13 @@
       filter: drop-shadow(0 0 16px rgba(201,168,76,0.3));
     }
     .mold-name {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: var(--ivory-dim);
-      letter-spacing: 1px;
-      font-family: var(--font-ar);
+      letter-spacing: 4px;
+      font-family: var(--font-en);
+      text-transform: uppercase;
     }
+    .mold-card.selected .mold-name { color: var(--gold); }
 
     /* ===== STEP 2 — COLORS ===== */
     .color-step-wrap {
@@ -678,16 +680,16 @@
   const WHATSAPP = '9720549210470';
 
   const MOLDS = [
-    { id: 1, name: 'أسطوانة كلاسيكية', svg: moldSVG('cylinder') },
-    { id: 2, name: 'رفيعة طويلة',       svg: moldSVG('slim') },
-    { id: 3, name: 'قصيرة عريضة',       svg: moldSVG('wide') },
-    { id: 4, name: 'عمود مخروطي',       svg: moldSVG('tapered') },
-    { id: 5, name: 'عمود مربع',          svg: moldSVG('square') },
-    { id: 6, name: 'كروية',              svg: moldSVG('sphere') },
-    { id: 7, name: 'مضلّعة',             svg: moldSVG('ribbed') },
-    { id: 8, name: 'ملتوية',             svg: moldSVG('twist') },
-    { id: 9, name: 'بيضاوية',            svg: moldSVG('oval') },
-    { id: 10, name: 'مكعب',              svg: moldSVG('cube') },
+    { id: 1,  name: 'Eclipse',   svg: moldSVG('cylinder') },
+    { id: 2,  name: 'Reverie',   svg: moldSVG('slim') },
+    { id: 3,  name: 'Solstice',  svg: moldSVG('wide') },
+    { id: 4,  name: 'Mirage',    svg: moldSVG('tapered') },
+    { id: 5,  name: 'Onyx',      svg: moldSVG('square') },
+    { id: 6,  name: 'Aether',    svg: moldSVG('sphere') },
+    { id: 7,  name: 'Nocturne',  svg: moldSVG('ribbed') },
+    { id: 8,  name: 'Vesper',    svg: moldSVG('twist') },
+    { id: 9,  name: 'Aurora',    svg: moldSVG('oval') },
+    { id: 10, name: 'Ember',     svg: moldSVG('cube') },
   ];
 
   function moldSVG(type) {
