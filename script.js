@@ -287,19 +287,25 @@ document.querySelectorAll('a, button, .product-card, .filter-btn, .lang-btn').fo
 
 // ===== GSAP HERO CINEMATIC ENTRANCE =====
 window.addEventListener('load', () => {
-  const tl = gsap.timeline({ delay: 0.3 });
+  const tl = gsap.timeline({ delay: 0.4 });
 
-  // 1. Candle fades in slowly from below
-  tl.to('#heroCandle', {
-    opacity: 1, y: 0,
-    duration: 1.8, ease: 'power3.out',
-    from: { opacity: 0, y: 40 },
-  })
-  // 2. Text fades in
-  .to('#heroText', {
-    opacity: 1, y: 0,
-    duration: 1.4, ease: 'power3.out',
-  }, '-=1.0');
+  // 1. Candle rises from below — slow, cinematic
+  tl.fromTo('#heroCandle',
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0, duration: 2.0, ease: 'power3.out' }
+  )
+  // 2. Text slides in — overlapping
+  .fromTo('#heroText',
+    { opacity: 0, y: 30 },
+    { opacity: 1, y: 0, duration: 1.6, ease: 'power3.out' },
+    '-=1.2'
+  )
+  // 3. Scroll indicator fades last
+  .fromTo('.hero-scroll',
+    { opacity: 0 },
+    { opacity: 0.5, duration: 1.2, ease: 'power2.out' },
+    '-=0.6'
+  );
 });
 
 // ===== GSAP SCROLL ANIMATIONS =====
