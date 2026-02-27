@@ -257,21 +257,19 @@ document.addEventListener('DOMContentLoaded', applySettingsToPage);
 // ===== INIT LANGUAGE =====
 setLanguage('ar');
 
-// ===== CUSTOM CURSOR — FLAME =====
-const cursorDot    = document.getElementById('cursorDot');
+// ===== CURSOR HALO (golden glow — lags behind candle cursor) =====
 const cursorRing   = document.getElementById('cursorRing');
 const cursorRingEl = document.getElementById('cursorRingEl');
-let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+let mouseX = 0, mouseY = 0, haloX = 0, haloY = 0;
 
 document.addEventListener('mousemove', e => {
   mouseX = e.clientX; mouseY = e.clientY;
-  if (cursorDot) cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 });
-(function animateRing() {
-  ringX += (mouseX - ringX) * 0.08;
-  ringY += (mouseY - ringY) * 0.08;
-  if (cursorRing) cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
-  requestAnimationFrame(animateRing);
+(function animateHalo() {
+  haloX += (mouseX - haloX) * 0.08;
+  haloY += (mouseY - haloY) * 0.08;
+  if (cursorRing) cursorRing.style.transform = `translate(${haloX}px, ${haloY}px)`;
+  requestAnimationFrame(animateHalo);
 })();
 
 document.querySelectorAll('a, button, .product-card, .filter-btn, .lang-btn').forEach(el => {

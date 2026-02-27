@@ -256,88 +256,44 @@ img  { max-width: 100%; display: block; }
 button { font-family: inherit; }
 
 /* ===========================
-   CUSTOM CURSOR — FLAME
+   CUSTOM CURSOR — CANDLE SVG
    =========================== */
-*, *::before, *::after { cursor: none !important; }
 
+/* Candle cursor: tiny candle with flame, hotspot at base center (8,38) */
+html {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='40' viewBox='0 0 16 40'%3E%3Crect x='4' y='20' width='8' height='18' rx='2' fill='%231a1208' stroke='%23C9A84C' stroke-width='0.8'/%3E%3Cline x1='8' y1='20' x2='8' y2='15' stroke='%235a3e1b' stroke-width='1.2'/%3E%3Cpath d='M8 2 C6 5 3 9 3 13 C3 17 5.2 19 8 19 C10.8 19 13 17 13 13 C13 9 10 5 8 2Z' fill='%23ff8f00' opacity='0.92'/%3E%3Cpath d='M8 6 C7 8 5.5 11 5.5 14 C5.5 16.2 6.6 17.5 8 17.5 C9.4 17.5 10.5 16.2 10.5 14 C10.5 11 9 8 8 6Z' fill='%23ffd740'/%3E%3Cellipse cx='8' cy='15' rx='2' ry='2.5' fill='white' opacity='0.85'/%3E%3C/svg%3E") 8 38, auto;
+}
+*, *::before, *::after { cursor: inherit !important; }
+
+/* ---- Golden halo that follows with lag (DOM element) ---- */
 .cursor-wrap {
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
-  z-index: 9999999; /* above everything including candleIntro */
+  z-index: 9999999;
   will-change: transform;
 }
-
-/* ---- Flame cursor ---- */
-.cursor-flame {
-  position: relative;
-  width: 20px;
-  height: 32px;
-  transform: translate(-50%, -90%); /* flame tip = cursor hotspot */
-  animation: flameCursorDance 0.42s ease-in-out infinite alternate;
-  filter: drop-shadow(0 0 8px rgba(255,130,0,0.75))
-          drop-shadow(0 0 3px rgba(255,220,80,0.6));
-}
-/* Outer flame body */
-.cf-outer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    #fffde7 0%,
-    #ffd740 25%,
-    #ff8f00 58%,
-    rgba(201,168,76,0.3) 100%);
-  border-radius: 50% 50% 38% 38% / 68% 68% 32% 32%;
-}
-/* Inner bright flame */
-.cf-inner {
-  position: absolute;
-  bottom: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 9px;
-  height: 15px;
-  background: linear-gradient(180deg, white 0%, #ffe566 50%, #ffaa00 100%);
-  border-radius: 50% 50% 40% 40% / 70% 70% 30% 30%;
-  opacity: 0.92;
-}
-/* White hot core */
-.cf-core {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 6px;
-  background: white;
-  border-radius: 50%;
-  filter: blur(0.8px);
-  opacity: 1;
-}
-@keyframes flameCursorDance {
-  from { transform: translate(-50%, -90%) skewX(-6deg) scaleY(1); }
-  to   { transform: translate(-50%, -90%) skewX(6deg)  scaleY(1.09); }
-}
-
-/* ---- Halo (follows with lag) ---- */
 .cursor-halo {
-  width: 44px; height: 44px;
+  width: 48px; height: 48px;
   background: radial-gradient(circle,
-    rgba(255, 150, 0, 0.10) 0%,
-    rgba(201,168,76,0.06) 45%,
+    rgba(201,168,76,0.12) 0%,
+    rgba(201,168,76,0.05) 50%,
     transparent 70%);
+  border: 1px solid rgba(201,168,76,0.15);
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width 0.4s var(--ease-out),
-              height 0.4s var(--ease-out),
-              background 0.4s ease;
+  transition: width 0.45s var(--ease-out),
+              height 0.45s var(--ease-out),
+              background 0.4s ease,
+              border-color 0.4s ease;
 }
 .cursor-halo.hover {
-  width: 64px; height: 64px;
+  width: 68px; height: 68px;
   background: radial-gradient(circle,
-    rgba(255,150,0,0.16) 0%,
-    rgba(201,168,76,0.08) 45%,
+    rgba(201,168,76,0.18) 0%,
+    rgba(201,168,76,0.08) 50%,
     transparent 70%);
+  border-color: rgba(201,168,76,0.3);
 }
 
 /* ===========================
@@ -1600,6 +1556,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   .whatsapp-float { bottom: 24px; left: 24px; width: 50px; height: 50px; }
   [dir="rtl"] .whatsapp-float { left: auto; right: 24px; }
   .cursor-wrap { display: none !important; }
+  html { cursor: auto; }
   *, *::before, *::after { cursor: auto !important; }
 }
 
