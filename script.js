@@ -287,6 +287,7 @@ document.querySelectorAll('a, button, .product-card, .filter-btn, .lang-btn').fo
 
 // ===== GSAP HERO CINEMATIC ENTRANCE =====
 window.addEventListener('load', () => {
+  if (typeof gsap === 'undefined') return;
   const tl = gsap.timeline({ delay: 0.4 });
 
   // 1. Candle rises from below — slow, cinematic

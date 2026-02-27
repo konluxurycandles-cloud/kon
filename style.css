@@ -590,7 +590,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   justify-content: center;
   align-items: center;
   position: relative;
-  opacity: 0; /* GSAP animates in */
+  opacity: 1; /* visible by default — GSAP overrides if loaded */
 }
 .hero-candle-glow {
   position: absolute;
@@ -622,7 +622,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 /* Text side */
 .hero-text {
   text-align: right;
-  opacity: 0; /* GSAP animates in */
+  opacity: 1; /* visible by default — GSAP overrides if loaded */
 }
 [dir="ltr"] .hero-text { text-align: left; }
 
