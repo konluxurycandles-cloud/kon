@@ -644,10 +644,10 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 
 .hero-eyeline {
   font-family: var(--font-en);
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   letter-spacing: 9px;
   text-transform: uppercase;
-  color: rgba(201,168,76,0.4);
+  color: rgba(201,168,76,0.75);
   margin-bottom: 32px;
   font-weight: 400;
   display: block;
