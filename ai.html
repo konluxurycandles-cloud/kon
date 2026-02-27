@@ -363,11 +363,13 @@ footer span{color:var(--gold)}
     <div class="room-right">
       <div class="desc-label" style="margin-bottom:16px">اختاري المنتج</div>
       <div class="room-prod-sel" id="roomProds">
-        <label class="room-prod-opt"><input type="radio" name="rp" value="candle"/><span class="room-prod-emoji">🕯️</span><span class="room-prod-label">شمعة Obsidian الفاخرة</span></label>
-        <label class="room-prod-opt"><input type="radio" name="rp" value="terrazzo"/><span class="room-prod-emoji">🪨</span><span class="room-prod-label">صحن تيراتزو كبير</span></label>
-        <label class="room-prod-opt"><input type="radio" name="rp" value="vase"/><span class="room-prod-emoji">🏺</span><span class="room-prod-label">مزهرية فخار طويلة</span></label>
-        <label class="room-prod-opt"><input type="radio" name="rp" value="resin"/><span class="room-prod-emoji">💎</span><span class="room-prod-label">صينية إيبوكسي موجة</span></label>
-        <label class="room-prod-opt"><input type="radio" name="rp" value="concrete"/><span class="room-prod-emoji">🔩</span><span class="room-prod-label">شمعدان كونكريت</span></label>
+        <label class="room-prod-opt"><input type="radio" name="rp" value="mirage"/>  <span class="room-prod-emoji">🕯️</span><span class="room-prod-label">Mirage — Vanta</span></label>
+        <label class="room-prod-opt"><input type="radio" name="rp" value="vesper"/>  <span class="room-prod-emoji">🕯️</span><span class="room-prod-label">Vesper — Veil</span></label>
+        <label class="room-prod-opt"><input type="radio" name="rp" value="eclipse"/> <span class="room-prod-emoji">🕯️</span><span class="room-prod-label">Eclipse — Shadow</span></label>
+        <label class="room-prod-opt"><input type="radio" name="rp" value="nocturne"/><span class="room-prod-emoji">🕯️</span><span class="room-prod-label">Nocturne — Shadow</span></label>
+        <label class="room-prod-opt"><input type="radio" name="rp" value="onyx"/>    <span class="room-prod-emoji">🕯️</span><span class="room-prod-label">Onyx — Obsidian</span></label>
+        <label class="room-prod-opt"><input type="radio" name="rp" value="aurora"/>  <span class="room-prod-emoji">🕯️</span><span class="room-prod-label">Aurora — Lumi</span></label>
+        <label class="room-prod-opt"><input type="radio" name="rp" value="ember"/>   <span class="room-prod-emoji">🕯️</span><span class="room-prod-label">Ember — Obsidian</span></label>
       </div>
       <div class="ai-note">
         <strong>كيف يشتغل؟</strong><br>
@@ -383,13 +385,7 @@ footer span{color:var(--gold)}
           <div class="room-result-label">قبل — غرفتك</div>
         </div>
         <div>
-          <div class="room-result-img" id="afterImg">
-            <div style="text-align:center;padding:20px">
-              <div style="font-size:3rem;margin-bottom:12px" id="afterEmoji">🕯️</div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--gold);margin-bottom:6px">تم إضافة المنتج</div>
-              <div style="font-size:.78rem;color:var(--text-dim)" id="afterName">شمعة Obsidian الفاخرة</div>
-            </div>
-          </div>
+          <div class="room-result-img" id="afterImg" style="position:relative;overflow:hidden"></div>
           <div class="room-result-label">بعد — مع منتج Kōn</div>
         </div>
       </div>
@@ -575,14 +571,24 @@ function copyDesc() {
 
 // ── ROOM VISUALIZER ──
 let hasImg = false;
-const prodNames = {candle:'شمعة Obsidian الفاخرة',terrazzo:'صحن تيراتزو كبير',vase:'مزهرية فخار طويلة',resin:'صينية إيبوكسي موجة',concrete:'شمعدان كونكريت'};
-const prodEmojis = {candle:'🕯️',terrazzo:'🪨',vase:'🏺',resin:'💎',concrete:'🔩'};
+const prodNames = {
+  mirage:'Mirage — Vanta', vesper:'Vesper — Veil',
+  eclipse:'Eclipse — Shadow', nocturne:'Nocturne — Shadow',
+  onyx:'Onyx — Obsidian', aurora:'Aurora — Lumi', ember:'Ember — Obsidian'
+};
+const prodImages = {
+  mirage:'images/mirage.avif', vesper:'images/vesper.avif',
+  eclipse:'images/eclipse.avif', nocturne:'images/nocturne.avif',
+  onyx:'images/onyx.avif', aurora:'images/aurora.avif', ember:'images/ember.avif'
+};
 const roomRecs = {
-  candle:'غرفتك تحتاج لحظة دفء — شمعة Obsidian ستضيف جواً لا يوصف كل مساء.',
-  terrazzo:'ألوان غرفتك تتناسب مع التيراتزو تماماً — سيبدو وكأنه صُمم لهذا المكان.',
-  vase:'الخطوط الرأسية في غرفتك ستبرز مزهرية الفخار الطويلة بشكل رائع.',
-  resin:'الصينية الإيبوكسي ستكون نقطة جذب مثالية على طاولة القهوة عندك.',
-  concrete:'الشمعدان الكونكريت يناسب الديكور المينيمال بغرفتك — بسيط وقوي.',
+  mirage:'Mirage تضيف عمقاً غامضاً وسحراً هادئاً على أي طاولة في غرفتك.',
+  vesper:'Vesper بشكلها الملتوي الفريد ستكون نقطة الجذب الأولى في المكان.',
+  eclipse:'Eclipse بلونها الداكن تناسب الديكور المينيمال وتضيف أناقة صامتة.',
+  nocturne:'Nocturne تخلق جواً من الغموض الراقي — مثالية للمساحات الهادئة.',
+  onyx:'Onyx بنقائها الأسود تضيف لمسة فاخرة لأي ركن في غرفتك.',
+  aurora:'Aurora بدفئها الذهبي ستحوّل أي زاوية لمساحة مريحة ومضيئة.',
+  ember:'Ember تجمع بين القوة والدفء — جمال بركاني في قلب غرفتك.',
 };
 
 function handleImg(inp) {
@@ -622,22 +628,29 @@ function runRoomAI() {
 
   setTimeout(() => {
     const pKey = selProd.value;
-    // show original image in before
-    const beforeDiv = document.getElementById('beforeImg');
     const imgSrc = document.getElementById('roomPreview').src;
-    beforeDiv.innerHTML = `<img src="${imgSrc}" style="width:100%;height:100%;object-fit:cover"/>`;
+    const prodSrc = prodImages[pKey];
 
-    // after with product
-    document.getElementById('afterEmoji').textContent = prodEmojis[pKey];
-    document.getElementById('afterName').textContent = prodNames[pKey];
+    // Before — room photo
+    document.getElementById('beforeImg').innerHTML =
+      `<img src="${imgSrc}" style="width:100%;height:100%;object-fit:cover;display:block">`;
+
+    // After — room blurred as background + real product photo centered
+    const afterDiv = document.getElementById('afterImg');
+    afterDiv.innerHTML = `
+      <img src="${imgSrc}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.35) blur(3px);transform:scale(1.06)">
+      <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;padding:18px;gap:10px">
+        <img src="${prodSrc}" style="max-height:72%;max-width:70%;object-fit:contain;filter:drop-shadow(0 6px 28px rgba(0,0,0,0.75)) drop-shadow(0 0 18px rgba(201,168,76,0.25))">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:.8rem;letter-spacing:.2em;color:var(--gold);text-align:center">${prodNames[pKey]}</span>
+      </div>`;
+
     document.getElementById('aiRoomRec').textContent = roomRecs[pKey];
-
     result.classList.add('show');
     result.scrollIntoView({behavior:'smooth', block:'start'});
     btn.disabled = false;
-    btn.textContent = '✦ جربي منتج ثاني';
+    btn.textContent = '✦ جرّب منتج ثاني';
     toast('✓ تم تحليل الغرفة بنجاح!');
-  }, 2800);
+  }, 2200);
 }
 
 // ── TOAST ──
