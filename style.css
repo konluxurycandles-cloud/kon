@@ -971,13 +971,14 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   border-top: 1px solid var(--border-faint);
 }
 .product-info h3 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-family: var(--font-en);
+  font-size: 0.95rem;
   font-weight: 300;
-  font-style: italic;
+  font-style: normal;
   color: var(--ivory);
   margin-bottom: 10px;
-  letter-spacing: 1px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
   transition: color var(--duration-fast) ease;
 }
 .product-card:hover .product-info h3 { color: var(--gold-light); }
