@@ -129,37 +129,39 @@ function setLanguage(lang) {
   });
 }
 
-// ===== LENIS SMOOTH SCROLL =====
-const lenis = new Lenis({
-  duration: 1.4,
-  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  smoothWheel: true,
-  wheelMultiplier: 0.9,
-});
-
-// Hook Lenis into GSAP ScrollTrigger (single RAF via GSAP ticker)
+// ===== SMOOTH SCROLL (Lenis optional — fallback to native) =====
 gsap.registerPlugin(ScrollTrigger);
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(time => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
+
+let _lenis = null;
+try {
+  if (typeof Lenis !== 'undefined') {
+    _lenis = new Lenis({ duration: 1.4, smoothWheel: true, wheelMultiplier: 0.9 });
+    _lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(time => _lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+} catch(e) { _lenis = null; }
 
 // ===== NAVBAR =====
-const navbar = document.getElementById('navbar');
-lenis.on('scroll', ({ scroll }) => {
-  navbar.classList.toggle('scrolled', scroll > 50);
-});
-
-// Active nav on scroll
+const navbar  = document.getElementById('navbar');
 const sections = document.querySelectorAll('section[id]');
-lenis.on('scroll', ({ scroll }) => {
+
+function handleScroll(scrollY) {
+  navbar.classList.toggle('scrolled', scrollY > 50);
   let current = '';
   sections.forEach(sec => {
-    if (scroll >= sec.offsetTop - 120) current = sec.getAttribute('id');
+    if (scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
   });
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.classList.toggle('active-nav', link.getAttribute('href') === `#${current}`);
   });
-});
+}
+
+if (_lenis) {
+  _lenis.on('scroll', ({ scroll }) => handleScroll(scroll));
+} else {
+  window.addEventListener('scroll', () => handleScroll(window.scrollY));
+}
 
 // ===== HAMBURGER =====
 const hamburger = document.getElementById('hamburger');

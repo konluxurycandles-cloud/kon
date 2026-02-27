@@ -466,13 +466,18 @@ body::after {
   align-items: center;
 }
 .nav-links a {
-  font-size: 0.68rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
   color: var(--ivory-faint);
   position: relative;
   transition: color var(--duration-fast) ease;
+  font-family: var(--font-ar);
+}
+[dir="ltr"] .nav-links a {
   font-family: var(--font-en);
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 .nav-links a::after {
   content: '';
@@ -767,15 +772,20 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   border: none;
   color: var(--ivory-faint);
   padding: 13px 32px;
-  font-size: 0.65rem;
-  letter-spacing: 3px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
   cursor: pointer;
   transition: all var(--duration-mid) var(--ease-out);
-  font-family: var(--font-en);
+  font-family: var(--font-ar);
   font-weight: 400;
-  text-transform: uppercase;
   border-right: 1px solid var(--border-faint);
   position: relative;
+}
+[dir="ltr"] .filter-btn {
+  font-family: var(--font-en);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 .filter-btn:last-child { border-right: none; }
 [dir="rtl"] .filter-btn { border-right: none; border-left: 1px solid var(--border-faint); }
