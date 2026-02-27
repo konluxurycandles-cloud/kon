@@ -469,7 +469,7 @@ body::after {
 .nav-links a {
   font-size: 0.75rem;
   letter-spacing: 2px;
-  color: var(--ivory-faint);
+  color: var(--ivory-dim);
   position: relative;
   transition: color var(--duration-fast) ease;
   font-family: var(--font-ar);
@@ -781,7 +781,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 .filter-btn {
   background: transparent;
   border: none;
-  color: var(--ivory-faint);
+  color: var(--ivory-dim);
   padding: 13px 32px;
   font-size: 0.85rem;
   letter-spacing: 1px;
@@ -807,6 +807,22 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   color: var(--black);
   letter-spacing: 3px;
 }
+
+/* World tabs — colored by default, not just on hover */
+.shadow-tab   { color: rgba(160,160,220,0.8); }
+.obsidian-tab { color: rgba(201,168,76,0.85); }
+.vanta-tab    { color: rgba(160,110,255,0.85); }
+.lumi-tab     { color: rgba(255,210,50,0.9); }
+.veil-tab     { color: rgba(150,200,235,0.85); }
+
+.shadow-tab:hover,   .shadow-tab.active   { color: #c8c8ff !important; background: rgba(120,120,200,0.12) !important; border-color: rgba(140,140,200,0.3) !important; }
+.obsidian-tab:hover, .obsidian-tab.active { color: #ffd740 !important; background: rgba(201,168,76,0.12) !important; border-color: rgba(201,168,76,0.35) !important; }
+.vanta-tab:hover,    .vanta-tab.active    { color: #bb99ff !important; background: rgba(100,60,220,0.15) !important; border-color: rgba(110,70,220,0.35) !important; }
+.lumi-tab:hover,     .lumi-tab.active     { color: #ffe066 !important; background: rgba(255,200,50,0.12) !important; border-color: rgba(255,200,50,0.35) !important; }
+.veil-tab:hover,     .veil-tab.active     { color: #c8e8ff !important; background: rgba(140,190,235,0.12) !important; border-color: rgba(140,190,235,0.3) !important; }
+
+/* Active world tab overrides the gold background */
+.world-tab.active { background: transparent !important; color: inherit; letter-spacing: 4px; }
 
 /* Products Grid — editorial museum grid */
 .products-grid {
@@ -884,13 +900,13 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   letter-spacing: 4px;
   text-transform: uppercase;
   margin-bottom: 6px;
-  opacity: 0.7;
+  opacity: 1;
 }
-.shadow-label   { color: #9090c8; }
+.shadow-label   { color: #b0b0e0; }
 .obsidian-label { color: var(--gold); }
-.vanta-label    { color: #9966ff; }
+.vanta-label    { color: #aa77ff; }
 .lumi-label     { color: #ffc107; }
-.veil-label     { color: #88bbdd; }
+.veil-label     { color: #90c8ee; }
 
 /* Collection badges */
 .badge-shadow   { background: rgba(100,100,180,0.15); color: #c0c0e8; border: 1px solid rgba(120,120,200,0.25); }
