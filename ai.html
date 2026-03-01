@@ -77,13 +77,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .da-result.show{display:block;animation:fadeUp .4s ease}
 .da-result-title{font-family:'Cormorant Garamond',serif;font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
 .prod-recs{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-@media(max-width:600px){.prod-recs{grid-template-columns:1fr 1fr}}
-.prod-rec{background:var(--card);border:1px solid rgba(201,168,76,0.15);padding:20px;text-align:center;cursor:pointer;transition:all .3s;text-decoration:none;display:block}
-.prod-rec:hover{border-color:var(--gold);transform:translateY(-2px)}
-.rec-icon{font-size:2rem;margin-bottom:10px;opacity:.7}
-.rec-name{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--text);margin-bottom:4px}
-.rec-ar{font-size:.75rem;color:var(--gold-dim);margin-bottom:8px}
-.rec-price{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold)}
+@media(max-width:600px){.prod-recs{grid-template-columns:1fr}}
+.prod-rec{background:var(--card);border:1px solid rgba(201,168,76,0.15);cursor:pointer;transition:all .35s;text-decoration:none;display:flex;flex-direction:column;overflow:hidden}
+.prod-rec:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.4)}
+.prod-rec:hover .rec-img-wrap img{transform:scale(1.06)}
+.rec-img-wrap{width:100%;height:160px;overflow:hidden;background:var(--card2);flex-shrink:0}
+.rec-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:5px;flex:1}
+.rec-world{font-family:'Cormorant Garamond',serif;font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;margin-bottom:2px}
+.rec-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text);letter-spacing:.05em}
+.rec-ar{font-size:.72rem;color:var(--gold-dim);line-height:1.6;flex:1}
+.rec-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;border-top:1px solid rgba(201,168,76,0.1);padding-top:10px}
+.rec-price{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--gold)}
+.rec-cta{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);transition:color .25s}
+.prod-rec:hover .rec-cta{color:var(--gold)}
 .ai-thinking{display:flex;align-items:center;gap:12px;padding:20px;color:var(--gold-dim);font-size:.88rem}
 .think-dots span{display:inline-block;width:5px;height:5px;background:var(--gold);border-radius:50%;animation:bounce .9s ease-in-out infinite}
 .think-dots span:nth-child(2){animation-delay:.15s}
@@ -338,15 +344,16 @@ function selOpt(btn, q) {
 }
 
 const allProds = [
-  {id:1,en:'Obsidian Pillar Candle',ar:'شمعة Obsidian',cat:'candle',price:185,icon:'🕯️',tags:['مينيمال','فاخر','أسود','هدية','ديكور']},
-  {id:2,en:'Marble White Candle',ar:'شمعة Marble البيضاء',cat:'candle',price:165,icon:'🕯️',tags:['أبيض','هادئ','طبيعي','ديكور']},
-  {id:3,en:'Amber Glow Set',ar:'طقم Amber الذهبي',cat:'candle',price:240,icon:'🕯️',tags:['هدية','مناسبة','فاخر','طقم']},
-  {id:4,en:'Terrazzo Large Dish',ar:'صحن تيراتزو كبير',cat:'terrazzo',price:220,icon:'🪨',tags:['مينيمال','رمادي','ديكور','خشبي']},
-  {id:6,en:'Terrazzo Coasters Set',ar:'كوسترات تيراتزو',cat:'terrazzo',price:160,icon:'🪨',tags:['هدية','ديكور','بسيط']},
-  {id:7,en:'Tall Pottery Vase',ar:'مزهرية فخار طويلة',cat:'pottery',price:280,icon:'🏺',tags:['بوهيمي','طبيعي','خشبي','ديكور']},
-  {id:9,en:'Concrete Candle Holder',ar:'شمعدان كونكريت',cat:'concrete',price:150,icon:'🔩',tags:['مينيمال','رمادي','مكتب','بسيط']},
-  {id:11,en:'Resin Coaster Set',ar:'كوسترات راتنج',cat:'resin',price:200,icon:'💎',tags:['هدية','مناسبة','فاخر','بوهيمي']},
-  {id:12,en:'Epoxy Wave Tray',ar:'صينية إيبوكسي موجة',cat:'resin',price:260,icon:'💎',tags:['فاخر','مناسبة','هدية','مبدع']},
+  {id:1, en:'Eclipse',   ar:'عطر دخاني يلف الليل',        world:'Shadow',   img:'images/eclipse.avif',  price:185, tags:['غامض','ليل','أسود','مينيمال','ديكور','هادئ']},
+  {id:2, en:'Nocturne',  ar:'عمق الظلام الصامت',           world:'Shadow',   img:'images/nocturne.avif', price:175, tags:['غامض','هادئ','ليل','أسود','مكتب']},
+  {id:3, en:'Onyx',      ar:'نقاء الصخر البركاني',         world:'Obsidian', img:'images/onyx.avif',     price:195, tags:['فاخر','أسود','حصري','هدية','ديكور']},
+  {id:4, en:'Ember',     ar:'لهب البركان الدافئ',           world:'Obsidian', img:'images/ember.avif',    price:190, tags:['دافئ','فاخر','حصري','ديكور','مناسبة']},
+  {id:5, en:'Mirage',    ar:'فراغ الكون اللانهائي',        world:'Vanta',    img:'images/mirage.avif',   price:225, tags:['فاخر','مبدع','هدية','مناسبة','حصري']},
+  {id:6, en:'Aurora',    ar:'دفء العنبر في الصباح',        world:'Lumi',     img:'images/aurora.avif',   price:210, tags:['دافئ','مضيء','هدية','ذهبي','مناسبة']},
+  {id:7, en:'Vesper',    ar:'حرير الهواء الشفيف',          world:'Veil',     img:'images/vesper.avif',   price:180, tags:['ناعم','هادئ','أبيض','ديكور','مينيمال']},
+  {id:8, en:'Aether',    ar:'العتمة البنفسجية الخفية',      world:'Vanta',    img:null,                   price:240, tags:['مبدع','بنفسجي','فاخر','هدية','حصري']},
+  {id:9, en:'Solstice',  ar:'إشراقة العنبر الخالدة',       world:'Lumi',     img:null,                   price:200, tags:['مضيء','دافئ','ذهبي','هدية','مناسبة']},
+  {id:10,en:'Reverie',   ar:'نسمة الضباب الصامت',          world:'Veil',     img:null,                   price:185, tags:['ناعم','ضبابي','أبيض','ديكور','هادئ']},
 ];
 
 function runDesignAI() {
@@ -356,36 +363,54 @@ function runDesignAI() {
   const res = document.getElementById('daResult');
   res.classList.remove('show');
   res.style.display = 'block';
-  res.innerHTML = '<div class="ai-thinking"><div class="think-dots"><span></span><span></span><span></span></div> جاري تحليل ذوقك واختيار المنتجات المثالية...</div>';
+  res.innerHTML = '<div class="ai-thinking"><div class="think-dots"><span></span><span></span><span></span></div> جاري تحليل ذوقك وتحديد العالم المناسب...</div>';
 
   setTimeout(() => {
     const allAnswers = Object.values(answers).join(' ');
     let scored = allProds.map(p => {
       let score = 0;
       p.tags.forEach(t => { if(allAnswers.includes(t)) score += 2; });
-      // price filter
-      if(allAnswers.includes('100 – 200') && p.price <= 200) score += 3;
-      if(allAnswers.includes('200 – 300') && p.price > 200 && p.price <= 300) score += 3;
-      if(allAnswers.includes('300+') && p.price > 300) score += 3;
-      if(allAnswers.includes('طقم') && p.ar.includes('طقم')) score += 3;
+      if(allAnswers.includes('100') && p.price <= 200) score += 3;
+      if(allAnswers.includes('200') && p.price > 180 && p.price <= 230) score += 3;
+      if(allAnswers.includes('250') && p.price > 220) score += 3;
+      if(allAnswers.includes('طقم') && p.tags.includes('هدية')) score += 2;
       return {...p, score};
     }).sort((a,b) => b.score - a.score).slice(0,3);
 
     if(scored.every(p => p.score === 0)) scored = allProds.slice(0,3);
 
-    document.getElementById('prodsRec').innerHTML = scored.map(p => `
-      <a href="products.html" class="prod-rec">
-        <div class="rec-icon">${p.icon}</div>
-        <div class="rec-name">${p.en}</div>
-        <div class="rec-ar">${p.ar}</div>
-        <div class="rec-price">₪ ${p.price}</div>
-      </a>
-    `).join('');
+    const worldColors = {
+      Shadow: '#b0b0e0', Obsidian: '#C9A84C',
+      Vanta: '#aa77ff', Lumi: '#ffd740', Veil: '#90c8ee'
+    };
 
-    res.innerHTML = `<div class="da-result-title">✦ اقتراحات AI بناءً على ذوقك</div><div class="prod-recs" id="prodsRec">${scored.map(p=>`<a href="products.html" class="prod-rec"><div class="rec-icon">${p.icon}</div><div class="rec-name">${p.en}</div><div class="rec-ar">${p.ar}</div><div class="rec-price">₪ ${p.price}</div></a>`).join('')}</div>`;
+    const cardsHTML = scored.map(p => {
+      const imgContent = p.img
+        ? `<img src="${p.img}" alt="${p.en}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;">`
+        : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.8rem;opacity:0.5;">🕯️</div>`;
+      const wColor = worldColors[p.world] || '#C9A84C';
+      return `
+        <a onclick="openWhatsapp()" class="prod-rec" style="cursor:pointer;">
+          <div class="rec-img-wrap">${imgContent}</div>
+          <div class="rec-body">
+            <span class="rec-world" style="color:${wColor}">${p.world}</span>
+            <div class="rec-name">${p.en}</div>
+            <div class="rec-ar">${p.ar}</div>
+            <div class="rec-footer">
+              <span class="rec-price">₪ ${p.price}</span>
+              <span class="rec-cta">استفسر ←</span>
+            </div>
+          </div>
+        </a>`;
+    }).join('');
+
+    res.innerHTML = `
+      <div class="da-result-title">✦ &nbsp;اقتراحات AI بناءً على ذوقك</div>
+      <div class="prod-recs">${cardsHTML}</div>
+      <p style="font-size:.72rem;color:var(--gold-dim);margin-top:16px;text-align:center;letter-spacing:2px;">كل القطع مصنوعة يدوياً · تواصل معنا لتخصيص طلبك</p>`;
     res.classList.add('show');
     btn.disabled = false;
-    btn.textContent = '✦ جربي مرة ثانية';
+    btn.textContent = '✦ جرب مرة ثانية';
   }, 2200);
 }
 

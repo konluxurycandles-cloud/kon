@@ -363,3 +363,45 @@ document.querySelectorAll('.btn-inquire, .btn-whatsapp, .btn-instagram').forEach
     gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
   });
 });
+
+// ===== STATS COUNTER ANIMATION =====
+(function () {
+  const nums = document.querySelectorAll('.stat-num[data-target]');
+  if (!nums.length) return;
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const dur = 1800;
+      const start = performance.now();
+
+      function tick(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - t, 3); // ease-out cubic
+        el.textContent = Math.round(ease * target);
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  nums.forEach(n => obs.observe(n));
+})();
+
+// ===== STATS SECTION ENTRANCE (GSAP) =====
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.utils.toArray('.stat-item').forEach((item, i) => {
+    gsap.from(item, {
+      opacity: 0, y: 28, duration: 0.85, ease: 'power3.out', delay: i * 0.09,
+      clearProps: 'all',
+      scrollTrigger: { trigger: '.stats-section', start: 'top 80%', once: true }
+    });
+  });
+  gsap.from('.marquee-wrap', {
+    opacity: 0, duration: 1.2, ease: 'power2.out', clearProps: 'all',
+    scrollTrigger: { trigger: '.marquee-wrap', start: 'top 90%', once: true }
+  });
+}

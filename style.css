@@ -1657,3 +1657,216 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 @media (min-width: 769px) {
   [dir="rtl"] .whatsapp-float { left: auto; right: 36px; }
 }
+
+/* ===========================
+   FILM GRAIN OVERLAY
+   =========================== */
+.grain-overlay {
+  position: fixed;
+  inset: -150%;
+  width: 400%;
+  height: 400%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  animation: grainShift 0.9s steps(3) infinite;
+}
+@keyframes grainShift {
+  0%   { transform: translate(0, 0); }
+  33%  { transform: translate(-4%, -8%); }
+  66%  { transform: translate(6%, 4%); }
+  100% { transform: translate(-3%, 7%); }
+}
+@media (max-width: 768px) { .grain-overlay { display: none; } }
+
+/* ===========================
+   MARQUEE TICKER
+   =========================== */
+.marquee-wrap {
+  overflow: hidden;
+  border-top: 1px solid var(--border-faint);
+  border-bottom: 1px solid var(--border-faint);
+  background: var(--dark);
+  padding: 22px 0;
+  position: relative;
+  z-index: 2;
+}
+.marquee-wrap::before,
+.marquee-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 180px;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-wrap::before { left: 0;  background: linear-gradient(to right, var(--dark), transparent); }
+.marquee-wrap::after  { right: 0; background: linear-gradient(to left,  var(--dark), transparent); }
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  animation: marqueeScroll 34s linear infinite;
+}
+.marquee-item {
+  font-family: var(--font-en);
+  font-size: 0.57rem;
+  letter-spacing: 7px;
+  color: rgba(201,168,76,0.35);
+  text-transform: uppercase;
+  padding: 0 22px;
+}
+.marquee-dot {
+  font-size: 0.38rem;
+  color: rgba(201,168,76,0.18);
+  align-self: center;
+  line-height: 1;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ===========================
+   STATS SECTION
+   =========================== */
+.stats-section {
+  padding: 92px 0;
+  background: var(--dark3);
+  border-top: 1px solid var(--border-faint);
+  border-bottom: 1px solid var(--border-faint);
+  position: relative;
+  overflow: hidden;
+}
+.stats-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-faint);
+  border: 1px solid var(--border-faint);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.stat-item {
+  background: var(--dark2);
+  padding: 56px 32px 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: background var(--duration-mid) ease;
+  position: relative;
+  overflow: hidden;
+}
+.stat-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-faint), transparent);
+  transform: scaleX(0);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+.stat-item:hover { background: var(--dark); }
+.stat-item:hover::after { transform: scaleX(1); }
+.stat-value {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  justify-content: center;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+.stat-sup {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold-dim);
+  font-weight: 300;
+}
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--ivory-faint);
+  letter-spacing: 3px;
+  font-family: var(--font-en);
+  text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-section { padding: 64px 0; }
+  .stat-item { padding: 40px 20px 36px; }
+}
+
+/* ===========================
+   SHIMMER TEXT
+   =========================== */
+.shimmer {
+  background: linear-gradient(
+    108deg,
+    var(--gold) 18%,
+    #FFF8D6 42%,
+    var(--gold) 64%
+  );
+  background-size: 260% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerSlide 4s linear infinite;
+}
+@keyframes shimmerSlide {
+  0%   { background-position: 220% center; }
+  100% { background-position: -220% center; }
+}
+
+/* ===========================
+   WORLD CARD BORDER GLOW
+   =========================== */
+.product-card {
+  transition: background var(--duration-mid) ease,
+              box-shadow 0.55s var(--ease-out);
+}
+.product-card[data-category="shadow"]:hover   { box-shadow: inset 0 0 0 1px rgba(140,140,220,0.4); }
+.product-card[data-category="obsidian"]:hover { box-shadow: inset 0 0 0 1px rgba(201,168,76,0.45); }
+.product-card[data-category="vanta"]:hover    { box-shadow: inset 0 0 0 1px rgba(130,80,255,0.5); }
+.product-card[data-category="lumi"]:hover     { box-shadow: inset 0 0 0 1px rgba(255,210,60,0.45); }
+.product-card[data-category="veil"]:hover     { box-shadow: inset 0 0 0 1px rgba(150,200,240,0.42); }
+
+/* ===========================
+   PRODUCT INFO ENHANCEMENTS
+   =========================== */
+/* Animated gold underline on product name hover */
+.product-info h3 {
+  display: inline-block;
+  position: relative;
+}
+.product-info h3::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out);
+}
+.product-card:hover .product-info h3::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
