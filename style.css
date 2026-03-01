@@ -940,8 +940,10 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   inset: 0;
   background: rgba(8,8,8,0.82);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   opacity: 0;
   transition: opacity var(--duration-mid) ease;
   backdrop-filter: blur(6px);
