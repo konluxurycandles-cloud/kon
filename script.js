@@ -405,3 +405,194 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     scrollTrigger: { trigger: '.marquee-wrap', start: 'top 90%', once: true }
   });
 }
+
+// ===========================
+// SHOPPING CART
+// ===========================
+
+const PRODUCTS = {
+  eclipse:  { id:'eclipse',  name:'Eclipse',  world:'Shadow',   worldColor:'#b0b0e0', price:185, img:'images/eclipse.avif' },
+  nocturne: { id:'nocturne', name:'Nocturne', world:'Shadow',   worldColor:'#b0b0e0', price:175, img:'images/nocturne.avif' },
+  onyx:     { id:'onyx',     name:'Onyx',     world:'Obsidian', worldColor:'#C9A84C', price:195, img:'images/onyx.avif' },
+  ember:    { id:'ember',    name:'Ember',    world:'Obsidian', worldColor:'#C9A84C', price:190, img:'images/ember.avif' },
+  aether:   { id:'aether',   name:'Aether',   world:'Vanta',    worldColor:'#aa77ff', price:240, img:null },
+  mirage:   { id:'mirage',   name:'Mirage',   world:'Vanta',    worldColor:'#aa77ff', price:225, img:'images/mirage.avif' },
+  aurora:   { id:'aurora',   name:'Aurora',   world:'Lumi',     worldColor:'#ffd740', price:210, img:'images/aurora.avif' },
+  solstice: { id:'solstice', name:'Solstice', world:'Lumi',     worldColor:'#ffd740', price:200, img:null },
+  reverie:  { id:'reverie',  name:'Reverie',  world:'Veil',     worldColor:'#90c8ee', price:185, img:null },
+  vesper:   { id:'vesper',   name:'Vesper',   world:'Veil',     worldColor:'#90c8ee', price:180, img:'images/vesper.avif' },
+};
+
+let cart = JSON.parse(localStorage.getItem('konCart') || '[]');
+
+function saveCart() {
+  localStorage.setItem('konCart', JSON.stringify(cart));
+}
+
+function updateCartBadge() {
+  const badge = document.getElementById('cartBadge');
+  if (!badge) return;
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  badge.textContent = total;
+  badge.classList.toggle('show', total > 0);
+}
+
+function addToCart(prod) {
+  const existing = cart.find(i => i.id === prod.id);
+  if (existing) { existing.qty++; }
+  else { cart.push({ ...prod, qty: 1 }); }
+  saveCart();
+  updateCartBadge();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  saveCart();
+  updateCartBadge();
+  renderCart();
+}
+
+function updateQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  saveCart();
+  updateCartBadge();
+  renderCart();
+}
+
+function clearCart() {
+  cart = [];
+  saveCart();
+  updateCartBadge();
+  renderCart();
+}
+
+function addToCartFromCard(btn) {
+  const card = btn.closest('.product-card');
+  if (!card) return;
+  const h3 = card.querySelector('h3');
+  if (!h3) return;
+  const key = h3.textContent.trim().toLowerCase();
+  const prod = PRODUCTS[key];
+  if (!prod) return;
+  addToCart(prod);
+  showCartToast(prod.name);
+}
+
+function renderCart() {
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  if (!body || !foot) return;
+
+  if (cart.length === 0) {
+    body.innerHTML = `
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🕯️</div>
+        <p>سلّتك فارغة</p>
+        <span>اكتشف مجموعاتنا</span>
+      </div>`;
+    foot.innerHTML = '';
+    return;
+  }
+
+  body.innerHTML = cart.map(item => {
+    const imgHtml = item.img
+      ? `<img src="${item.img}" alt="${item.name}" class="ci-img">`
+      : `<div class="ci-img-placeholder">🕯️</div>`;
+    return `
+      <div class="cart-item">
+        ${imgHtml}
+        <div class="ci-info">
+          <span class="ci-world" style="color:${item.worldColor}">${item.world.toUpperCase()}</span>
+          <span class="ci-name">${item.name.toUpperCase()}</span>
+          <span class="ci-price">₪${item.price * item.qty}</span>
+        </div>
+        <div class="ci-controls">
+          <div class="ci-qty">
+            <button onclick="updateQty('${item.id}',-1)" aria-label="تقليل">−</button>
+            <span class="ci-qty-val">${item.qty}</span>
+            <button onclick="updateQty('${item.id}',1)" aria-label="زيادة">+</button>
+          </div>
+          <button class="ci-remove" onclick="removeFromCart('${item.id}')">حذف</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const delivery = 25;
+  const total = subtotal + delivery;
+
+  foot.innerHTML = `
+    <div class="cart-subtotal">
+      <span>المجموع الفرعي</span>
+      <span class="cart-subtotal-val">₪${subtotal}</span>
+    </div>
+    <div class="cart-delivery">
+      <span>التوصيل</span>
+      <span>₪${delivery}</span>
+    </div>
+    <div class="cart-total-row">
+      <span>الإجمالي</span>
+      <span class="cart-total-val">₪${total}</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="checkoutWhatsapp()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.139.561 4.145 1.54 5.889L0 24l6.321-1.502A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.928 0-3.736-.5-5.308-1.375L2 22l1.408-4.567A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 5.477 10 10-4.477 10-10 10z"/></svg>
+      اطلب عبر واتساب
+    </button>
+    <button class="cart-clear-btn" onclick="clearCart()">CLEAR CART</button>`;
+}
+
+function toggleCart() {
+  const drawer = document.getElementById('cartDrawer');
+  const overlay = document.getElementById('cartOverlay');
+  if (!drawer || !overlay) return;
+  const isOpen = drawer.classList.contains('open');
+  if (!isOpen) {
+    renderCart();
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  } else {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function showCartToast(name) {
+  const toast = document.getElementById('cartToast');
+  if (!toast) return;
+  toast.textContent = `✦ أُضيف إلى السلة — ${name}`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+function checkoutWhatsapp() {
+  if (cart.length === 0) return;
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const delivery = 25;
+  const total = subtotal + delivery;
+  const lines = cart.map(i => `• ${i.name} (${i.world}) × ${i.qty}  —  ₪${i.price * i.qty}`).join('\n');
+  const msg = `🕯️ *طلب جديد — KON Luxury*\n──────────────────\n${lines}\n──────────────────\n💰 *المجموع: ₪${subtotal}*\n🚚 *التوصيل: ₪${delivery}*\n💎 *الإجمالي: ₪${total}*\n──────────────────\nأرجو التواصل لتأكيد الطلب 🙏`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+
+// Inject prices into product cards + init badge on load
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartBadge();
+  document.querySelectorAll('.product-card').forEach(card => {
+    const h3 = card.querySelector('h3');
+    if (!h3) return;
+    const key = h3.textContent.trim().toLowerCase();
+    const prod = PRODUCTS[key];
+    if (!prod) return;
+    const info = card.querySelector('.product-info');
+    if (!info || info.querySelector('.product-price-row')) return;
+    const row = document.createElement('div');
+    row.className = 'product-price-row';
+    row.innerHTML = `<span class="product-price">₪${prod.price}</span><span class="product-price-currency">ILS</span>`;
+    info.appendChild(row);
+  });
+});
