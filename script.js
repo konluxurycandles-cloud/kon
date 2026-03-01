@@ -411,16 +411,106 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 // ===========================
 
 const PRODUCTS = {
-  eclipse:  { id:'eclipse',  name:'Eclipse',  world:'Shadow',   worldColor:'#b0b0e0', price:185, img:'images/eclipse.avif' },
-  nocturne: { id:'nocturne', name:'Nocturne', world:'Shadow',   worldColor:'#b0b0e0', price:175, img:'images/nocturne.avif' },
-  onyx:     { id:'onyx',     name:'Onyx',     world:'Obsidian', worldColor:'#C9A84C', price:195, img:'images/onyx.avif' },
-  ember:    { id:'ember',    name:'Ember',    world:'Obsidian', worldColor:'#C9A84C', price:190, img:'images/ember.avif' },
-  aether:   { id:'aether',   name:'Aether',   world:'Vanta',    worldColor:'#aa77ff', price:240, img:null },
-  mirage:   { id:'mirage',   name:'Mirage',   world:'Vanta',    worldColor:'#aa77ff', price:225, img:'images/mirage.avif' },
-  aurora:   { id:'aurora',   name:'Aurora',   world:'Lumi',     worldColor:'#ffd740', price:210, img:'images/aurora.avif' },
-  solstice: { id:'solstice', name:'Solstice', world:'Lumi',     worldColor:'#ffd740', price:200, img:null },
-  reverie:  { id:'reverie',  name:'Reverie',  world:'Veil',     worldColor:'#90c8ee', price:185, img:null },
-  vesper:   { id:'vesper',   name:'Vesper',   world:'Veil',     worldColor:'#90c8ee', price:180, img:'images/vesper.avif' },
+  eclipse: {
+    id:'eclipse', name:'Eclipse', world:'Shadow', worldColor:'#b0b0e0', price:185, img:'images/eclipse.avif',
+    desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',
+    badge:'غامض',
+    colors:[
+      {hex:'#0d0d1a',name:'قاتم'},{hex:'#1a1a2e',name:'ليلي'},{hex:'#2e2e4a',name:'غسق'},
+      {hex:'#4a3f55',name:'ضباب'},{hex:'#2d1b33',name:'أرجواني'},{hex:'#3d2b4a',name:'ظل'}
+    ],
+    scents:['عود وعنبر','دخان صندل','مسك شرقي','ياسمين ليلي']
+  },
+  nocturne: {
+    id:'nocturne', name:'Nocturne', world:'Shadow', worldColor:'#b0b0e0', price:175, img:'images/nocturne.avif',
+    desc:'لحن الليل الهادئ — تموجات دافئة تسري في ظلام ناعم',
+    badge:'غامض',
+    colors:[
+      {hex:'#1a1530',name:'قمري'},{hex:'#1a1a2e',name:'نجمي'},{hex:'#252540',name:'أزرق داكن'},
+      {hex:'#3d3a5c',name:'لافندر ليلي'},{hex:'#2d2240',name:'رماد بنفسجي'},{hex:'#30284a',name:'سديمي'}
+    ],
+    scents:['ياسمين ليلي','لافندر وفانيليا','مسك شرقي','زهر البرتقال']
+  },
+  onyx: {
+    id:'onyx', name:'Onyx', world:'Obsidian', worldColor:'#C9A84C', price:195, img:'images/onyx.avif',
+    desc:'من أعماق البركان — ثقل فاخر وصلابة هادئة',
+    badge:'حصري',
+    colors:[
+      {hex:'#0d0800',name:'عقيق'},{hex:'#1a0a00',name:'بركاني'},{hex:'#2d1a0a',name:'طين'},
+      {hex:'#3d1500',name:'دم'},{hex:'#4a2a10',name:'ذهبي محروق'},{hex:'#1a1000',name:'أسود'}
+    ],
+    scents:['عود وعنبر','تين وعود','دخان صندل','مسك شرقي']
+  },
+  ember: {
+    id:'ember', name:'Ember', world:'Obsidian', worldColor:'#C9A84C', price:190, img:'images/ember.avif',
+    desc:'جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء',
+    badge:'حصري',
+    colors:[
+      {hex:'#2a0f00',name:'بني داكن'},{hex:'#3d1500',name:'جمري'},{hex:'#5c2010',name:'نار'},
+      {hex:'#7a3a18',name:'تراب أحمر'},{hex:'#4a1a00',name:'عنبر محروق'},{hex:'#6a2a0a',name:'طوبي'}
+    ],
+    scents:['عود وعنبر','دخان صندل','توت بري','تين وعود']
+  },
+  aether: {
+    id:'aether', name:'Aether', world:'Vanta', worldColor:'#aa77ff', price:240, img:null,
+    desc:'العتمة المطلقة — ما وراء السواد تجد نوراً بنفسجياً خفياً',
+    badge:'جريء',
+    colors:[
+      {hex:'#0d0015',name:'كوني'},{hex:'#1a0033',name:'عميق'},{hex:'#2d0055',name:'بنفسجي'},
+      {hex:'#4a1a7a',name:'أرجواني'},{hex:'#1d0040',name:'ليلي بنفسجي'},{hex:'#330066',name:'عنابي'}
+    ],
+    scents:['مسك شرقي','عود وعنبر','دخان صندل','ياسمين ليلي']
+  },
+  mirage: {
+    id:'mirage', name:'Mirage', world:'Vanta', worldColor:'#aa77ff', price:225, img:'images/mirage.avif',
+    desc:'سراب يسحرك — خيال كوني يتراقص في الظلام الأرجواني',
+    badge:'جريء',
+    colors:[
+      {hex:'#1a0033',name:'مجري'},{hex:'#220040',name:'ظلام كوني'},{hex:'#330055',name:'نبتون'},
+      {hex:'#4a0080',name:'كريستالي'},{hex:'#3d1a66',name:'سماوي'},{hex:'#0f0020',name:'أسود بنفسجي'}
+    ],
+    scents:['مسك شرقي','لافندر وفانيليا','ياسمين ليلي','زهر البرتقال']
+  },
+  aurora: {
+    id:'aurora', name:'Aurora', world:'Lumi', worldColor:'#ffd740', price:210, img:'images/aurora.avif',
+    desc:'شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر',
+    badge:'مضيء',
+    colors:[
+      {hex:'#fff8e7',name:'عاجي'},{hex:'#faecd0',name:'قمحي'},{hex:'#f5d5a0',name:'ذهبي فاتح'},
+      {hex:'#e8c070',name:'عسلي'},{hex:'#fff3d6',name:'كريمي'},{hex:'#f0ddb0',name:'نيلوفر'}
+    ],
+    scents:['زهر البرتقال','لافندر وفانيليا','ياسمين ليلي','توت بري']
+  },
+  solstice: {
+    id:'solstice', name:'Solstice', world:'Lumi', worldColor:'#ffd740', price:200, img:null,
+    desc:'لحظة الانقلاب — ذروة الضوء حين يقف الزمن',
+    badge:'مضيء',
+    colors:[
+      {hex:'#fff8e7',name:'شمسي'},{hex:'#fdecc8',name:'ليموني'},{hex:'#f8dfa0',name:'برتقالي فاتح'},
+      {hex:'#ffe8b0',name:'زعفراني'},{hex:'#fff0d0',name:'وردي فاتح'},{hex:'#f5e6b8',name:'تراب فاتح'}
+    ],
+    scents:['زهر البرتقال','ياسمين ليلي','توت بري','لافندر وفانيليا']
+  },
+  reverie: {
+    id:'reverie', name:'Reverie', world:'Veil', worldColor:'#90c8ee', price:185, img:null,
+    desc:'حلم يقظة — ضباب ناعم يخفي أسرار الفجر الهادئ',
+    badge:'ناعم',
+    colors:[
+      {hex:'#ddeef5',name:'ثلجي'},{hex:'#e8f4f8',name:'ضبابي'},{hex:'#d0e8f0',name:'سماوي فاتح'},
+      {hex:'#b8d8e8',name:'نهري'},{hex:'#c8d8e8',name:'رمادي ناعم'},{hex:'#e0ecf5',name:'لؤلؤي'}
+    ],
+    scents:['لافندر وفانيليا','ياسمين ليلي','زهر البرتقال','توت بري']
+  },
+  vesper: {
+    id:'vesper', name:'Vesper', world:'Veil', worldColor:'#90c8ee', price:180, img:'images/vesper.avif',
+    desc:'غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل',
+    badge:'ناعم',
+    colors:[
+      {hex:'#e4eef4',name:'رخامي'},{hex:'#e8f4f8',name:'فضي'},{hex:'#cce0ea',name:'رمادي بحري'},
+      {hex:'#aaccd8',name:'أزرق حجري'},{hex:'#d8eaf2',name:'زمردي ناعم'},{hex:'#b8ccd8',name:'ضبابي داكن'}
+    ],
+    scents:['ياسمين ليلي','لافندر وفانيليا','مسك شرقي','زهر البرتقال']
+  },
 };
 
 let cart = JSON.parse(localStorage.getItem('konCart') || '[]');
@@ -437,23 +527,25 @@ function updateCartBadge() {
   badge.classList.toggle('show', total > 0);
 }
 
+// prod may include { color, colorName, scent } from product page
 function addToCart(prod) {
-  const existing = cart.find(i => i.id === prod.id);
+  const cartKey = prod.id + (prod.color ? '-' + prod.color : '') + (prod.scent ? '-' + prod.scent : '');
+  const existing = cart.find(i => i.cartKey === cartKey);
   if (existing) { existing.qty++; }
-  else { cart.push({ ...prod, qty: 1 }); }
+  else { cart.push({ ...prod, qty: 1, cartKey }); }
   saveCart();
   updateCartBadge();
 }
 
-function removeFromCart(id) {
-  cart = cart.filter(i => i.id !== id);
+function removeFromCart(cartKey) {
+  cart = cart.filter(i => i.cartKey !== cartKey);
   saveCart();
   updateCartBadge();
   renderCart();
 }
 
-function updateQty(id, delta) {
-  const item = cart.find(i => i.id === id);
+function updateQty(cartKey, delta) {
+  const item = cart.find(i => i.cartKey === cartKey);
   if (!item) return;
   item.qty = Math.max(1, item.qty + delta);
   saveCart();
@@ -480,6 +572,13 @@ function addToCartFromCard(btn) {
   showCartToast(prod.name);
 }
 
+function goToProduct(btn) {
+  const card = btn.closest('.product-card');
+  if (!card) return;
+  const h3 = card.querySelector('h3');
+  if (h3) window.location = 'product.html?id=' + h3.textContent.trim().toLowerCase();
+}
+
 function renderCart() {
   const body = document.getElementById('cartBody');
   const foot = document.getElementById('cartFoot');
@@ -500,21 +599,27 @@ function renderCart() {
     const imgHtml = item.img
       ? `<img src="${item.img}" alt="${item.name}" class="ci-img">`
       : `<div class="ci-img-placeholder">🕯️</div>`;
+    const optLine = [
+      item.color ? `<span class="ci-color-dot" style="background:${item.color}"></span>${item.colorName||''}` : '',
+      item.scent || ''
+    ].filter(Boolean).join(' · ');
+    const ck = item.cartKey.replace(/'/g, "\\'");
     return `
       <div class="cart-item">
         ${imgHtml}
         <div class="ci-info">
           <span class="ci-world" style="color:${item.worldColor}">${item.world.toUpperCase()}</span>
           <span class="ci-name">${item.name.toUpperCase()}</span>
+          ${optLine ? `<span class="ci-options">${optLine}</span>` : ''}
           <span class="ci-price">₪${item.price * item.qty}</span>
         </div>
         <div class="ci-controls">
           <div class="ci-qty">
-            <button onclick="updateQty('${item.id}',-1)" aria-label="تقليل">−</button>
+            <button onclick="updateQty('${ck}',-1)" aria-label="تقليل">−</button>
             <span class="ci-qty-val">${item.qty}</span>
-            <button onclick="updateQty('${item.id}',1)" aria-label="زيادة">+</button>
+            <button onclick="updateQty('${ck}',1)" aria-label="زيادة">+</button>
           </div>
-          <button class="ci-remove" onclick="removeFromCart('${item.id}')">حذف</button>
+          <button class="ci-remove" onclick="removeFromCart('${ck}')">حذف</button>
         </div>
       </div>`;
   }).join('');

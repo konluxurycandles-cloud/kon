@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KON Luxury | تفاصيل المنتج</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ── Product Page Styles ── */
+    .prod-page {
+      min-height: 100vh;
+      background: var(--dark2);
+      padding: 120px 0 80px;
+    }
+    .prod-container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+    }
+
+    /* Back link */
+    .prod-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-en);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      text-decoration: none;
+      margin-bottom: 48px;
+      transition: color 0.3s ease;
+    }
+    .prod-back:hover { color: var(--gold); }
+    .prod-back svg { transition: transform 0.3s ease; }
+    .prod-back:hover svg { transform: translateX(4px); }
+    [dir="rtl"] .prod-back:hover svg { transform: translateX(-4px); }
+
+    /* Two-column layout */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* ── LEFT: image ── */
+    .prod-visual {
+      position: sticky;
+      top: 100px;
+    }
+    .prod-img-wrap {
+      position: relative;
+      background: var(--dark3);
+      border: 1px solid var(--border-faint);
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .prod-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.2s var(--ease-out);
+    }
+    .prod-img-wrap:hover img { transform: scale(1.03); }
+    .prod-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .prod-img-placeholder svg {
+      width: 55%;
+      max-width: 220px;
+      height: auto;
+    }
+    /* color preview overlay on image */
+    .prod-color-overlay {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+      mix-blend-mode: color;
+    }
+    .prod-img-wrap.has-color .prod-color-overlay { opacity: 0.28; }
+
+    /* World badge on image */
+    .prod-world-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-family: var(--font-en);
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid currentColor;
+      border-radius: 2px;
+      opacity: 0.8;
+    }
+
+    /* ── RIGHT: details ── */
+    .prod-details { display: flex; flex-direction: column; gap: 0; }
+
+    .prod-eyebrow {
+      font-family: var(--font-en);
+      font-size: 8px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 10px;
+    }
+
+    .prod-name {
+      font-family: var(--font-display);
+      font-size: 3.2rem;
+      font-weight: 300;
+      color: var(--ivory);
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+
+    .prod-desc {
+      font-family: var(--font-ar);
+      font-size: 0.9rem;
+      color: var(--ivory-faint);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .prod-badge-wrap { margin-bottom: 32px; }
+
+    /* Divider */
+    .prod-divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201,168,76,0.18), transparent);
+      margin: 24px 0;
+    }
+
+    /* Option label */
+    .prod-opt-label {
+      font-family: var(--font-en);
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .prod-opt-label span.selected-val {
+      font-family: var(--font-ar);
+      font-size: 0.75rem;
+      letter-spacing: 0;
+      color: var(--ivory-faint);
+      text-transform: none;
+    }
+
+    /* ── COLOR PICKER ── */
+    .color-swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .color-swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .color-swatch:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 0 1px rgba(201,168,76,0.4);
+    }
+    .color-swatch.active {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.2), 0 0 12px rgba(201,168,76,0.3);
+      transform: scale(1.1);
+    }
+    .color-swatch.active::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 700;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    /* light colors get dark checkmark */
+    .color-swatch.active.light-swatch::after { color: rgba(0,0,0,0.55); }
+
+    /* ── SCENT SELECTOR ── */
+    .scent-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .scent-chip {
+      font-family: var(--font-ar);
+      font-size: 0.8rem;
+      color: var(--ivory-faint);
+      padding: 8px 16px;
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 40px;
+      cursor: pointer;
+      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+      letter-spacing: 0.03em;
+    }
+    .scent-chip:hover {
+      border-color: rgba(201,168,76,0.5);
+      color: var(--ivory-dim);
+    }
+    .scent-chip.active {
+      border-color: var(--gold);
+      color: var(--ivory);
+      background: rgba(201,168,76,0.1);
+    }
+
+    /* ── QUANTITY ── */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .prod-qty {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(201,168,76,0.22);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .prod-qty-btn {
+      background: none;
+      border: none;
+      color: var(--gold-dim);
+      width: 42px;
+      height: 42px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .prod-qty-btn:hover { background: rgba(201,168,76,0.1); color: var(--gold); }
+    .prod-qty-val {
+      width: 44px;
+      text-align: center;
+      font-family: var(--font-en);
+      font-size: 1rem;
+      color: var(--ivory-dim);
+      border-left: 1px solid rgba(201,168,76,0.12);
+      border-right: 1px solid rgba(201,168,76,0.12);
+    }
+    .prod-price-tag {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── ACTION BUTTONS ── */
+    .prod-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+
+    .prod-btn-cart {
+      width: 100%;
+      padding: 17px;
+      background: none;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-family: var(--font-ar);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 3px;
+      transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+    }
+    .prod-btn-cart:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: var(--gold);
+    }
+    .prod-btn-cart.added {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.14);
+      color: var(--gold-light);
+    }
+
+    .prod-btn-wa {
+      width: 100%;
+      padding: 17px;
+      background: #25d366;
+      border: none;
+      color: #fff;
+      font-family: var(--font-ar);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .prod-btn-wa:hover { background: #1fb558; transform: translateY(-1px); }
+
+    /* ── Validation nudge ── */
+    .prod-nudge {
+      font-family: var(--font-ar);
+      font-size: 0.78rem;
+      color: rgba(220,160,80,0.75);
+      text-align: center;
+      height: 20px;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+    .prod-nudge.show { opacity: 1; }
+
+    /* ── Mobile ── */
+    @media (max-width: 860px) {
+      .prod-grid { grid-template-columns: 1fr; gap: 40px; }
+      .prod-visual { position: static; }
+      .prod-img-wrap { aspect-ratio: 4/3; max-height: 380px; }
+      .prod-name { font-size: 2.4rem; }
+    }
+    @media (max-width: 480px) {
+      .prod-page { padding: 90px 0 60px; }
+      .prod-name { font-size: 2rem; }
+      .color-swatch { width: 30px; height: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html" style="text-decoration:none;display:flex;gap:6px;align-items:baseline">
+          <span class="logo-kon">KON</span>
+          <span class="logo-luxury">LUXURY</span>
+        </a>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">الرئيسية</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="index.html#products">منتجاتنا</a></li>
+        <li><a href="index.html#contact">تواصل معنا</a></li>
+        <li><a href="ai.html" class="nav-ai-link">✦ AI</a></li>
+      </ul>
+
+      <button class="cart-toggle" id="cartToggle" onclick="toggleCart()" aria-label="السلة">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ===== PRODUCT PAGE ===== -->
+  <main class="prod-page">
+    <div class="prod-container">
+
+      <!-- Back link -->
+      <a href="index.html#products" class="prod-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        العودة للمتجر
+      </a>
+
+      <!-- Grid -->
+      <div class="prod-grid" id="prodGrid">
+
+        <!-- LEFT: image -->
+        <div class="prod-visual" id="prodVisual">
+          <div class="prod-img-wrap" id="prodImgWrap">
+            <div class="prod-color-overlay" id="prodColorOverlay"></div>
+            <span class="prod-world-badge" id="prodWorldBadge"></span>
+            <div id="prodImgContent"><!-- filled by JS --></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: details -->
+        <div class="prod-details" id="prodDetails">
+          <p class="prod-eyebrow" id="prodEyebrow">KON LUXURY COLLECTION</p>
+          <h1 class="prod-name" id="prodName"></h1>
+          <p class="prod-desc" id="prodDesc"></p>
+          <div class="prod-badge-wrap" id="prodBadgeWrap"></div>
+
+          <!-- COLOR PICKER -->
+          <div class="prod-divider"></div>
+          <p class="prod-opt-label">
+            لون الشمعة
+            <span class="selected-val" id="colorLabel">— اختر لوناً</span>
+          </p>
+          <div class="color-swatches" id="colorSwatches"></div>
+
+          <!-- SCENT SELECTOR -->
+          <div class="prod-divider"></div>
+          <p class="prod-opt-label">
+            الرائحة
+            <span class="selected-val" id="scentLabel">— اختر رائحة</span>
+          </p>
+          <div class="scent-chips" id="scentChips"></div>
+
+          <!-- QUANTITY + PRICE -->
+          <div class="prod-divider"></div>
+          <p class="prod-opt-label">الكمية</p>
+          <div class="qty-row">
+            <div class="prod-qty">
+              <button class="prod-qty-btn" onclick="changeQty(-1)" aria-label="تقليل">−</button>
+              <span class="prod-qty-val" id="qtyVal">1</span>
+              <button class="prod-qty-btn" onclick="changeQty(1)" aria-label="زيادة">+</button>
+            </div>
+            <span class="prod-price-tag" id="priceTag"></span>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="prod-actions">
+            <p class="prod-nudge" id="prodNudge">يرجى اختيار اللون والرائحة أولاً</p>
+            <button class="prod-btn-cart" id="btnAddCart" onclick="prodAddToCart()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+              </svg>
+              أضف للسلة
+            </button>
+            <button class="prod-btn-wa" onclick="prodOrderWA()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.139.561 4.145 1.54 5.889L0 24l6.321-1.502A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.928 0-3.736-.5-5.308-1.375L2 22l1.408-4.567A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 5.477 10 10-4.477 10-10 10z"/></svg>
+              اطلب مباشرة عبر واتساب
+            </button>
+          </div>
+
+        </div><!-- /prod-details -->
+      </div><!-- /prod-grid -->
+    </div><!-- /prod-container -->
+  </main>
+
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-drawer" id="cartDrawer" role="dialog" aria-label="سلة التسوق">
+    <div class="cart-head">
+      <div class="cart-head-top">
+        <div>
+          <p class="cart-eyebrow">KON LUXURY</p>
+          <h2 class="cart-title">سلّتك</h2>
+        </div>
+        <button class="cart-close" onclick="toggleCart()" aria-label="إغلاق السلة">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="cart-head-line"></div>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-foot" id="cartFoot"></div>
+  </div>
+  <div class="cart-toast" id="cartToast"></div>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="script.js"></script>
+  <script src="cursor.js"></script>
+
+  <script>
+    // ── Navbar scroll ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ── Hamburger ──
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    if (hamburger) hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // ── Page State ──
+    let prodData   = null;
+    let selectedColor = null;   // { hex, name }
+    let selectedScent = null;   // string
+    let qty = 1;
+
+    // ── Detect light color (for checkmark contrast) ──
+    function isLightColor(hex) {
+      const r = parseInt(hex.slice(1,3),16);
+      const g = parseInt(hex.slice(3,5),16);
+      const b = parseInt(hex.slice(5,7),16);
+      return (r*0.299 + g*0.587 + b*0.114) > 160;
+    }
+
+    // ── Build the page from PRODUCTS data ──
+    function buildPage(prod) {
+      prodData = prod;
+      document.title = `KON Luxury | ${prod.name}`;
+
+      // World badge
+      const badge = document.getElementById('prodWorldBadge');
+      badge.textContent = prod.world.toUpperCase();
+      badge.style.color = prod.worldColor;
+
+      // Image
+      const imgWrap = document.getElementById('prodImgContent');
+      if (prod.img) {
+        imgWrap.innerHTML = `<img src="${prod.img}" alt="${prod.name}" style="width:100%;height:100%;object-fit:cover;display:block;">`;
+      } else {
+        imgWrap.innerHTML = buildPlaceholderSVG(prod);
+      }
+
+      // Text
+      document.getElementById('prodName').textContent = prod.name;
+      document.getElementById('prodDesc').textContent  = prod.desc;
+
+      // Badge
+      const badgeEl = document.getElementById('prodBadgeWrap');
+      const badgeClass = 'badge-' + prod.world.toLowerCase();
+      badgeEl.innerHTML = `<span class="product-badge ${badgeClass}">${prod.badge}</span>`;
+
+      // Price
+      updatePrice();
+
+      // Color swatches
+      const swatchWrap = document.getElementById('colorSwatches');
+      swatchWrap.innerHTML = prod.colors.map((c, i) => `
+        <div class="color-swatch${isLightColor(c.hex) ? ' light-swatch' : ''}"
+             style="background:${c.hex}"
+             title="${c.name}"
+             onclick="selectColor(${i})"
+             data-idx="${i}"></div>
+      `).join('');
+
+      // Scent chips
+      const scentWrap = document.getElementById('scentChips');
+      scentWrap.innerHTML = prod.scents.map((s,i) => `
+        <button class="scent-chip" onclick="selectScent(${i})" data-idx="${i}">${s}</button>
+      `).join('');
+    }
+
+    function buildPlaceholderSVG(prod) {
+      const c = prod.worldColor;
+      return `<div class="prod-img-placeholder">
+        <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="40" cy="122" rx="20" ry="5" fill="${c}" opacity="0.15"/>
+          <rect x="27" y="50" width="26" height="72" rx="4" fill="#0d0d0d" stroke="${c}" stroke-width="0.8" opacity="0.9"/>
+          <rect x="33" y="50" width="12" height="72" rx="2" fill="#151515" opacity="0.5"/>
+          <line x1="40" y1="50" x2="40" y2="33" stroke="${c}" stroke-width="1" opacity="0.7"/>
+          <path d="M40 8 C36 17 33 24 33 31 C33 38 36 40 40 40 C44 40 47 38 47 31 C47 24 44 17 40 8Z" fill="${c}" opacity="0.85"/>
+          <path d="M40 16 C38 22 37 27 37 32 C37 37 39 38 40 38 C41 38 43 37 43 32 C43 27 42 22 40 16Z" fill="white" opacity="0.7"/>
+          <ellipse cx="40" cy="34" rx="2.5" ry="3" fill="white" opacity="0.55"/>
+        </svg>
+      </div>`;
+    }
+
+    function selectColor(idx) {
+      selectedColor = prodData.colors[idx];
+      // Update swatches
+      document.querySelectorAll('.color-swatch').forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+      });
+      // Update label
+      document.getElementById('colorLabel').textContent = selectedColor.name;
+      // Update color overlay on image
+      const overlay = document.getElementById('prodColorOverlay');
+      const wrap    = document.getElementById('prodImgWrap');
+      overlay.style.background = selectedColor.hex;
+      wrap.classList.add('has-color');
+    }
+
+    function selectScent(idx) {
+      selectedScent = prodData.scents[idx];
+      document.querySelectorAll('.scent-chip').forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+      });
+      document.getElementById('scentLabel').textContent = selectedScent;
+    }
+
+    function changeQty(delta) {
+      qty = Math.max(1, qty + delta);
+      document.getElementById('qtyVal').textContent = qty;
+      updatePrice();
+    }
+
+    function updatePrice() {
+      if (!prodData) return;
+      document.getElementById('priceTag').textContent = `₪${prodData.price * qty}`;
+    }
+
+    function prodAddToCart() {
+      if (!selectedColor || !selectedScent) {
+        const nudge = document.getElementById('prodNudge');
+        nudge.classList.add('show');
+        setTimeout(() => nudge.classList.remove('show'), 2800);
+        return;
+      }
+      addToCart({
+        ...prodData,
+        qty: 1,             // addToCart handles qty itself per cartKey
+        color:     selectedColor.hex,
+        colorName: selectedColor.name,
+        scent:     selectedScent,
+      });
+      // Then set the real qty if > 1
+      if (qty > 1) {
+        const cartKey = prodData.id + '-' + selectedColor.hex + '-' + selectedScent;
+        const item = cart.find(i => i.cartKey === cartKey);
+        if (item) { item.qty = qty; saveCart(); updateCartBadge(); }
+      }
+      showCartToast(prodData.name);
+      const btn = document.getElementById('btnAddCart');
+      btn.classList.add('added');
+      btn.textContent = '✦ أُضيف للسلة';
+      setTimeout(() => {
+        btn.classList.remove('added');
+        btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> أضف للسلة`;
+      }, 2000);
+    }
+
+    function prodOrderWA() {
+      if (!selectedColor || !selectedScent) {
+        const nudge = document.getElementById('prodNudge');
+        nudge.classList.add('show');
+        setTimeout(() => nudge.classList.remove('show'), 2800);
+        return;
+      }
+      const total = prodData.price * qty;
+      const delivery = 25;
+      const msg = `🕯️ *طلب مباشر — KON Luxury*\n──────────────────\n• ${prodData.name} (${prodData.world})\n  اللون: ${selectedColor.name} · الرائحة: ${selectedScent}\n  الكمية: ${qty}  —  ₪${total}\n──────────────────\n💰 *المجموع: ₪${total}*\n🚚 *التوصيل: ₪${delivery}*\n💎 *الإجمالي: ₪${total + delivery}*\n──────────────────\nأرجو التواصل لتأكيد الطلب 🙏`;
+      const WA = (typeof WHATSAPP_NUMBER !== 'undefined') ? WHATSAPP_NUMBER : '9720549210470';
+      window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // ── Init on load ──
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartBadge();
+
+      const params = new URLSearchParams(window.location.search);
+      const id = (params.get('id') || '').toLowerCase();
+
+      if (typeof PRODUCTS === 'undefined' || !PRODUCTS[id]) {
+        // Product not found — redirect back
+        window.location = 'index.html#products';
+        return;
+      }
+
+      buildPage(PRODUCTS[id]);
+
+      // GSAP entrance animation
+      if (typeof gsap !== 'undefined') {
+        gsap.from('.prod-back', { opacity:0, y:-10, duration:0.7, ease:'power3.out', delay:0.1 });
+        gsap.from('.prod-visual', { opacity:0, x:-30, duration:1.1, ease:'power3.out', delay:0.2 });
+        gsap.from('.prod-name',   { opacity:0, y:20, duration:0.9, ease:'power3.out', delay:0.3 });
+        gsap.from('.prod-desc',   { opacity:0, y:15, duration:0.8, ease:'power3.out', delay:0.45 });
+        gsap.from('.prod-divider, .prod-opt-label, .color-swatches, .scent-chips, .qty-row, .prod-actions',
+          { opacity:0, y:12, duration:0.7, ease:'power3.out', stagger:0.08, delay:0.5 });
+      }
+    });
+  </script>
+
+</body>
+</html>
