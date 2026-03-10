@@ -4,31 +4,7 @@
 // ===========================
 
 // ===== CANDLE INTRO =====
-(function() {
-  const intro     = document.getElementById('candleIntro');
-  const flame     = document.getElementById('flameWrap');
-  const explosion = document.getElementById('ciExplosion');
-  const hint      = document.getElementById('ciHint');
-  if (!intro) return;
-
-  let fired = false;
-
-  setTimeout(() => {
-    flame.classList.add('lit');
-    hint.textContent = '— اضغط لتدخل —';
-  }, 1800);
-
-  function triggerExplosion() {
-    if (fired) return;
-    fired = true;
-    explosion.classList.add('boom');
-    setTimeout(() => { intro.classList.add('hidden'); }, 900);
-  }
-
-  intro.addEventListener('click', triggerExplosion);
-  intro.addEventListener('touchend', triggerExplosion, { passive: true });
-  setTimeout(triggerExplosion, 3000);
-})();
+// Handled by inline <script> in index.html (runs before CDN scripts load)
 
 // ===== SETTINGS =====
 const _saved    = localStorage.getItem('konluxury_settings');

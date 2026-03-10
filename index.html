@@ -64,6 +64,37 @@
     </div>
   </div>
 
+  <!-- Candle intro: inline script so it works BEFORE CDN scripts finish loading -->
+  <script>
+  (function() {
+    var intro     = document.getElementById('candleIntro');
+    var flame     = document.getElementById('flameWrap');
+    var explosion = document.getElementById('ciExplosion');
+    var hint      = document.getElementById('ciHint');
+    if (!intro) return;
+    var fired = false;
+
+    setTimeout(function() {
+      if (flame) flame.classList.add('lit');
+      if (hint)  hint.textContent = '— اضغط لتدخل —';
+    }, 1200);
+
+    function doEnter() {
+      if (fired) return;
+      fired = true;
+      if (explosion) explosion.classList.add('boom');
+      setTimeout(function() { intro.classList.add('hidden'); }, 800);
+    }
+
+    intro.addEventListener('click', doEnter);
+    intro.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      doEnter();
+    }, false);
+    setTimeout(doEnter, 7000); /* auto-skip after 7s */
+  })();
+  </script>
+
   <!-- ===== CURSOR HALO (golden glow follows mouse with lag) ===== -->
   <div id="cursorRing" class="cursor-wrap">
     <div class="cursor-halo" id="cursorRingEl"></div>
