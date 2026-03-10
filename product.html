@@ -23,23 +23,28 @@
       padding: 0 var(--container-pad);
     }
 
-    /* Back link */
+    /* Back button */
     .prod-back {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-family: var(--font-en);
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
+      gap: 10px;
+      font-family: var(--font-ar);
+      font-size: 0.88rem;
+      color: var(--ivory-dim);
       text-decoration: none;
-      margin-bottom: 48px;
-      transition: color 0.3s ease;
+      margin-bottom: 40px;
+      padding: 10px 18px;
+      border: 1px solid rgba(201,168,76,0.28);
+      border-radius: 40px;
+      background: rgba(201,168,76,0.06);
+      transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
     }
-    .prod-back:hover { color: var(--gold); }
-    .prod-back svg { transition: transform 0.3s ease; }
-    .prod-back:hover svg { transform: translateX(4px); }
+    .prod-back:hover, .prod-back:active {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+      background: rgba(201,168,76,0.12);
+    }
+    .prod-back svg { transition: transform 0.3s ease; flex-shrink: 0; }
     [dir="rtl"] .prod-back:hover svg { transform: translateX(-4px); }
 
     /* Two-column layout */
@@ -219,23 +224,25 @@
     }
     .scent-chip {
       font-family: var(--font-ar);
-      font-size: 0.8rem;
-      color: var(--ivory-faint);
-      padding: 8px 16px;
-      border: 1px solid rgba(201,168,76,0.18);
+      font-size: 0.82rem;
+      color: var(--ivory);
+      padding: 9px 18px;
+      border: 1px solid rgba(201,168,76,0.30);
       border-radius: 40px;
       cursor: pointer;
+      background: rgba(255,255,255,0.04);
       transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
     .scent-chip:hover {
-      border-color: rgba(201,168,76,0.5);
-      color: var(--ivory-dim);
+      border-color: rgba(201,168,76,0.6);
+      background: rgba(201,168,76,0.08);
     }
     .scent-chip.active {
       border-color: var(--gold);
-      color: var(--ivory);
-      background: rgba(201,168,76,0.1);
+      color: var(--gold);
+      background: rgba(201,168,76,0.14);
+      font-weight: 600;
     }
 
     /* ── QUANTITY ── */
