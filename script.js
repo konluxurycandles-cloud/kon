@@ -26,7 +26,8 @@
   }
 
   intro.addEventListener('click', triggerExplosion);
-  setTimeout(triggerExplosion, 2500);
+  intro.addEventListener('touchend', triggerExplosion, { passive: true });
+  setTimeout(triggerExplosion, 3000);
 })();
 
 // ===== SETTINGS =====
@@ -513,7 +514,9 @@ const PRODUCTS = {
   },
 };
 
-let cart = JSON.parse(localStorage.getItem('konCart') || '[]');
+let cart = (JSON.parse(localStorage.getItem('konCart') || '[]')).map(item =>
+  item.cartKey ? item : { ...item, cartKey: item.id }
+);
 
 function saveCart() {
   localStorage.setItem('konCart', JSON.stringify(cart));
