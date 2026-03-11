@@ -11,8 +11,9 @@ const _saved    = localStorage.getItem('konluxury_settings');
 const _settings = _saved ? JSON.parse(_saved) : null;
 
 // ===== CONTACT INFO =====
-const WHATSAPP_NUMBER = _settings?.contact?.whatsapp || '9720549210470';
-const INSTAGRAM_URL   = _settings?.contact?.instagram || 'https://instagram.com/konluxurycandles';
+let WHATSAPP_NUMBER = _settings?.contact?.whatsapp || '9720549210470';
+let INSTAGRAM_URL   = _settings?.contact?.instagram || 'https://instagram.com/konluxurycandles';
+let DELIVERY        = 25;
 
 const WA_MESSAGES = {
   ar: _settings?.contact?.wa_ar || 'مرحباً، أود الاستفسار عن منتجاتكم في KON Luxury',
@@ -475,14 +476,14 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 
 // ── Product Catalogue (6 candles) ──
 const PRODUCTS = {
-  eclipse: { id:'eclipse', name:'Eclipse', waxShade:'Black',       waxHex:'#1a1a1a', img:'images/eclipse.avif', desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل', badge:'غامض'  },
-  onyx:    { id:'onyx',    name:'Onyx',    waxShade:'Deep Black',  waxHex:'#0d0d0d', img:'images/onyx.avif',    desc:'من أعماق البركان — ثقل فاخر وصلابة هادئة',           badge:'حصري'  },
-  vanta:   { id:'vanta',   name:'Vanta',   waxShade:'Matte Black', waxHex:'#111111', img:null,                  desc:'العتمة المطلقة — ما وراء السواد تجد نوراً خفياً',    badge:'جريء'  },
-  ember:   { id:'ember',   name:'Ember',   waxShade:'Amber',       waxHex:'#c87941', img:'images/ember.avif',   desc:'جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء',          badge:'دافئ'  },
-  aurora:  { id:'aurora',  name:'Aurora',  waxShade:'Ivory',       waxHex:'#f5f0e8', img:'images/aurora.avif',  desc:'شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر',        badge:'مضيء'  },
-  vesper:  { id:'vesper',  name:'Vesper',  waxShade:'Cream',       waxHex:'#ede8d8', img:'images/vesper.avif',  desc:'غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل',   badge:'ناعم'  },
+  eclipse: { id:'eclipse', name:'Eclipse', waxShade:'Black',       waxHex:'#1a1a1a', img:'images/eclipse.avif', desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل', badge:'غامض', badgeKey:'badge_ghamid' },
+  onyx:    { id:'onyx',    name:'Onyx',    waxShade:'Deep Black',  waxHex:'#0d0d0d', img:'images/onyx.avif',    desc:'من أعماق البركان — ثقل فاخر وصلابة هادئة',           badge:'حصري', badgeKey:'badge_hasri'  },
+  vanta:   { id:'vanta',   name:'Vanta',   waxShade:'Matte Black', waxHex:'#111111', img:null,                  desc:'العتمة المطلقة — ما وراء السواد تجد نوراً خفياً',    badge:'جريء', badgeKey:'badge_jari'   },
+  ember:   { id:'ember',   name:'Ember',   waxShade:'Amber',       waxHex:'#c87941', img:'images/ember.avif',   desc:'جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء',          badge:'دافئ', badgeKey:'badge_dafi'   },
+  aurora:  { id:'aurora',  name:'Aurora',  waxShade:'Ivory',       waxHex:'#f5f0e8', img:'images/aurora.avif',  desc:'شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر',        badge:'مضيء', badgeKey:'badge_mudi'   },
+  vesper:  { id:'vesper',  name:'Vesper',  waxShade:'Cream',       waxHex:'#ede8d8', img:'images/vesper.avif',  desc:'غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل',   badge:'ناعم', badgeKey:'badge_naim'   },
   // ← legacy alias kept so old product.html URLs still resolve:
-  nocturne:{id:'nocturne',name:'Eclipse',waxShade:'Black',waxHex:'#1a1a1a',img:'images/eclipse.avif',desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',badge:'غامض'},
+  nocturne:{id:'nocturne',name:'Eclipse',waxShade:'Black',waxHex:'#1a1a1a',img:'images/eclipse.avif',desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',badge:'غامض',badgeKey:'badge_ghamid'},
 };
 
 // ── Burn Sizes ──
@@ -629,7 +630,7 @@ function renderCart() {
   }).join('');
 
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const delivery = 25;
+  const delivery = DELIVERY;
   const total = subtotal + delivery;
 
   foot.innerHTML = `
@@ -680,7 +681,7 @@ function showCartToast(name) {
 function checkoutWhatsapp() {
   if (cart.length === 0) return;
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const delivery = 25;
+  const delivery = DELIVERY;
   const total = subtotal + delivery;
   const lines = cart.map(i => `• ${i.name} — ${i.burnSize||''} · ${i.fragrance||''} × ${i.qty}  ₪${i.price * i.qty}`).join('\n');
   const msg = `🕯️ *طلب جديد — KON Luxury*\n──────────────────\n${lines}\n──────────────────\n💰 *المجموع: ₪${subtotal}*\n🚚 *التوصيل: ₪${delivery}*\n💎 *الإجمالي: ₪${total}*\n──────────────────\nأرجو التواصل لتأكيد الطلب 🙏`;
@@ -688,8 +689,69 @@ function checkoutWhatsapp() {
   window.open(url, '_blank');
 }
 
+// ===== LOAD DATA.JSON (admin edits applied to all visitors) =====
+async function loadDataJson() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+
+    // Merge products
+    if (data.products) {
+      Object.entries(data.products).forEach(([id, p]) => {
+        if (!PRODUCTS[id]) return;
+        const descKey = id + '_desc';
+        if (p.desc)     { PRODUCTS[id].desc = p.desc; translations.ar[descKey] = p.desc; }
+        if (p.badge)    { PRODUCTS[id].badge = p.badge; translations.ar[PRODUCTS[id].badgeKey] = p.badge; }
+        if (p.waxShade) PRODUCTS[id].waxShade = p.waxShade;
+        if (p.waxHex)   PRODUCTS[id].waxHex = p.waxHex;
+        if (p.img)      PRODUCTS[id].img = p.img;
+      });
+    }
+
+    // Merge burn sizes
+    if (data.burnSizes) {
+      data.burnSizes.forEach((bs, i) => {
+        if (BURN_SIZES[i]) BURN_SIZES[i].price = bs.price;
+      });
+    }
+
+    // Delivery
+    if (data.delivery !== undefined) DELIVERY = data.delivery;
+
+    // Contact config
+    if (data.config) {
+      if (data.config.whatsapp) WHATSAPP_NUMBER = data.config.whatsapp;
+      if (data.config.instagram) INSTAGRAM_URL = data.config.instagram;
+    }
+
+    // Re-apply current language so updated translations render
+    setLanguage(currentLang);
+
+    // Update product card images + prices in DOM
+    document.querySelectorAll('.product-card').forEach(card => {
+      const h3 = card.querySelector('h3');
+      if (!h3) return;
+      const key = h3.textContent.trim().toLowerCase();
+      const prod = PRODUCTS[key];
+      if (!prod) return;
+      // Update image src
+      if (prod.img) {
+        const imgEl = card.querySelector('img.product-real-img');
+        if (imgEl) imgEl.src = prod.img;
+      }
+      // Update price label
+      const priceEl = card.querySelector('.product-price');
+      if (priceEl) priceEl.textContent = `من ₪${BURN_SIZES[0].price}`;
+    });
+
+  } catch(e) {
+    // data.json not found or parse error — use hardcoded defaults silently
+  }
+}
+
 // Inject prices into product cards + init badge on load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   updateCartBadge();
   document.querySelectorAll('.product-card').forEach(card => {
     const h3 = card.querySelector('h3');
@@ -704,4 +766,6 @@ document.addEventListener('DOMContentLoaded', () => {
     row.innerHTML = `<span class="product-price">من ₪${BURN_SIZES[0].price}</span><span class="product-price-currency">ILS</span>`;
     info.appendChild(row);
   });
+  // Load admin edits from data.json (overwrites defaults if changed via admin panel)
+  await loadDataJson();
 });

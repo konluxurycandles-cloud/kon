@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KON Admin — لوحة التحكم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:     #C9A84C;
+      --gold-dim: rgba(201,168,76,0.6);
+      --gold-bg:  rgba(201,168,76,0.1);
+      --black:    #080808;
+      --dark:     #0f0f0f;
+      --dark2:    #141414;
+      --dark3:    #1c1c1c;
+      --border:   rgba(201,168,76,0.2);
+      --ivory:    #F5EDD8;
+      --ivory2:   rgba(245,237,216,0.75);
+      --red:      #e05555;
+      --green:    #4caf7d;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--black);
+      color: var(--ivory);
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    input, textarea, select {
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      color: var(--ivory);
+      border-radius: 6px;
+      padding: 10px 14px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus { border-color: var(--gold); }
+    textarea { resize: vertical; line-height: 1.7; }
+    label { display: block; font-size: 12px; color: var(--ivory2); margin-bottom: 5px; letter-spacing: 0.5px; }
+
+    /* ===== LOGIN SCREEN ===== */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-box {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 48px 40px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+    }
+    .login-logo {
+      font-family: 'Geist', sans-serif;
+      font-size: 2rem;
+      color: var(--gold);
+      letter-spacing: 10px;
+      margin-bottom: 4px;
+    }
+    .login-sub {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+    .login-box h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .login-box p {
+      font-size: 13px;
+      color: var(--ivory2);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .login-box a { color: var(--gold); }
+    .token-input-wrap { position: relative; margin-bottom: 20px; }
+    .token-input-wrap input { padding-left: 44px; letter-spacing: 1px; }
+    .token-toggle {
+      position: absolute;
+      left: 12px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: var(--gold-dim);
+      font-size: 18px; cursor: pointer;
+      padding: 4px;
+    }
+    .btn-connect {
+      width: 100%;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .btn-connect:hover { background: #e0bc5a; }
+    .btn-connect:disabled { opacity: 0.5; cursor: not-allowed; }
+    .login-error {
+      margin-top: 14px;
+      color: var(--red);
+      font-size: 13px;
+      display: none;
+    }
+    .how-to {
+      margin-top: 28px;
+      background: var(--dark3);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: right;
+    }
+    .how-to h4 { font-size: 13px; color: var(--gold); margin-bottom: 8px; }
+    .how-to ol { padding-right: 18px; font-size: 12px; color: var(--ivory2); line-height: 2; }
+
+    /* ===== MAIN PANEL ===== */
+    #adminPanel { display: none; min-height: 100vh; }
+
+    /* Header */
+    .adm-header {
+      background: var(--dark2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .adm-logo { font-family: 'Geist', sans-serif; font-size: 1rem; color: var(--gold); letter-spacing: 6px; }
+    .adm-logo span { font-size: 10px; letter-spacing: 2px; color: var(--ivory2); margin-right: 8px; }
+    .adm-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-save {
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .btn-save:hover { background: #e0bc5a; }
+    .btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-logout {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--ivory2);
+      border-radius: 6px;
+      padding: 9px 16px;
+      font-size: 13px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-logout:hover { border-color: var(--red); color: var(--red); }
+
+    /* Tabs */
+    .adm-tabs {
+      display: flex;
+      gap: 0;
+      padding: 0 24px;
+      background: var(--dark);
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--ivory2);
+      padding: 16px 22px;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .tab-btn:hover { color: var(--ivory); }
+
+    /* Tab content */
+    .tab-content { display: none; padding: 28px 24px 60px; max-width: 900px; margin: 0 auto; }
+    .tab-content.active { display: block; }
+
+    /* ===== PRODUCTS TAB ===== */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .prod-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .prod-card-header {
+      background: var(--dark3);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .prod-card-name {
+      font-family: 'Geist', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .prod-wax-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+    .prod-img-section {
+      position: relative;
+      height: 180px;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+    .prod-img-preview {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .prod-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      opacity: 0.3;
+    }
+    .img-upload-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+      cursor: pointer;
+    }
+    .prod-img-section:hover .img-upload-overlay { opacity: 1; }
+    .img-upload-btn {
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .img-new-badge {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: var(--green);
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      display: none;
+      letter-spacing: 0.5px;
+    }
+    .prod-fields {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field-group { display: flex; flex-direction: column; gap: 5px; }
+
+    /* ===== PRICES TAB ===== */
+    .section-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .section-card-title {
+      background: var(--dark3);
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-card-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .price-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      align-items: center;
+      gap: 14px;
+    }
+    .size-label {
+      font-family: 'Geist', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 2px;
+    }
+    .price-row input { max-width: 160px; }
+
+    /* ===== SETTINGS TAB ===== */
+    .settings-grid { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ===== TOAST ===== */
+    #toast {
+      position: fixed;
+      bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      color: var(--ivory);
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 9999;
+      white-space: nowrap;
+      pointer-events: none;
+      max-width: calc(100vw - 40px);
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    #toast.success { border-color: var(--green); }
+    #toast.error   { border-color: var(--red);   }
+
+    /* Loading overlay */
+    #loadingOverlay {
+      position: fixed; inset: 0;
+      background: rgba(8,8,8,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      display: none;
+    }
+    .spinner {
+      width: 40px; height: 40px;
+      border: 2px solid var(--border);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .login-box { padding: 32px 20px; }
+      .adm-tabs { overflow-x: auto; }
+      .tab-content { padding: 20px 14px 60px; }
+      .prod-grid { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      .adm-logo span { display: none; }
+      .btn-save { padding: 9px 14px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">KON</div>
+    <div class="login-sub">Admin Panel</div>
+
+    <h2>الدخول إلى لوحة التحكم</h2>
+    <p>
+      أدخل GitHub Token الخاص بك للوصول. التوكن يُحفظ على جهازك فقط — لن يُرسل لأي جهة خارجية.
+    </p>
+
+    <div class="token-input-wrap">
+      <button class="token-toggle" id="tokenToggle" onclick="toggleTokenVisibility()" type="button">👁</button>
+      <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxx" autocomplete="off" />
+    </div>
+
+    <button class="btn-connect" id="connectBtn" onclick="connect()">دخول</button>
+    <div class="login-error" id="loginError"></div>
+
+    <div class="how-to">
+      <h4>كيف تحصل على Token؟</h4>
+      <ol>
+        <li>افتح <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a></li>
+        <li>اختر اسماً (مثل: KON Admin)</li>
+        <li>فعّل صلاحية: <strong>repo → contents (read & write)</strong></li>
+        <li>اضغط "Generate token" وانسخ الكود</li>
+        <li>الصقه هنا واضغط دخول</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div id="adminPanel">
+
+  <!-- Header -->
+  <header class="adm-header">
+    <div class="adm-logo">KON <span>ADMIN</span></div>
+    <div class="adm-actions">
+      <button class="btn-save" id="saveBtn" onclick="saveAll()">💾 حفظ التغييرات</button>
+      <button class="btn-logout" onclick="logout()">خروج</button>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="adm-tabs">
+    <button class="tab-btn active" onclick="showTab('products', this)">🕯️ المنتجات</button>
+    <button class="tab-btn" onclick="showTab('prices', this)">💰 الأسعار</button>
+    <button class="tab-btn" onclick="showTab('settings', this)">⚙️ الإعدادات</button>
+  </nav>
+
+  <!-- Products Tab -->
+  <div id="tab-products" class="tab-content active">
+    <div class="prod-grid" id="prodGrid">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+
+  <!-- Prices Tab -->
+  <div id="tab-prices" class="tab-content">
+    <div class="section-card">
+      <div class="section-card-title">Burn Size — الأحجام والأسعار</div>
+      <div class="section-card-body" id="burnSizesBody">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="section-card-title">رسوم التوصيل</div>
+      <div class="section-card-body">
+        <div class="price-row">
+          <span class="size-label">التوصيل</span>
+          <div>
+            <label>السعر بالشيكل (₪)</label>
+            <input type="number" id="delivery" min="0" value="25" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Tab -->
+  <div id="tab-settings" class="tab-content">
+    <div class="settings-grid">
+      <div class="section-card">
+        <div class="section-card-title">📱 واتساب</div>
+        <div class="section-card-body">
+          <div class="field-group">
+            <label>رقم واتساب (بدون +، مثال: 9720512345678)</label>
+            <input type="text" id="whatsapp" placeholder="9720512345678" />
+          </div>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="section-card-title">📸 إنستغرام</div>
+        <div class="section-card-body">
+          <div class="field-group">
+            <label>رابط صفحة الإنستغرام</label>
+            <input type="url" id="instagram" placeholder="https://instagram.com/yourpage" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /adminPanel -->
+
+<!-- Loading overlay -->
+<div id="loadingOverlay"><div class="spinner"></div></div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+// ===== CONFIG =====
+const REPO_OWNER = 'konluxurycandles-cloud';
+const REPO_NAME  = 'kon';
+const BRANCH     = 'main';
+const GH_API     = 'https://api.github.com';
+const STORAGE_KEY = 'kon_admin_token';
+
+// ===== PRODUCTS DEFINITION =====
+const PRODS_DEF = [
+  { id:'eclipse', name:'Eclipse', waxHex:'#1a1a1a' },
+  { id:'onyx',    name:'Onyx',    waxHex:'#0d0d0d' },
+  { id:'vanta',   name:'Vanta',   waxHex:'#111111' },
+  { id:'ember',   name:'Ember',   waxHex:'#c87941' },
+  { id:'aurora',  name:'Aurora',  waxHex:'#f5f0e8' },
+  { id:'vesper',  name:'Vesper',  waxHex:'#ede8d8' },
+];
+
+// ===== STATE =====
+let token       = localStorage.getItem(STORAGE_KEY) || '';
+let currentData = {};
+let dataSha     = null;
+let pendingImgs = {}; // { productId: { filename, base64 } }
+
+// ===== GITHUB API HELPERS =====
+async function ghGet(path) {
+  const res = await fetch(`${GH_API}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
+    headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || `${res.status}`);
+  }
+  return res.json();
+}
+
+async function ghPut(path, b64Content, message, sha) {
+  const body = { message, content: b64Content, branch: BRANCH };
+  if (sha) body.sha = sha;
+  const res = await fetch(`${GH_API}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || `${res.status}`);
+  }
+  return res.json();
+}
+
+// Encode UTF-8 string to base64 (handles Arabic)
+function toB64(str) { return btoa(unescape(encodeURIComponent(str))); }
+function fromB64(b64) { return decodeURIComponent(escape(atob(b64.replace(/\n/g,'')))); }
+
+// ===== LOGIN =====
+function toggleTokenVisibility() {
+  const inp = document.getElementById('tokenInput');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+async function connect() {
+  const inp   = document.getElementById('tokenInput');
+  const btn   = document.getElementById('connectBtn');
+  const errEl = document.getElementById('loginError');
+  token = inp.value.trim();
+  if (!token) { showLoginError('أدخل التوكن أولاً'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'جاري التحقق...';
+  errEl.style.display = 'none';
+
+  try {
+    // Verify token by loading data.json
+    await loadData();
+    localStorage.setItem(STORAGE_KEY, token);
+    showAdminPanel();
+  } catch(e) {
+    showLoginError('فشل الاتصال: ' + e.message + ' — تأكد من صلاحيات التوكن (contents: read & write)');
+    btn.disabled = false;
+    btn.textContent = 'دخول';
+  }
+}
+
+function showLoginError(msg) {
+  const el = document.getElementById('loginError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function logout() {
+  localStorage.removeItem(STORAGE_KEY);
+  token = '';
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('tokenInput').value = '';
+}
+
+// ===== LOAD DATA FROM GITHUB =====
+async function loadData() {
+  try {
+    const file = await ghGet('data.json');
+    dataSha = file.sha;
+    currentData = JSON.parse(fromB64(file.content));
+  } catch(e) {
+    if (e.message.includes('404') || e.message.includes('Not Found')) {
+      // data.json doesn't exist yet — start fresh
+      dataSha = null;
+      currentData = {
+        products: {},
+        burnSizes: [{label:'250g',price:90},{label:'500g',price:150},{label:'1000g',price:240}],
+        delivery: 25,
+        config: { whatsapp: '9720549210470', instagram: 'https://instagram.com/konluxurycandles' }
+      };
+    } else {
+      throw e; // real error (auth failure etc.)
+    }
+  }
+}
+
+// ===== SHOW ADMIN PANEL =====
+function showAdminPanel() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminPanel').style.display = 'block';
+  buildProductGrid();
+  buildBurnSizes();
+  populateForm();
+}
+
+// ===== BUILD PRODUCT GRID =====
+function buildProductGrid() {
+  const grid = document.getElementById('prodGrid');
+  grid.innerHTML = PRODS_DEF.map(def => {
+    const p = currentData.products?.[def.id] || {};
+    const imgSrc = p.img || '';
+    return `
+    <div class="prod-card" id="pcard-${def.id}">
+      <div class="prod-card-header">
+        <span class="prod-card-name">${def.name}</span>
+        <span class="prod-wax-dot" id="wax-dot-${def.id}" style="background:${p.waxHex||def.waxHex}"></span>
+      </div>
+      <div class="prod-img-section" onclick="document.getElementById('img-input-${def.id}').click()">
+        ${imgSrc
+          ? `<img id="img-preview-${def.id}" src="${imgSrc}" class="prod-img-preview" onerror="this.style.display='none';document.getElementById('img-ph-${def.id}').style.display='flex'" />`
+          : `<img id="img-preview-${def.id}" src="" class="prod-img-preview" style="display:none" />`
+        }
+        <div class="prod-img-placeholder" id="img-ph-${def.id}" style="display:${imgSrc?'none':'flex'}">🕯️</div>
+        <div class="img-upload-overlay">
+          <span class="img-upload-btn">📷 تغيير الصورة</span>
+        </div>
+        <span class="img-new-badge" id="img-badge-${def.id}">صورة جديدة</span>
+        <input type="file" id="img-input-${def.id}" accept="image/*" style="display:none"
+               onchange="handleImageUpload(event, '${def.id}')" />
+      </div>
+      <div class="prod-fields">
+        <div class="field-row">
+          <div class="field-group">
+            <label>Wax Shade</label>
+            <input type="text" id="wax-${def.id}" value="${p.waxShade||''}" placeholder="e.g. Black" />
+          </div>
+          <div class="field-group">
+            <label>البادج</label>
+            <input type="text" id="badge-${def.id}" value="${p.badge||''}" placeholder="غامض" />
+          </div>
+        </div>
+        <div class="field-group">
+          <label>الوصف (عربي)</label>
+          <textarea id="desc-${def.id}" rows="3" placeholder="اكتب وصف المنتج...">${p.desc||''}</textarea>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ===== BUILD BURN SIZES =====
+function buildBurnSizes() {
+  const sizes = currentData.burnSizes || [{label:'250g',price:90},{label:'500g',price:150},{label:'1000g',price:240}];
+  const body = document.getElementById('burnSizesBody');
+  body.innerHTML = sizes.map((s, i) => `
+    <div class="price-row">
+      <span class="size-label">${s.label}</span>
+      <div>
+        <label>السعر (₪)</label>
+        <input type="number" id="price-${i}" value="${s.price}" min="0" />
+      </div>
+    </div>`
+  ).join('');
+}
+
+// ===== POPULATE FORM FROM DATA =====
+function populateForm() {
+  // Delivery
+  const del = document.getElementById('delivery');
+  if (del) del.value = currentData.delivery ?? 25;
+
+  // Config
+  const wa = document.getElementById('whatsapp');
+  const ig = document.getElementById('instagram');
+  if (wa) wa.value = currentData.config?.whatsapp || '';
+  if (ig) ig.value = currentData.config?.instagram || '';
+}
+
+// ===== IMAGE UPLOAD HANDLER =====
+function handleImageUpload(event, productId) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const ext = file.name.split('.').pop().toLowerCase();
+  const filename = `${productId}.${ext}`;
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const b64 = e.target.result.split(',')[1]; // strip data:...;base64,
+    pendingImgs[productId] = { filename, base64: b64 };
+
+    // Show preview
+    const preview = document.getElementById(`img-preview-${productId}`);
+    const ph      = document.getElementById(`img-ph-${productId}`);
+    const badge   = document.getElementById(`img-badge-${productId}`);
+    if (preview) { preview.src = e.target.result; preview.style.display = 'block'; }
+    if (ph) ph.style.display = 'none';
+    if (badge) badge.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ===== SAVE ALL =====
+async function saveAll() {
+  const saveBtn = document.getElementById('saveBtn');
+  const loading = document.getElementById('loadingOverlay');
+  saveBtn.disabled = true;
+  loading.style.display = 'flex';
+
+  try {
+    // 1. Upload pending images
+    for (const [id, imgData] of Object.entries(pendingImgs)) {
+      const path = `images/${imgData.filename}`;
+      let sha = null;
+      try { const ex = await ghGet(path); sha = ex.sha; } catch(e) { /* new file */ }
+      await ghPut(path, imgData.base64, `Admin: صورة ${id}`, sha);
+      // Update product img path
+      currentData.products = currentData.products || {};
+      currentData.products[id] = currentData.products[id] || {};
+      currentData.products[id].img = path;
+    }
+
+    // 2. Collect product fields
+    PRODS_DEF.forEach(def => {
+      currentData.products = currentData.products || {};
+      currentData.products[def.id] = currentData.products[def.id] || {};
+      const p = currentData.products[def.id];
+
+      const desc  = document.getElementById(`desc-${def.id}`)?.value?.trim();
+      const badge = document.getElementById(`badge-${def.id}`)?.value?.trim();
+      const wax   = document.getElementById(`wax-${def.id}`)?.value?.trim();
+
+      if (desc  !== undefined) p.desc     = desc;
+      if (badge !== undefined) p.badge    = badge;
+      if (wax   !== undefined) p.waxShade = wax;
+    });
+
+    // 3. Collect burn sizes
+    const sizes = [{label:'250g'},{label:'500g'},{label:'1000g'}];
+    currentData.burnSizes = sizes.map((s, i) => ({
+      label: s.label,
+      price: parseInt(document.getElementById(`price-${i}`)?.value || 0, 10)
+    }));
+
+    // 4. Delivery
+    currentData.delivery = parseInt(document.getElementById('delivery')?.value || 25, 10);
+
+    // 5. Config
+    currentData.config = {
+      whatsapp:  document.getElementById('whatsapp')?.value?.trim() || '',
+      instagram: document.getElementById('instagram')?.value?.trim() || ''
+    };
+
+    // 6. Commit data.json
+    const jsonStr = JSON.stringify(currentData, null, 2);
+    const result  = await ghPut('data.json', toB64(jsonStr), 'Admin: تحديث البيانات', dataSha);
+    dataSha = result.content.sha;
+
+    pendingImgs = {};
+    // Hide new badges
+    PRODS_DEF.forEach(d => {
+      const b = document.getElementById(`img-badge-${d.id}`);
+      if (b) b.style.display = 'none';
+    });
+
+    showToast('✅ تم الحفظ! سيظهر على الموقع خلال ~30 ثانية', 'success');
+  } catch(e) {
+    showToast('❌ خطأ: ' + e.message, 'error');
+    console.error(e);
+  } finally {
+    saveBtn.disabled = false;
+    loading.style.display = 'none';
+  }
+}
+
+// ===== TAB SWITCHER =====
+function showTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ===== TOAST =====
+let toastTimer = null;
+function showToast(msg, type = 'info') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { el.className = ''; }, 4000);
+}
+
+// ===== AUTO-LOGIN ON LOAD =====
+window.addEventListener('DOMContentLoaded', async () => {
+  if (token) {
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.display = 'flex';
+    try {
+      await loadData();
+      showAdminPanel();
+    } catch(e) {
+      // Token expired or revoked — show login
+      localStorage.removeItem(STORAGE_KEY);
+      token = '';
+      overlay.style.display = 'none';
+    }
+    overlay.style.display = 'none';
+  }
+});
+</script>
+
+</body>
+</html>

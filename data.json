@@ -1,0 +1,56 @@
+{
+  "products": {
+    "eclipse": {
+      "desc": "من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل",
+      "badge": "غامض",
+      "waxShade": "Black",
+      "waxHex": "#1a1a1a",
+      "img": "images/eclipse.avif"
+    },
+    "onyx": {
+      "desc": "من أعماق البركان — ثقل فاخر وصلابة هادئة",
+      "badge": "حصري",
+      "waxShade": "Deep Black",
+      "waxHex": "#0d0d0d",
+      "img": "images/onyx.avif"
+    },
+    "vanta": {
+      "desc": "العتمة المطلقة — ما وراء السواد تجد نوراً خفياً",
+      "badge": "جريء",
+      "waxShade": "Matte Black",
+      "waxHex": "#111111",
+      "img": null
+    },
+    "ember": {
+      "desc": "جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء",
+      "badge": "دافئ",
+      "waxShade": "Amber",
+      "waxHex": "#c87941",
+      "img": "images/ember.avif"
+    },
+    "aurora": {
+      "desc": "شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر",
+      "badge": "مضيء",
+      "waxShade": "Ivory",
+      "waxHex": "#f5f0e8",
+      "img": "images/aurora.avif"
+    },
+    "vesper": {
+      "desc": "غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل",
+      "badge": "ناعم",
+      "waxShade": "Cream",
+      "waxHex": "#ede8d8",
+      "img": "images/vesper.avif"
+    }
+  },
+  "burnSizes": [
+    { "label": "250g", "price": 90 },
+    { "label": "500g", "price": 150 },
+    { "label": "1000g", "price": 240 }
+  ],
+  "delivery": 25,
+  "config": {
+    "whatsapp": "9720549210470",
+    "instagram": "https://instagram.com/konluxurycandles"
+  }
+}
