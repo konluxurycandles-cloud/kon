@@ -186,30 +186,30 @@
     <div class="container">
       <div class="section-header">
         <span class="gold-line"></span>
-        <h2>اكتشف مزاجك</h2>
+        <h2 data-i18n="mood_title">اكتشف مزاجك</h2>
         <span class="gold-line"></span>
       </div>
-      <p class="mood-sub">اختر الحالة التي تعبّر عنك — وسنرشدك إلى شمعتك</p>
+      <p class="mood-sub" data-i18n="mood_sub">اختر الحالة التي تعبّر عنك — وسنرشدك إلى شمعتك</p>
       <div class="mood-grid">
         <button class="mood-card" data-mood="night" onclick="filterMood(this,'eclipse','onyx')">
           <span class="mood-emoji">🌙</span>
           <span class="mood-name">Deep Night</span>
-          <span class="mood-desc">ظلام هادئ وعميق</span>
+          <span class="mood-desc" data-i18n="mood_night">ظلام هادئ وعميق</span>
         </button>
         <button class="mood-card" data-mood="warm" onclick="filterMood(this,'ember')">
           <span class="mood-emoji">🔥</span>
           <span class="mood-name">Warm Evening</span>
-          <span class="mood-desc">دفء يملأ المكان</span>
+          <span class="mood-desc" data-i18n="mood_warm">دفء يملأ المكان</span>
         </button>
         <button class="mood-card" data-mood="calm" onclick="filterMood(this,'aurora')">
           <span class="mood-emoji">🌿</span>
           <span class="mood-name">Calm Space</span>
-          <span class="mood-desc">هدوء ونقاء</span>
+          <span class="mood-desc" data-i18n="mood_calm">هدوء ونقاء</span>
         </button>
         <button class="mood-card" data-mood="luxury" onclick="filterMood(this,'vesper','vanta')">
           <span class="mood-emoji">✨</span>
           <span class="mood-name">Luxury Moment</span>
-          <span class="mood-desc">فخامة لا تُنسى</span>
+          <span class="mood-desc" data-i18n="mood_luxury">فخامة لا تُنسى</span>
         </button>
       </div>
     </div>
@@ -249,14 +249,14 @@
           <div class="product-img">
             <img src="images/eclipse.avif" alt="Eclipse" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
+              <button class="btn-view-product" onclick="goToProduct(this)" data-i18n="btn_discover">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
             <span class="world-label" style="color:var(--gold-dim)">Wax · Black</span>
             <h3>Eclipse</h3>
-            <p>من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل</p>
-            <span class="product-badge">غامض</span>
+            <p data-i18n="eclipse_desc">من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل</p>
+            <span class="product-badge" data-i18n="badge_ghamid">غامض</span>
           </div>
         </div>
 
@@ -264,14 +264,14 @@
           <div class="product-img">
             <img src="images/onyx.avif" alt="Onyx" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
+              <button class="btn-view-product" onclick="goToProduct(this)" data-i18n="btn_discover">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
             <span class="world-label" style="color:var(--gold-dim)">Wax · Deep Black</span>
             <h3>Onyx</h3>
-            <p>من أعماق البركان — ثقل فاخر وصلابة هادئة</p>
-            <span class="product-badge">حصري</span>
+            <p data-i18n="onyx_desc">من أعماق البركان — ثقل فاخر وصلابة هادئة</p>
+            <span class="product-badge" data-i18n="badge_hasri">حصري</span>
           </div>
         </div>
 
@@ -287,14 +287,14 @@
               </svg>
             </div>
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
+              <button class="btn-view-product" onclick="goToProduct(this)" data-i18n="btn_discover">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
             <span class="world-label" style="color:var(--gold-dim)">Wax · Matte Black</span>
             <h3>Vanta</h3>
-            <p>العتمة المطلقة — ما وراء السواد تجد نوراً خفياً</p>
-            <span class="product-badge">جريء</span>
+            <p data-i18n="vanta_desc">العتمة المطلقة — ما وراء السواد تجد نوراً خفياً</p>
+            <span class="product-badge" data-i18n="badge_jari">جريء</span>
           </div>
         </div>
 
@@ -302,14 +302,14 @@
           <div class="product-img">
             <img src="images/ember.avif" alt="Ember" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
+              <button class="btn-view-product" onclick="goToProduct(this)" data-i18n="btn_discover">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
             <span class="world-label" style="color:var(--gold-dim)">Wax · Amber</span>
             <h3>Ember</h3>
-            <p>جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء</p>
-            <span class="product-badge">دافئ</span>
+            <p data-i18n="ember_desc">جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء</p>
+            <span class="product-badge" data-i18n="badge_dafi">دافئ</span>
           </div>
         </div>
 
@@ -317,14 +317,14 @@
           <div class="product-img">
             <img src="images/aurora.avif" alt="Aurora" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
+              <button class="btn-view-product" onclick="goToProduct(this)" data-i18n="btn_discover">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
             <span class="world-label" style="color:var(--gold-dim)">Wax · Ivory</span>
             <h3>Aurora</h3>
-            <p>شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر</p>
-            <span class="product-badge">مضيء</span>
+            <p data-i18n="aurora_desc">شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر</p>
+            <span class="product-badge" data-i18n="badge_mudi">مضيء</span>
           </div>
         </div>
 
@@ -332,14 +332,14 @@
           <div class="product-img">
             <img src="images/vesper.avif" alt="Vesper" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
+              <button class="btn-view-product" onclick="goToProduct(this)" data-i18n="btn_discover">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
             <span class="world-label" style="color:var(--gold-dim)">Wax · Cream</span>
             <h3>Vesper</h3>
-            <p>غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل</p>
-            <span class="product-badge">ناعم</span>
+            <p data-i18n="vesper_desc">غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل</p>
+            <span class="product-badge" data-i18n="badge_naim">ناعم</span>
           </div>
         </div>
 
@@ -551,7 +551,7 @@
       <div class="cart-head-top">
         <div>
           <p class="cart-eyebrow">KON LUXURY</p>
-          <h2 class="cart-title">سلّتك</h2>
+          <h2 class="cart-title" data-i18n="cart_title">سلّتك</h2>
         </div>
         <button class="cart-close" onclick="toggleCart()" aria-label="إغلاق">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>

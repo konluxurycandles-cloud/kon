@@ -36,6 +36,32 @@ const translations = {
     contact_title: 'تواصل معنا', contact_sub: 'نحن هنا للإجابة على كل استفساراتك وتلبية طلباتك',
     btn_whatsapp: 'واتساب', btn_instagram: 'إنستغرام',
     footer_copy: '© 2025 KON Luxury · جميع الحقوق محفوظة',
+    // Product descriptions
+    eclipse_desc: 'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',
+    onyx_desc:    'من أعماق البركان — ثقل فاخر وصلابة هادئة',
+    vanta_desc:   'العتمة المطلقة — ما وراء السواد تجد نوراً خفياً',
+    ember_desc:   'جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء',
+    aurora_desc:  'شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر',
+    vesper_desc:  'غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل',
+    // Badges
+    badge_ghamid: 'غامض', badge_hasri: 'حصري', badge_jari: 'جريء',
+    badge_dafi: 'دافئ', badge_mudi: 'مضيء', badge_naim: 'ناعم',
+    // Buttons
+    btn_discover: '✦ اكتشف',
+    // Mood section
+    mood_title: 'اكتشف مزاجك',
+    mood_sub:   'اختر الحالة التي تعبّر عنك — وسنرشدك إلى شمعتك',
+    mood_night: 'ظلام هادئ وعميق', mood_warm: 'دفء يملأ المكان',
+    mood_calm:  'هدوء ونقاء',      mood_luxury: 'فخامة لا تُنسى',
+    // Cart
+    cart_title:    'سلّتك',
+    cart_empty:    'سلّتك فارغة',
+    cart_browse:   'اكتشف مجموعاتنا',
+    cart_subtotal: 'المجموع الفرعي',
+    cart_delivery: 'التوصيل',
+    cart_total:    'الإجمالي',
+    cart_remove:   'حذف',
+    cart_order_btn:'اطلب عبر واتساب',
   },
   he: {
     nav_home: 'בית', nav_about: 'אודות', nav_products: 'מוצרים', nav_contact: 'צור קשר',
@@ -50,6 +76,32 @@ const translations = {
     contact_title: 'צור קשר', contact_sub: 'אנחנו כאן לענות על כל שאלה',
     btn_whatsapp: 'וואטסאפ', btn_instagram: 'אינסטגרם',
     footer_copy: '© 2025 KON Luxury · כל הזכויות שמורות',
+    // Product descriptions
+    eclipse_desc: 'מחשכת השקט — ניחוח מעושן אוחז את המקום בסודות הלילה',
+    onyx_desc:    'מעומקי הוולקן — כובד מפואר ומוצקות שקטה',
+    vanta_desc:   'החשכה המוחלטת — מעבר לשחור תמצא אור נסתר',
+    ember_desc:   'גחלת שקטה שאינה כבה — חמימות עוטפת את המקום בשלווה',
+    aurora_desc:  'שחר האור — אור חם ממלא את המקום בניחוח הבוקר',
+    vesper_desc:  'דמדומי פרידה — עדינות בלתי נשכחת כשהיום פוגש הלילה',
+    // Badges
+    badge_ghamid: 'מסתורי', badge_hasri: 'בלעדי', badge_jari: 'נועז',
+    badge_dafi: 'חם', badge_mudi: 'זוהר', badge_naim: 'עדין',
+    // Buttons
+    btn_discover: '✦ גלה',
+    // Mood section
+    mood_title: 'גלה את מצב הרוח שלך',
+    mood_sub:   'בחר את המצב שמבטא אותך — ונוביל אותך לנר שלך',
+    mood_night: 'חשכה שקטה ועמוקה', mood_warm: 'חמימות ממלאת את המקום',
+    mood_calm:  'שקט וטוהר',         mood_luxury: 'רגע יוקרה בלתי נשכח',
+    // Cart
+    cart_title:    'הסל שלך',
+    cart_empty:    'הסל שלך ריק',
+    cart_browse:   'גלה את הקולקציה שלנו',
+    cart_subtotal: 'סכום ביניים',
+    cart_delivery: 'משלוח',
+    cart_total:    'סה״כ',
+    cart_remove:   'הסר',
+    cart_order_btn:'הזמן דרך וואטסאפ',
   },
   en: {
     nav_home: 'Home', nav_about: 'About', nav_products: 'Products', nav_contact: 'Contact',
@@ -64,10 +116,41 @@ const translations = {
     contact_title: 'Contact Us', contact_sub: 'We are here to answer all your questions',
     btn_whatsapp: 'WhatsApp', btn_instagram: 'Instagram',
     footer_copy: '© 2025 KON Luxury · All Rights Reserved',
+    // Product descriptions
+    eclipse_desc: 'From the silence of darkness — a smoky scent wrapping the room in night secrets',
+    onyx_desc:    'From the depths of the volcano — luxurious weight and quiet solidity',
+    vanta_desc:   'Absolute darkness — beyond black, a hidden light awaits',
+    ember_desc:   'A quiet ember that never fades — warmth enveloping the room in peace',
+    aurora_desc:  'Morning light — warm radiance filling the room with dawn\'s fragrance',
+    vesper_desc:  'Farewell dusk — unforgettable softness as day meets night',
+    // Badges
+    badge_ghamid: 'Mysterious', badge_hasri: 'Exclusive', badge_jari: 'Bold',
+    badge_dafi: 'Warm', badge_mudi: 'Luminous', badge_naim: 'Soft',
+    // Buttons
+    btn_discover: '✦ Discover',
+    // Mood section
+    mood_title: 'Discover Your Mood',
+    mood_sub:   'Choose the mood that speaks to you — we\'ll guide you to your candle',
+    mood_night: 'Quiet and deep darkness', mood_warm: 'Warmth filling the space',
+    mood_calm:  'Serenity and purity',     mood_luxury: 'An unforgettable luxury moment',
+    // Cart
+    cart_title:    'Your Cart',
+    cart_empty:    'Your cart is empty',
+    cart_browse:   'Explore our collection',
+    cart_subtotal: 'Subtotal',
+    cart_delivery: 'Delivery',
+    cart_total:    'Total',
+    cart_remove:   'Remove',
+    cart_order_btn:'Order via WhatsApp',
   }
 };
 
 let currentLang = 'ar';
+
+// Quick translation helper — t('key') → string in currentLang
+function t(key) {
+  return (translations[currentLang] || translations.ar)[key] || key;
+}
 
 function setLanguage(lang) {
   currentLang = lang;
@@ -83,6 +166,9 @@ function setLanguage(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
+  // Re-render cart if it's open so labels update immediately
+  const cartDrawer = document.getElementById('cartDrawer');
+  if (cartDrawer && cartDrawer.classList.contains('open')) renderCart();
 }
 
 // ===== SMOOTH SCROLL (Lenis optional — fallback to native) =====
@@ -509,8 +595,8 @@ function renderCart() {
     body.innerHTML = `
       <div class="cart-empty">
         <div class="cart-empty-icon">🕯️</div>
-        <p>سلّتك فارغة</p>
-        <span>اكتشف مجموعاتنا</span>
+        <p>${t('cart_empty')}</p>
+        <span>${t('cart_browse')}</span>
       </div>`;
     foot.innerHTML = '';
     return;
@@ -537,7 +623,7 @@ function renderCart() {
             <span class="ci-qty-val">${item.qty}</span>
             <button onclick="updateQty('${ck}',1)" aria-label="زيادة">+</button>
           </div>
-          <button class="ci-remove" onclick="removeFromCart('${ck}')">حذف</button>
+          <button class="ci-remove" onclick="removeFromCart('${ck}')">${t('cart_remove')}</button>
         </div>
       </div>`;
   }).join('');
@@ -548,20 +634,20 @@ function renderCart() {
 
   foot.innerHTML = `
     <div class="cart-subtotal">
-      <span>المجموع الفرعي</span>
+      <span>${t('cart_subtotal')}</span>
       <span class="cart-subtotal-val">₪${subtotal}</span>
     </div>
     <div class="cart-delivery">
-      <span>التوصيل</span>
+      <span>${t('cart_delivery')}</span>
       <span>₪${delivery}</span>
     </div>
     <div class="cart-total-row">
-      <span>الإجمالي</span>
+      <span>${t('cart_total')}</span>
       <span class="cart-total-val">₪${total}</span>
     </div>
     <button class="cart-checkout-btn" onclick="checkoutWhatsapp()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.139.561 4.145 1.54 5.889L0 24l6.321-1.502A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.928 0-3.736-.5-5.308-1.375L2 22l1.408-4.567A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 5.477 10 10-4.477 10-10 10z"/></svg>
-      اطلب عبر واتساب
+      ${t('cart_order_btn')}
     </button>
     <button class="cart-clear-btn" onclick="clearCart()">CLEAR CART</button>`;
 }
