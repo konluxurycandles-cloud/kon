@@ -725,6 +725,17 @@ async function loadDataJson() {
       if (data.config.instagram) INSTAGRAM_URL = data.config.instagram;
     }
 
+    // ── Version check: force reload on all devices when admin saves ──
+    if (data.version) {
+      const stored = sessionStorage.getItem('kon_ver');
+      if (stored && stored !== String(data.version)) {
+        sessionStorage.setItem('kon_ver', String(data.version));
+        location.reload(true); // get fresh CSS / JS
+        return;
+      }
+      sessionStorage.setItem('kon_ver', String(data.version));
+    }
+
     // Re-apply current language so updated translations render
     setLanguage(currentLang);
 

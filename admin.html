@@ -775,6 +775,9 @@ async function saveAll() {
     // 4. Delivery
     currentData.delivery = parseInt(document.getElementById('delivery')?.value || 25, 10);
 
+    // 4b. Bump version so all devices reload fresh CSS/JS
+    currentData.version = String(Date.now());
+
     // 5. Config
     currentData.config = {
       whatsapp:  document.getElementById('whatsapp')?.value?.trim() || '',
