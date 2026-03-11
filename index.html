@@ -181,6 +181,40 @@
   </section>
 
 
+  <!-- ===== DISCOVER YOUR MOOD ===== -->
+  <section class="mood-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="gold-line"></span>
+        <h2>اكتشف مزاجك</h2>
+        <span class="gold-line"></span>
+      </div>
+      <p class="mood-sub">اختر الحالة التي تعبّر عنك — وسنرشدك إلى شمعتك</p>
+      <div class="mood-grid">
+        <button class="mood-card" data-mood="night" onclick="filterMood(this,'eclipse','onyx')">
+          <span class="mood-emoji">🌙</span>
+          <span class="mood-name">Deep Night</span>
+          <span class="mood-desc">ظلام هادئ وعميق</span>
+        </button>
+        <button class="mood-card" data-mood="warm" onclick="filterMood(this,'ember')">
+          <span class="mood-emoji">🔥</span>
+          <span class="mood-name">Warm Evening</span>
+          <span class="mood-desc">دفء يملأ المكان</span>
+        </button>
+        <button class="mood-card" data-mood="calm" onclick="filterMood(this,'aurora')">
+          <span class="mood-emoji">🌿</span>
+          <span class="mood-name">Calm Space</span>
+          <span class="mood-desc">هدوء ونقاء</span>
+        </button>
+        <button class="mood-card" data-mood="luxury" onclick="filterMood(this,'vesper','vanta')">
+          <span class="mood-emoji">✨</span>
+          <span class="mood-name">Luxury Moment</span>
+          <span class="mood-desc">فخامة لا تُنسى</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== MARQUEE TICKER ===== -->
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track">
@@ -208,245 +242,108 @@
         <span class="gold-line"></span>
       </div>
 
-      <!-- Filter Tabs — KON Worlds -->
-      <div class="filter-tabs">
-        <button class="filter-btn active" data-filter="all">الكل</button>
-        <button class="filter-btn world-tab shadow-tab"   data-filter="shadow">Shadow</button>
-        <button class="filter-btn world-tab obsidian-tab" data-filter="obsidian">Obsidian</button>
-        <button class="filter-btn world-tab vanta-tab"    data-filter="vanta">Vanta</button>
-        <button class="filter-btn world-tab lumi-tab"     data-filter="lumi">Lumi</button>
-        <button class="filter-btn world-tab veil-tab"     data-filter="veil">Veil</button>
-      </div>
-
-      <!-- Products Grid -->
+      <!-- Products Grid — 6 candles -->
       <div class="products-grid" id="productsGrid">
 
-        <!-- ══ SHADOW ══ -->
-        <div class="product-card" data-category="shadow">
+        <div class="product-card">
           <div class="product-img">
             <img src="images/eclipse.avif" alt="Eclipse" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
+              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
-            <span class="world-label shadow-label">Shadow</span>
+            <span class="world-label" style="color:var(--gold-dim)">Wax · Black</span>
             <h3>Eclipse</h3>
             <p>من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل</p>
-            <span class="product-badge badge-shadow">غامض</span>
+            <span class="product-badge">غامض</span>
           </div>
         </div>
 
-        <div class="product-card" data-category="shadow">
-          <div class="product-img">
-            <img src="images/nocturne.avif" alt="Nocturne" class="product-real-img">
-            <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
-            </div>
-          </div>
-          <div class="product-info">
-            <span class="world-label shadow-label">Shadow</span>
-            <h3>Nocturne</h3>
-            <p>عمق الظلام الصامت — رائحة تأخذك لأعماق الليل الهادئ</p>
-            <span class="product-badge badge-shadow">غامض</span>
-          </div>
-        </div>
-
-        <!-- ══ OBSIDIAN ══ -->
-        <div class="product-card" data-category="obsidian">
+        <div class="product-card">
           <div class="product-img">
             <img src="images/onyx.avif" alt="Onyx" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
+              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
-            <span class="world-label obsidian-label">Obsidian</span>
+            <span class="world-label" style="color:var(--gold-dim)">Wax · Deep Black</span>
             <h3>Onyx</h3>
-            <p>الجوهر الأسود — نقاء الصخر البركاني في شمعة فاخرة</p>
-            <span class="product-badge badge-obsidian">حصري</span>
+            <p>من أعماق البركان — ثقل فاخر وصلابة هادئة</p>
+            <span class="product-badge">حصري</span>
           </div>
         </div>
 
-        <div class="product-card" data-category="obsidian">
+        <div class="product-card">
+          <div class="product-img">
+            <div class="product-placeholder" style="background:#0a0a0a;display:flex;align-items:center;justify-content:center;height:100%">
+              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:70%">
+                <ellipse cx="40" cy="122" rx="20" ry="5" fill="#c9a84c" opacity="0.1"/>
+                <rect x="27" y="50" width="26" height="72" rx="4" fill="#111111" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
+                <line x1="40" y1="50" x2="40" y2="33" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+                <path d="M40 8 C36 17 33 24 33 31 C33 38 36 40 40 40 C44 40 47 38 47 31 C47 24 44 17 40 8Z" fill="#c9a84c" opacity="0.7"/>
+                <path d="M40 16 C38 22 37 27 37 32 C37 37 39 38 40 38 C41 38 43 37 43 32 C43 27 42 22 40 16Z" fill="white" opacity="0.6"/>
+              </svg>
+            </div>
+            <div class="product-overlay">
+              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="world-label" style="color:var(--gold-dim)">Wax · Matte Black</span>
+            <h3>Vanta</h3>
+            <p>العتمة المطلقة — ما وراء السواد تجد نوراً خفياً</p>
+            <span class="product-badge">جريء</span>
+          </div>
+        </div>
+
+        <div class="product-card">
           <div class="product-img">
             <img src="images/ember.avif" alt="Ember" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
+              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
-            <span class="world-label obsidian-label">Obsidian</span>
+            <span class="world-label" style="color:var(--gold-dim)">Wax · Amber</span>
             <h3>Ember</h3>
-            <p>لهب البركان — حرارة الأعماق في جسم أسود اللون</p>
-            <span class="product-badge badge-obsidian">حصري</span>
+            <p>جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء</p>
+            <span class="product-badge">دافئ</span>
           </div>
         </div>
 
-        <!-- ══ VANTA ══ -->
-        <div class="product-card" data-category="vanta">
-          <div class="product-img">
-            <div class="product-placeholder vanta-bg">
-              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="40" cy="122" rx="18" ry="5" fill="#6633ff" opacity="0.1"/>
-                <rect x="29" y="52" width="22" height="70" rx="3" fill="#030308" stroke="#4422aa" stroke-width="0.8"/>
-                <rect x="34" y="52" width="10" height="70" rx="2" fill="#05050e" opacity="0.5"/>
-                <line x1="40" y1="52" x2="40" y2="35" stroke="#5533bb" stroke-width="1"/>
-                <path d="M40 10 C37 18 34 24 34 30 C34 36 37 38 40 38 C43 38 46 36 46 30 C46 24 43 18 40 10Z" fill="#6633ff" opacity="0.85"/>
-                <path d="M40 18 C38 23 37 27 37 31 C37 35 39 36 40 36 C41 36 43 35 43 31 C43 27 42 23 40 18Z" fill="#aa77ff"/>
-                <ellipse cx="40" cy="32" rx="2" ry="2.5" fill="#ddc8ff" opacity="0.7"/>
-              </svg>
-            </div>
-            <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
-            </div>
-          </div>
-          <div class="product-info">
-            <span class="world-label vanta-label">Vanta</span>
-            <h3>Aether</h3>
-            <p>العتمة المطلقة — ما وراء السواد تجد نوراً بنفسجياً خفياً</p>
-            <span class="product-badge badge-vanta">جريء</span>
-          </div>
-        </div>
-
-        <div class="product-card" data-category="vanta">
-          <div class="product-img">
-            <img src="images/mirage.avif" alt="Mirage" class="product-real-img">
-            <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
-            </div>
-          </div>
-          <div class="product-info">
-            <span class="world-label vanta-label">Vanta</span>
-            <h3>Mirage</h3>
-            <p>فراغ الكون — عطر صامت كالفضاء اللانهائي</p>
-            <span class="product-badge badge-vanta">جريء</span>
-          </div>
-        </div>
-
-        <!-- ══ LUMI ══ -->
-        <div class="product-card" data-category="lumi">
+        <div class="product-card">
           <div class="product-img">
             <img src="images/aurora.avif" alt="Aurora" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
+              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
-            <span class="world-label lumi-label">Lumi</span>
+            <span class="world-label" style="color:var(--gold-dim)">Wax · Ivory</span>
             <h3>Aurora</h3>
-            <p>ضوء الفجر — دفء العنبر يملأ المكان بإشراقة صباحية</p>
-            <span class="product-badge badge-lumi">مضيء</span>
+            <p>شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر</p>
+            <span class="product-badge">مضيء</span>
           </div>
         </div>
 
-        <div class="product-card" data-category="lumi">
-          <div class="product-img">
-            <div class="product-placeholder lumi-bg2">
-              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="40" cy="122" rx="24" ry="6" fill="#ffd740" opacity="0.25"/>
-                <rect x="24" y="56" width="32" height="66" rx="5" fill="#f0ddb0" stroke="#c8a020" stroke-width="1"/>
-                <rect x="30" y="56" width="18" height="66" rx="3" fill="#f8e8c0" opacity="0.4"/>
-                <line x1="40" y1="56" x2="40" y2="37" stroke="#c09030" stroke-width="1.2"/>
-                <path d="M40 10 C36 19 32 26 32 33 C32 40 36 42 40 42 C44 42 48 40 48 33 C48 26 44 19 40 10Z" fill="#ffc107" opacity="0.95"/>
-                <path d="M40 18 C38 24 37 29 37 34 C37 39 39 40 40 40 C41 40 43 39 43 34 C43 29 42 24 40 18Z" fill="#fff3c4"/>
-                <ellipse cx="40" cy="36" rx="3" ry="3.5" fill="white" opacity="0.9"/>
-              </svg>
-            </div>
-            <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
-            </div>
-          </div>
-          <div class="product-info">
-            <span class="world-label lumi-label">Lumi</span>
-            <h3>Solstice</h3>
-            <p>إشراقة العنبر — نور دافئ يحتضن كل زاوية في المكان</p>
-            <span class="product-badge badge-lumi">مضيء</span>
-          </div>
-        </div>
-
-        <!-- ══ VEIL ══ -->
-        <div class="product-card" data-category="veil">
-          <div class="product-img">
-            <div class="product-placeholder veil-bg">
-              <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="40" cy="122" rx="20" ry="5" fill="#a0c0e0" opacity="0.2"/>
-                <rect x="28" y="52" width="24" height="70" rx="4" fill="#c0d5e8" stroke="#8ab0cc" stroke-width="1" opacity="0.8"/>
-                <rect x="33" y="52" width="10" height="70" rx="2" fill="#d8eaf8" opacity="0.4"/>
-                <line x1="40" y1="52" x2="40" y2="34" stroke="#90b8d0" stroke-width="1"/>
-                <!-- misty effect -->
-                <path d="M30 70 Q40 65 50 70" stroke="white" stroke-width="0.5" opacity="0.3"/>
-                <path d="M32 82 Q40 77 48 82" stroke="white" stroke-width="0.5" opacity="0.2"/>
-                <path d="M40 10 C37 17 34 23 34 28 C34 34 37 36 40 36 C43 36 46 34 46 28 C46 23 43 17 40 10Z" fill="#d0e8f8" opacity="0.9"/>
-                <path d="M40 17 C38 22 37 26 37 29 C37 33 39 34 40 34 C41 34 43 33 43 29 C43 26 42 22 40 17Z" fill="white" opacity="0.95"/>
-              </svg>
-            </div>
-            <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
-            </div>
-          </div>
-          <div class="product-info">
-            <span class="world-label veil-label">Veil</span>
-            <h3>Reverie</h3>
-            <p>نسمة الضباب — خفة الهواء البارد في شمعة شفافة ناعمة</p>
-            <span class="product-badge badge-veil">ناعم</span>
-          </div>
-        </div>
-
-        <div class="product-card" data-category="veil">
+        <div class="product-card">
           <div class="product-img">
             <img src="images/vesper.avif" alt="Vesper" class="product-real-img">
             <div class="product-overlay">
-              <button class="btn-view-product" onclick="goToProduct(this)">✦ تخصيص</button>
-              <button class="btn-add-cart" onclick="addToCartFromCard(this)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                أضف للسلة
-              </button>
+              <button class="btn-view-product" onclick="goToProduct(this)">✦ اكتشف</button>
             </div>
           </div>
           <div class="product-info">
-            <span class="world-label veil-label">Veil</span>
+            <span class="world-label" style="color:var(--gold-dim)">Wax · Cream</span>
             <h3>Vesper</h3>
-            <p>حرير الهواء — عطر شفيف يترك أثراً كحلم لطيف</p>
-            <span class="product-badge badge-veil">ناعم</span>
+            <p>غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل</p>
+            <span class="product-badge">ناعم</span>
           </div>
         </div>
+
+      </div><!-- /products-grid -->
 
       </div>
     </div>
@@ -555,27 +452,27 @@
             <span class="stat-num" data-target="500">0</span>
             <span class="stat-sup">+</span>
           </div>
-          <span class="stat-label">عميل سعيد</span>
+          <span class="stat-label" data-i18n="stat1">عميل سعيد</span>
         </div>
         <div class="stat-item">
           <div class="stat-value">
             <span class="stat-num" data-target="10">0</span>
           </div>
-          <span class="stat-label">منتج حصري</span>
+          <span class="stat-label" data-i18n="stat2">منتج حصري</span>
         </div>
         <div class="stat-item">
           <div class="stat-value">
             <span class="stat-num" data-target="100">0</span>
             <span class="stat-sup">%</span>
           </div>
-          <span class="stat-label">صنع يدوي</span>
+          <span class="stat-label" data-i18n="stat3">صنع يدوي</span>
         </div>
         <div class="stat-item">
           <div class="stat-value">
             <span class="stat-num">5</span>
             <span class="stat-sup">★</span>
           </div>
-          <span class="stat-label">تقييم العملاء</span>
+          <span class="stat-label" data-i18n="stat4">تقييم العملاء</span>
         </div>
       </div>
     </div>
@@ -640,7 +537,7 @@
 
   <!-- WhatsApp Float Button -->
   <a class="whatsapp-float" onclick="openWhatsapp()" aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
   <!-- ===== CART OVERLAY ===== -->

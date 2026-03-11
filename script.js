@@ -29,7 +29,7 @@ const translations = {
     hero_btn: 'استعرض العوالم',
     about_title: 'من نحن',
     about_text: 'في KON Luxury نؤمن أن كل قطعة تحكي قصة.',
-    stat1: 'عميل سعيد', stat2: 'عوالم حصرية', stat3: 'يدوي الصنع',
+    stat1: 'عميل سعيد', stat2: 'منتج حصري', stat3: 'صنع يدوي', stat4: 'تقييم العملاء',
     products_title: 'منتجاتنا',
     filter_all: 'الكل',
     inquire_btn: 'استفسر الآن',
@@ -43,7 +43,7 @@ const translations = {
     hero_desc: 'נרות יוקרתיים · חמישה עולמות · נשמה אחת',
     hero_btn: 'גלה עולמות',
     about_title: 'אודותינו', about_text: 'ב-KON Luxury אנו מאמינים שכל יצירה מספרת סיפור.',
-    stat1: 'לקוחות מרוצים', stat2: 'עולמות ייחודיים', stat3: 'עבודת יד',
+    stat1: 'לקוחות מרוצים', stat2: 'מוצרים ייחודיים', stat3: 'עבודת יד', stat4: 'דירוג לקוחות',
     products_title: 'המוצרים שלנו',
     filter_all: 'הכל',
     inquire_btn: 'לפרטים',
@@ -57,7 +57,7 @@ const translations = {
     hero_desc: 'Luxury Candles · Five Worlds · One Soul',
     hero_btn: 'Explore Worlds',
     about_title: 'About Us', about_text: 'At KON Luxury, we believe every piece tells a story.',
-    stat1: 'Happy Clients', stat2: 'Exclusive Worlds', stat3: 'Handmade',
+    stat1: 'Happy Clients', stat2: 'Exclusive Products', stat3: 'Handmade', stat4: 'Customer Rating',
     products_title: 'Our Products',
     filter_all: 'All',
     inquire_btn: 'Inquire Now',
@@ -387,108 +387,34 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 // SHOPPING CART
 // ===========================
 
+// ── Product Catalogue (6 candles) ──
 const PRODUCTS = {
-  eclipse: {
-    id:'eclipse', name:'Eclipse', world:'Shadow', worldColor:'#b0b0e0', price:185, img:'images/eclipse.avif',
-    desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',
-    badge:'غامض',
-    colors:[
-      {hex:'#0d0d1a',name:'قاتم'},{hex:'#1a1a2e',name:'ليلي'},{hex:'#2e2e4a',name:'غسق'},
-      {hex:'#4a3f55',name:'ضباب'},{hex:'#2d1b33',name:'أرجواني'},{hex:'#3d2b4a',name:'ظل'}
-    ],
-    scents:['عود وعنبر','دخان صندل','مسك شرقي','ياسمين ليلي']
-  },
-  nocturne: {
-    id:'nocturne', name:'Nocturne', world:'Shadow', worldColor:'#b0b0e0', price:175, img:'images/nocturne.avif',
-    desc:'لحن الليل الهادئ — تموجات دافئة تسري في ظلام ناعم',
-    badge:'غامض',
-    colors:[
-      {hex:'#1a1530',name:'قمري'},{hex:'#1a1a2e',name:'نجمي'},{hex:'#252540',name:'أزرق داكن'},
-      {hex:'#3d3a5c',name:'لافندر ليلي'},{hex:'#2d2240',name:'رماد بنفسجي'},{hex:'#30284a',name:'سديمي'}
-    ],
-    scents:['ياسمين ليلي','لافندر وفانيليا','مسك شرقي','زهر البرتقال']
-  },
-  onyx: {
-    id:'onyx', name:'Onyx', world:'Obsidian', worldColor:'#C9A84C', price:195, img:'images/onyx.avif',
-    desc:'من أعماق البركان — ثقل فاخر وصلابة هادئة',
-    badge:'حصري',
-    colors:[
-      {hex:'#0d0800',name:'عقيق'},{hex:'#1a0a00',name:'بركاني'},{hex:'#2d1a0a',name:'طين'},
-      {hex:'#3d1500',name:'دم'},{hex:'#4a2a10',name:'ذهبي محروق'},{hex:'#1a1000',name:'أسود'}
-    ],
-    scents:['عود وعنبر','تين وعود','دخان صندل','مسك شرقي']
-  },
-  ember: {
-    id:'ember', name:'Ember', world:'Obsidian', worldColor:'#C9A84C', price:190, img:'images/ember.avif',
-    desc:'جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء',
-    badge:'حصري',
-    colors:[
-      {hex:'#2a0f00',name:'بني داكن'},{hex:'#3d1500',name:'جمري'},{hex:'#5c2010',name:'نار'},
-      {hex:'#7a3a18',name:'تراب أحمر'},{hex:'#4a1a00',name:'عنبر محروق'},{hex:'#6a2a0a',name:'طوبي'}
-    ],
-    scents:['عود وعنبر','دخان صندل','توت بري','تين وعود']
-  },
-  aether: {
-    id:'aether', name:'Aether', world:'Vanta', worldColor:'#aa77ff', price:240, img:null,
-    desc:'العتمة المطلقة — ما وراء السواد تجد نوراً بنفسجياً خفياً',
-    badge:'جريء',
-    colors:[
-      {hex:'#0d0015',name:'كوني'},{hex:'#1a0033',name:'عميق'},{hex:'#2d0055',name:'بنفسجي'},
-      {hex:'#4a1a7a',name:'أرجواني'},{hex:'#1d0040',name:'ليلي بنفسجي'},{hex:'#330066',name:'عنابي'}
-    ],
-    scents:['مسك شرقي','عود وعنبر','دخان صندل','ياسمين ليلي']
-  },
-  mirage: {
-    id:'mirage', name:'Mirage', world:'Vanta', worldColor:'#aa77ff', price:225, img:'images/mirage.avif',
-    desc:'سراب يسحرك — خيال كوني يتراقص في الظلام الأرجواني',
-    badge:'جريء',
-    colors:[
-      {hex:'#1a0033',name:'مجري'},{hex:'#220040',name:'ظلام كوني'},{hex:'#330055',name:'نبتون'},
-      {hex:'#4a0080',name:'كريستالي'},{hex:'#3d1a66',name:'سماوي'},{hex:'#0f0020',name:'أسود بنفسجي'}
-    ],
-    scents:['مسك شرقي','لافندر وفانيليا','ياسمين ليلي','زهر البرتقال']
-  },
-  aurora: {
-    id:'aurora', name:'Aurora', world:'Lumi', worldColor:'#ffd740', price:210, img:'images/aurora.avif',
-    desc:'شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر',
-    badge:'مضيء',
-    colors:[
-      {hex:'#fff8e7',name:'عاجي'},{hex:'#faecd0',name:'قمحي'},{hex:'#f5d5a0',name:'ذهبي فاتح'},
-      {hex:'#e8c070',name:'عسلي'},{hex:'#fff3d6',name:'كريمي'},{hex:'#f0ddb0',name:'نيلوفر'}
-    ],
-    scents:['زهر البرتقال','لافندر وفانيليا','ياسمين ليلي','توت بري']
-  },
-  solstice: {
-    id:'solstice', name:'Solstice', world:'Lumi', worldColor:'#ffd740', price:200, img:null,
-    desc:'لحظة الانقلاب — ذروة الضوء حين يقف الزمن',
-    badge:'مضيء',
-    colors:[
-      {hex:'#fff8e7',name:'شمسي'},{hex:'#fdecc8',name:'ليموني'},{hex:'#f8dfa0',name:'برتقالي فاتح'},
-      {hex:'#ffe8b0',name:'زعفراني'},{hex:'#fff0d0',name:'وردي فاتح'},{hex:'#f5e6b8',name:'تراب فاتح'}
-    ],
-    scents:['زهر البرتقال','ياسمين ليلي','توت بري','لافندر وفانيليا']
-  },
-  reverie: {
-    id:'reverie', name:'Reverie', world:'Veil', worldColor:'#90c8ee', price:185, img:null,
-    desc:'حلم يقظة — ضباب ناعم يخفي أسرار الفجر الهادئ',
-    badge:'ناعم',
-    colors:[
-      {hex:'#ddeef5',name:'ثلجي'},{hex:'#e8f4f8',name:'ضبابي'},{hex:'#d0e8f0',name:'سماوي فاتح'},
-      {hex:'#b8d8e8',name:'نهري'},{hex:'#c8d8e8',name:'رمادي ناعم'},{hex:'#e0ecf5',name:'لؤلؤي'}
-    ],
-    scents:['لافندر وفانيليا','ياسمين ليلي','زهر البرتقال','توت بري']
-  },
-  vesper: {
-    id:'vesper', name:'Vesper', world:'Veil', worldColor:'#90c8ee', price:180, img:'images/vesper.avif',
-    desc:'غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل',
-    badge:'ناعم',
-    colors:[
-      {hex:'#e4eef4',name:'رخامي'},{hex:'#e8f4f8',name:'فضي'},{hex:'#cce0ea',name:'رمادي بحري'},
-      {hex:'#aaccd8',name:'أزرق حجري'},{hex:'#d8eaf2',name:'زمردي ناعم'},{hex:'#b8ccd8',name:'ضبابي داكن'}
-    ],
-    scents:['ياسمين ليلي','لافندر وفانيليا','مسك شرقي','زهر البرتقال']
-  },
+  eclipse: { id:'eclipse', name:'Eclipse', waxShade:'Black',       waxHex:'#1a1a1a', img:'images/eclipse.avif', desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل', badge:'غامض'  },
+  onyx:    { id:'onyx',    name:'Onyx',    waxShade:'Deep Black',  waxHex:'#0d0d0d', img:'images/onyx.avif',    desc:'من أعماق البركان — ثقل فاخر وصلابة هادئة',           badge:'حصري'  },
+  vanta:   { id:'vanta',   name:'Vanta',   waxShade:'Matte Black', waxHex:'#111111', img:null,                  desc:'العتمة المطلقة — ما وراء السواد تجد نوراً خفياً',    badge:'جريء'  },
+  ember:   { id:'ember',   name:'Ember',   waxShade:'Amber',       waxHex:'#c87941', img:'images/ember.avif',   desc:'جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء',          badge:'دافئ'  },
+  aurora:  { id:'aurora',  name:'Aurora',  waxShade:'Ivory',       waxHex:'#f5f0e8', img:'images/aurora.avif',  desc:'شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر',        badge:'مضيء'  },
+  vesper:  { id:'vesper',  name:'Vesper',  waxShade:'Cream',       waxHex:'#ede8d8', img:'images/vesper.avif',  desc:'غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل',   badge:'ناعم'  },
+  // ← legacy alias kept so old product.html URLs still resolve:
+  nocturne:{id:'nocturne',name:'Eclipse',waxShade:'Black',waxHex:'#1a1a1a',img:'images/eclipse.avif',desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',badge:'غامض'},
 };
+
+// ── Burn Sizes ──
+const BURN_SIZES = [
+  { label:'250g',  price:90  },
+  { label:'500g',  price:150 },
+  { label:'1000g', price:240 },
+];
+
+// ── Fragrance Moods ──
+const FRAGRANCE_MOODS = [
+  { id:'vanilla',    label:'Vanilla',    labelAr:'فانيليا', icon:'🌸' },
+  { id:'oud',        label:'Oud',        labelAr:'عود',     icon:'🪵' },
+  { id:'musk',       label:'Musk',       labelAr:'مسك',     icon:'🌫️' },
+  { id:'amber',      label:'Amber',      labelAr:'عنبر',    icon:'🟠' },
+  { id:'sandalwood', label:'Sandalwood', labelAr:'صندل',    icon:'🌿' },
+];
+
 
 let cart = (JSON.parse(localStorage.getItem('konCart') || '[]')).map(item =>
   item.cartKey ? item : { ...item, cartKey: item.id }
@@ -506,9 +432,9 @@ function updateCartBadge() {
   badge.classList.toggle('show', total > 0);
 }
 
-// prod may include { color, colorName, scent } from product page
+// prod may include { burnSize, fragrance } from product page
 function addToCart(prod) {
-  const cartKey = prod.id + (prod.color ? '-' + prod.color : '') + (prod.scent ? '-' + prod.scent : '');
+  const cartKey = prod.id + '-' + (prod.burnSize||'') + '-' + (prod.fragrance||'');
   const existing = cart.find(i => i.cartKey === cartKey);
   if (existing) { existing.qty++; }
   else { cart.push({ ...prod, qty: 1, cartKey }); }
@@ -539,16 +465,32 @@ function clearCart() {
   renderCart();
 }
 
+// ── Discover Your Mood ──
+function filterMood(btn, ...productIds) {
+  // Highlight active mood card
+  document.querySelectorAll('.mood-card').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  // Show/hide product cards
+  document.querySelectorAll('.product-card').forEach(card => {
+    const h3 = card.querySelector('h3');
+    if (!h3) return;
+    const id = h3.textContent.trim().toLowerCase();
+    const match = productIds.includes(id);
+    card.style.opacity    = match ? '1' : '0.25';
+    card.style.transform  = match ? 'scale(1)' : 'scale(0.96)';
+    card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  });
+  // Smooth scroll to products
+  const sec = document.getElementById('products');
+  if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function addToCartFromCard(btn) {
+  // Send to product page to choose Burn Size + Fragrance Mood first
   const card = btn.closest('.product-card');
   if (!card) return;
   const h3 = card.querySelector('h3');
-  if (!h3) return;
-  const key = h3.textContent.trim().toLowerCase();
-  const prod = PRODUCTS[key];
-  if (!prod) return;
-  addToCart(prod);
-  showCartToast(prod.name);
+  if (h3) window.location = 'product.html?id=' + h3.textContent.trim().toLowerCase();
 }
 
 function goToProduct(btn) {
@@ -578,17 +520,14 @@ function renderCart() {
     const imgHtml = item.img
       ? `<img src="${item.img}" alt="${item.name}" class="ci-img">`
       : `<div class="ci-img-placeholder">🕯️</div>`;
-    const optLine = [
-      item.color ? `<span class="ci-color-dot" style="background:${item.color}"></span>${item.colorName||''}` : '',
-      item.scent || ''
-    ].filter(Boolean).join(' · ');
+    const optLine = [item.burnSize||'', item.fragrance||''].filter(Boolean).join(' · ');
     const ck = item.cartKey.replace(/'/g, "\\'");
     return `
       <div class="cart-item">
         ${imgHtml}
         <div class="ci-info">
-          <span class="ci-world" style="color:${item.worldColor}">${item.world.toUpperCase()}</span>
           <span class="ci-name">${item.name.toUpperCase()}</span>
+          <span class="ci-options" style="color:rgba(201,168,76,0.55);font-size:0.68rem">Wax: ${item.waxShade||''}</span>
           ${optLine ? `<span class="ci-options">${optLine}</span>` : ''}
           <span class="ci-price">₪${item.price * item.qty}</span>
         </div>
@@ -657,7 +596,7 @@ function checkoutWhatsapp() {
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const delivery = 25;
   const total = subtotal + delivery;
-  const lines = cart.map(i => `• ${i.name} (${i.world}) × ${i.qty}  —  ₪${i.price * i.qty}`).join('\n');
+  const lines = cart.map(i => `• ${i.name} — ${i.burnSize||''} · ${i.fragrance||''} × ${i.qty}  ₪${i.price * i.qty}`).join('\n');
   const msg = `🕯️ *طلب جديد — KON Luxury*\n──────────────────\n${lines}\n──────────────────\n💰 *المجموع: ₪${subtotal}*\n🚚 *التوصيل: ₪${delivery}*\n💎 *الإجمالي: ₪${total}*\n──────────────────\nأرجو التواصل لتأكيد الطلب 🙏`;
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
@@ -676,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!info || info.querySelector('.product-price-row')) return;
     const row = document.createElement('div');
     row.className = 'product-price-row';
-    row.innerHTML = `<span class="product-price">₪${prod.price}</span><span class="product-price-currency">ILS</span>`;
+    row.innerHTML = `<span class="product-price">من ₪${BURN_SIZES[0].price}</span><span class="product-price-currency">ILS</span>`;
     info.appendChild(row);
   });
 });
