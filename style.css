@@ -237,16 +237,18 @@
 }
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 17px;  /* ↑ base size for better readability across all elements */
 }
 body {
   background: var(--black);
   color: var(--ivory);
   font-family: var(--font-ar);
-  line-height: 1.75;
+  font-weight: 400;          /* explicit 400 — Cairo renders crisper at 400 than 300 */
+  line-height: 1.8;          /* slightly more air between lines */
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;  /* sharper glyphs on all OS */
 }
 body[dir="rtl"] { font-family: var(--font-ar); }
 body[dir="ltr"] { font-family: var(--font-en); }
@@ -340,7 +342,7 @@ body::after {
 }
 .section-header h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  font-size: clamp(1.85rem, 3.2vw, 3rem);  /* ↑ slightly bigger range */
   font-weight: 300;
   font-style: italic;
   color: var(--ivory);
@@ -470,7 +472,7 @@ body::after {
   align-items: center;
 }
 .nav-links a {
-  font-size: 0.75rem;
+  font-size: 0.8rem;   /* ↑ was 0.75rem */
   letter-spacing: 2px;
   color: var(--ivory);
   position: relative;
@@ -532,13 +534,14 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 .lang-btn {
   background: transparent;
   border: none;
-  color: var(--ivory-faint);
-  font-size: 0.65rem;
+  color: rgba(245,237,216,0.75);  /* ↑ brighter than ivory-faint (was 0.65 alpha) */
+  font-size: 0.72rem;             /* ↑ was 0.65rem */
   padding: 5px 11px;
   cursor: pointer;
   transition: all var(--duration-fast) ease;
   font-family: var(--font-ar);
   letter-spacing: 1px;
+  font-weight: 500;
 }
 .lang-btn:hover,
 .lang-btn.active {
@@ -761,8 +764,8 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 }
 .mood-sub {
   text-align: center;
-  color: var(--ivory-faint);
-  font-size: 0.85rem;
+  color: var(--ivory-dim);  /* ↑ brighter (was ivory-faint = 0.65 alpha → ivory-dim = 0.88) */
+  font-size: 0.92rem;       /* ↑ was 0.85rem */
   letter-spacing: 1px;
   margin-bottom: 48px;
   margin-top: -12px;
@@ -804,9 +807,9 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 }
 .mood-desc {
   font-family: var(--font-ar);
-  font-size: 0.8rem;
-  color: var(--ivory-faint);
-  line-height: 1.5;
+  font-size: 0.88rem;        /* ↑ was 0.8rem */
+  color: var(--ivory-dim);   /* ↑ brighter */
+  line-height: 1.6;
 }
 @media (max-width: 768px) {
   .mood-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -849,14 +852,14 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 .filter-btn {
   background: transparent;
   border: none;
-  color: var(--ivory-dim);
+  color: var(--ivory);   /* ↑ brighter */
   padding: 13px 32px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;     /* ↑ was 0.85rem */
   letter-spacing: 1px;
   cursor: pointer;
   transition: all var(--duration-mid) var(--ease-out);
   font-family: var(--font-ar);
-  font-weight: 400;
+  font-weight: 500;      /* ↑ was 400 */
   border-right: 1px solid var(--border-faint);
   position: relative;
 }
@@ -973,7 +976,7 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 .world-label {
   display: block;
   font-family: var(--font-en);
-  font-size: 0.6rem;
+  font-size: 0.65rem;  /* ↑ was 0.6rem */
   letter-spacing: 4px;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -1059,20 +1062,20 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 }
 .product-card:hover .product-info h3 { color: var(--gold-light); }
 .product-info p {
-  font-size: 0.82rem;
-  color: var(--ivory-dim);
-  line-height: 1.9;
+  font-size: 0.88rem;        /* ↑ was 0.82rem */
+  color: var(--ivory);       /* ↑ full ivory (was ivory-dim = 88%) for clearer reading */
+  line-height: 1.95;
   margin-bottom: 18px;
 }
 .product-badge {
   display: inline-block;
-  border: 1px solid rgba(201,168,76,0.55);
+  border: 1px solid rgba(201,168,76,0.6);
   color: var(--gold);
-  font-size: 0.58rem;
-  padding: 3px 12px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  font-family: var(--font-en);
+  font-size: 0.72rem;        /* ↑ was 0.58rem (was ~9px — too small) */
+  padding: 4px 14px;
+  letter-spacing: 2px;       /* ↓ was 4px — tight for Arabic letters */
+  font-family: inherit;      /* ✓ was font-en which renders Arabic poorly */
+  font-weight: 500;
 }
 
 /* Products mobile */
@@ -2143,11 +2146,11 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 }
 .ci-name {
   font-family: var(--font-en);
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.82rem;        /* ↑ was 0.75rem */
+  font-weight: 600;          /* ↑ was 500 — bolder product name in cart */
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ivory-dim);
+  color: var(--ivory);       /* ↑ was ivory-dim */
 }
 .ci-price {
   font-family: var(--font-display);
@@ -2341,14 +2344,14 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(201,168,76,0.12);
-  border: 1px solid rgba(201,168,76,0.5);
+  background: rgba(201,168,76,0.14);
+  border: 1px solid rgba(201,168,76,0.6);
   color: var(--gold);
-  font-family: var(--font-en);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  padding: 8px 18px;
+  font-family: inherit;        /* ✓ inherits Cairo for Arabic, Geist for English */
+  font-size: 0.85rem;          /* ↑ was 0.72rem */
+  font-weight: 600;
+  letter-spacing: 0.08em;      /* ↓ reduced — better for Arabic */
+  padding: 10px 22px;
   cursor: pointer;
   border-radius: 2px;
   transition: background 0.35s ease, border-color 0.35s ease;
@@ -2370,8 +2373,8 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
 }
 .ci-options {
   font-family: var(--font-ar);
-  font-size: 0.7rem;
-  color: rgba(245,237,216,0.4);
+  font-size: 0.78rem;              /* ↑ was 0.7rem */
+  color: rgba(245,237,216,0.65);  /* ↑ was 0.4 — too faint */
   letter-spacing: 0.04em;
 }
 
@@ -2438,8 +2441,8 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   }
   .btn-view-product,
   .btn-add-cart {
-    font-size: 0.72rem;
-    padding: 8px 14px;
+    font-size: 0.82rem;   /* ↑ was 0.72rem */
+    padding: 9px 16px;
   }
 }
 
