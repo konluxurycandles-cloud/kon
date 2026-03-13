@@ -49,6 +49,7 @@ const translations = {
     badge_dafi: 'دافئ', badge_mudi: 'مضيء', badge_naim: 'ناعم',
     // Buttons
     btn_discover: '✦ اكتشف',
+    btn_add_cart: '+ أضف للسلة',
     // Mood section
     mood_title: 'اكتشف مزاجك',
     mood_sub:   'اختر الحالة التي تعبّر عنك — وسنرشدك إلى شمعتك',
@@ -89,6 +90,7 @@ const translations = {
     badge_dafi: 'חם', badge_mudi: 'זוהר', badge_naim: 'עדין',
     // Buttons
     btn_discover: '✦ גלה',
+    btn_add_cart: '+ הוסף לסל',
     // Mood section
     mood_title: 'גלה את מצב הרוח שלך',
     mood_sub:   'בחר את המצב שמבטא אותך — ונוביל אותך לנר שלך',
@@ -129,6 +131,7 @@ const translations = {
     badge_dafi: 'Warm', badge_mudi: 'Luminous', badge_naim: 'Soft',
     // Buttons
     btn_discover: '✦ Discover',
+    btn_add_cart: '+ Add to Cart',
     // Mood section
     mood_title: 'Discover Your Mood',
     mood_sub:   'Choose the mood that speaks to you — we\'ll guide you to your candle',
@@ -476,14 +479,105 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 
 // ── Product Catalogue (6 candles) ──
 const PRODUCTS = {
-  eclipse: { id:'eclipse', name:'Eclipse', waxShade:'Black',       waxHex:'#1a1a1a', img:'images/eclipse.avif', desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل', badge:'غامض', badgeKey:'badge_ghamid' },
-  onyx:    { id:'onyx',    name:'Onyx',    waxShade:'Deep Black',  waxHex:'#0d0d0d', img:'images/onyx.avif',    desc:'من أعماق البركان — ثقل فاخر وصلابة هادئة',           badge:'حصري', badgeKey:'badge_hasri'  },
-  vanta:   { id:'vanta',   name:'Vanta',   waxShade:'Matte Black', waxHex:'#111111', img:null,                  desc:'العتمة المطلقة — ما وراء السواد تجد نوراً خفياً',    badge:'جريء', badgeKey:'badge_jari'   },
-  ember:   { id:'ember',   name:'Ember',   waxShade:'Amber',       waxHex:'#c87941', img:'images/ember.avif',   desc:'جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء',          badge:'دافئ', badgeKey:'badge_dafi'   },
-  aurora:  { id:'aurora',  name:'Aurora',  waxShade:'Ivory',       waxHex:'#f5f0e8', img:'images/aurora.avif',  desc:'شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر',        badge:'مضيء', badgeKey:'badge_mudi'   },
-  vesper:  { id:'vesper',  name:'Vesper',  waxShade:'Cream',       waxHex:'#ede8d8', img:'images/vesper.avif',  desc:'غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل',   badge:'ناعم', badgeKey:'badge_naim'   },
-  // ← legacy alias kept so old product.html URLs still resolve:
-  nocturne:{id:'nocturne',name:'Eclipse',waxShade:'Black',waxHex:'#1a1a1a',img:'images/eclipse.avif',desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',badge:'غامض',badgeKey:'badge_ghamid'},
+  eclipse: {
+    id:'eclipse', name:'Eclipse', waxShade:'Black',       waxHex:'#1a1a1a',
+    img:'images/eclipse.avif',
+    desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',
+    badge:'غامض', badgeKey:'badge_ghamid',
+    colors:[
+      { hex:'#1a1a2e', name:'ليلي',         light:false },
+      { hex:'#2e2e4a', name:'غسق',          light:false },
+      { hex:'#4a3f55', name:'بنفسجي داكن', light:false },
+      { hex:'#5c4a6e', name:'أرجواني',      light:false },
+      { hex:'#2d1b33', name:'ليلي عميق',   light:false },
+      { hex:'#0a0a1a', name:'أسود ليلي',   light:false },
+    ],
+  },
+  onyx: {
+    id:'onyx', name:'Onyx', waxShade:'Deep Black', waxHex:'#0d0d0d',
+    img:'images/onyx.avif',
+    desc:'من أعماق البركان — ثقل فاخر وصلابة هادئة',
+    badge:'حصري', badgeKey:'badge_hasri',
+    colors:[
+      { hex:'#1a0a00', name:'أسود بركاني', light:false },
+      { hex:'#3d1a00', name:'بني داكن',    light:false },
+      { hex:'#5c2a0a', name:'بني نار',     light:false },
+      { hex:'#7a3a10', name:'عنابي',        light:false },
+      { hex:'#4a1a08', name:'كستنائي',     light:false },
+      { hex:'#2a0d00', name:'أحمر ليل',    light:false },
+    ],
+  },
+  vanta: {
+    id:'vanta', name:'Vanta', waxShade:'Matte Black', waxHex:'#111111',
+    img:null,
+    desc:'العتمة المطلقة — ما وراء السواد تجد نوراً خفياً',
+    badge:'جريء', badgeKey:'badge_jari',
+    colors:[
+      { hex:'#0d0015', name:'بنفسجي أسود',  light:false },
+      { hex:'#1a0033', name:'إندغو',         light:false },
+      { hex:'#2d0055', name:'بنفسجي عميق',  light:false },
+      { hex:'#4a1a7a', name:'أرجواني',       light:false },
+      { hex:'#330066', name:'كوبالت',        light:false },
+      { hex:'#1d0040', name:'أسود نجمي',    light:false },
+    ],
+  },
+  ember: {
+    id:'ember', name:'Ember', waxShade:'Amber', waxHex:'#c87941',
+    img:'images/ember.avif',
+    desc:'جمر ساكن لا ينطفئ — دفء يغمر المكان بهدوء',
+    badge:'دافئ', badgeKey:'badge_dafi',
+    colors:[
+      { hex:'#c87941', name:'عنبر',         light:false },
+      { hex:'#e8a456', name:'ذهبي دافئ',   light:false },
+      { hex:'#f0b870', name:'خردلي',        light:true  },
+      { hex:'#8b4f1e', name:'بني دافئ',    light:false },
+      { hex:'#d4863a', name:'برتقالي',      light:false },
+      { hex:'#a0612a', name:'قرفة',         light:false },
+    ],
+  },
+  aurora: {
+    id:'aurora', name:'Aurora', waxShade:'Ivory', waxHex:'#f5f0e8',
+    img:'images/aurora.avif',
+    desc:'شفق الصباح — ضوء دافئ يملأ المكان بعطر الفجر',
+    badge:'مضيء', badgeKey:'badge_mudi',
+    colors:[
+      { hex:'#fff8e7', name:'عاجي',         light:true  },
+      { hex:'#faecd0', name:'كريمي',        light:true  },
+      { hex:'#f5d5a0', name:'خوخي',         light:true  },
+      { hex:'#e8c070', name:'ذهبي فاتح',   light:true  },
+      { hex:'#f0ddb0', name:'شمبانيا',      light:true  },
+      { hex:'#fffaf0', name:'أبيض لؤلؤي',  light:true  },
+    ],
+  },
+  vesper: {
+    id:'vesper', name:'Vesper', waxShade:'Cream', waxHex:'#ede8d8',
+    img:'images/vesper.avif',
+    desc:'غسق الوداع — رقة لا تُنسى حين يلتقي النهار بالليل',
+    badge:'ناعم', badgeKey:'badge_naim',
+    colors:[
+      { hex:'#e8f4f8', name:'أزرق سماوي', light:true  },
+      { hex:'#d0e8f0', name:'نيلي فاتح',  light:true  },
+      { hex:'#b8d8e8', name:'فيروزي',      light:true  },
+      { hex:'#c8d8e8', name:'رمادي بارد',  light:true  },
+      { hex:'#ddeef5', name:'ضبابي',        light:true  },
+      { hex:'#ede8d8', name:'كريمي',        light:true  },
+    ],
+  },
+  // ← legacy alias kept so old URLs still resolve:
+  nocturne:{
+    id:'nocturne', name:'Eclipse', waxShade:'Black', waxHex:'#1a1a1a',
+    img:'images/eclipse.avif',
+    desc:'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',
+    badge:'غامض', badgeKey:'badge_ghamid',
+    colors:[
+      { hex:'#1a1a2e', name:'ليلي',  light:false },
+      { hex:'#2e2e4a', name:'غسق',   light:false },
+      { hex:'#4a3f55', name:'بنفسجي داكن', light:false },
+      { hex:'#5c4a6e', name:'أرجواني', light:false },
+      { hex:'#2d1b33', name:'ليلي عميق', light:false },
+      { hex:'#0a0a1a', name:'أسود ليلي', light:false },
+    ],
+  },
 };
 
 // ── Burn Sizes ──
@@ -493,13 +587,16 @@ const BURN_SIZES = [
   { label:'1000g', price:240 },
 ];
 
-// ── Fragrance Moods ──
+// ── Fragrance Moods (8 scents) ──
 const FRAGRANCE_MOODS = [
-  { id:'vanilla',    label:'Vanilla',    labelAr:'فانيليا', icon:'🌸' },
-  { id:'oud',        label:'Oud',        labelAr:'عود',     icon:'🪵' },
-  { id:'musk',       label:'Musk',       labelAr:'مسك',     icon:'🌫️' },
-  { id:'amber',      label:'Amber',      labelAr:'عنبر',    icon:'🟠' },
-  { id:'sandalwood', label:'Sandalwood', labelAr:'صندل',    icon:'🌿' },
+  { id:'oud_amber',   label:'Oud & Amber',        labelAr:'عود وعنبر',       icon:'🪵' },
+  { id:'jasmine',     label:'Night Jasmine',       labelAr:'ياسمين ليلي',     icon:'🌸' },
+  { id:'smoke_sand',  label:'Smoke & Sandalwood',  labelAr:'دخان صندل',       icon:'🌫️' },
+  { id:'orange_blos', label:'Orange Blossom',      labelAr:'زهر البرتقال',    icon:'🍊' },
+  { id:'musk_east',   label:'Eastern Musk',        labelAr:'مسك شرقي',        icon:'✨' },
+  { id:'berry',       label:'Wild Berry',          labelAr:'توت بري',          icon:'🫐' },
+  { id:'lav_van',     label:'Lavender & Vanilla',  labelAr:'لافندر وفانيليا', icon:'💜' },
+  { id:'fig_oud',     label:'Fig & Oud',           labelAr:'تين وعود',        icon:'🌿' },
 ];
 
 
