@@ -2461,3 +2461,36 @@ body[dir="rtl"] .nav-links a:hover::after { transform-origin: right; }
   .cart-body  { padding: 16px 20px; }
   .cart-foot  { padding: 16px 20px 24px; }
 }
+
+/* ───────────────────────────────────────────────
+   Arabic / Hebrew: fix letter-spacing & font
+   Arabic is a cursive script — letter-spacing
+   separates joined letters and breaks readability.
+   Also replace Cormorant Garamond (Latin-only)
+   with the proper Arabic font on RTL elements.
+─────────────────────────────────────────────── */
+[dir="rtl"] p,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] li,
+[dir="rtl"] a,
+[dir="rtl"] button,
+[dir="rtl"] span,
+[dir="rtl"] label {
+  letter-spacing: 0 !important;
+}
+
+/* Switch Latin display font → Arabic body font for text blocks */
+[dir="rtl"] .hero-headline,
+[dir="rtl"] .section-header h2,
+[dir="rtl"] .featured-title,
+[dir="rtl"] .featured-desc,
+[dir="rtl"] .testi-text,
+[dir="rtl"] .cart-title,
+[dir="rtl"] .cart-empty p,
+[dir="rtl"] .mood-desc,
+[dir="rtl"] .mood-sub {
+  font-family: var(--font-ar) !important;
+}
