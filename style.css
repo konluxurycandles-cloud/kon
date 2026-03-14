@@ -238,6 +238,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 17px;  /* ↑ base size for better readability across all elements */
+  overflow-x: hidden;
 }
 body {
   background: var(--black);
@@ -246,6 +247,7 @@ body {
   font-weight: 400;          /* explicit 400 — Cairo renders crisper at 400 than 300 */
   line-height: 1.8;          /* slightly more air between lines */
   overflow-x: hidden;
+  touch-action: pan-y;       /* allow vertical scroll only — block horizontal swipe */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;  /* sharper glyphs on all OS */
