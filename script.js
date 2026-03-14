@@ -898,7 +898,11 @@ async function loadDataJson() {
       const stored = sessionStorage.getItem('kon_ver');
       if (stored && stored !== String(data.version)) {
         sessionStorage.setItem('kon_ver', String(data.version));
-        location.reload(true); // get fresh CSS / JS
+        // Hard-bypass cache: navigate to same page with cache-bust param
+        // (location.reload(true) is deprecated in modern browsers)
+        const url = new URL(location.href);
+        url.searchParams.set('_r', data.version);
+        location.replace(url.toString());
         return;
       }
       sessionStorage.setItem('kon_ver', String(data.version));
