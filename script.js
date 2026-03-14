@@ -37,6 +37,28 @@ const translations = {
     contact_title: 'تواصل معنا', contact_sub: 'نحن هنا للإجابة على كل استفساراتك وتلبية طلباتك',
     btn_whatsapp: 'واتساب', btn_instagram: 'إنستغرام',
     footer_copy: '© 2025 KON Luxury · جميع الحقوق محفوظة',
+    footer_tagline: 'صُنع بيدين — بحب حقيقي 🖤',
+    footer_col_pages: 'الصفحات',
+    footer_col_contact: 'تواصل',
+    // Featured section
+    feat_eyebrow: 'Featured — المميز',
+    feat_title_html: 'شمعة <em>Obsidian</em><br>الفاخرة',
+    feat_desc: 'مصنوعة من شمع الصويا الطبيعي بنسبة 100٪، تدوم أكثر من 50 ساعة. عطرها الفريد يملأ المكان بدفء لا يُقاوَم. كل شمعة تحفة لا تتكرر.',
+    feat_badge: '✦ الأكثر طلباً',
+    feat_spec1: 'شمع صويا طبيعي',
+    feat_spec2: '+50 ساعة احتراق',
+    feat_spec3: 'صنع يدوي 100%',
+    feat_spec4: 'تغليف فاخر مجاني',
+    feat_btn_order: 'اطلبها الآن',
+    feat_btn_ai: '✦ جربي بالـ AI',
+    // Testimonials
+    testi_title_html: 'آراء <span>زبائننا</span>',
+    testi_1_text: '"جودة لا تُصدَّق — الشمعة وصلت بتغليف فاخر جداً وريحتها أجمل من المتوقع. بالتأكيد سأطلب مرة ثانية!"',
+    testi_1_name: 'سارة م.', testi_1_loc: 'حيفا 🇵🇸',
+    testi_2_text: '"اشتريت طقم هدية لصديقتي وانبهرت — القطع مصنوعة باتقان وحب واضح. هذا مش مجرد منتج، هذا فن!"',
+    testi_2_name: 'رنا ع.', testi_2_loc: 'الناصرة 🇵🇸',
+    testi_3_text: '"الريزن اللي طلبته زيّن مكتبي بشكل مجنون. كل ضيف بسألني منين اشتريته. KON Luxury مش بس متجر، هي تجربة!"',
+    testi_3_name: 'خالد ن.', testi_3_loc: 'رام الله 🇵🇸',
     // Product descriptions
     eclipse_desc: 'من ظلام الهدوء — عطر دخاني يلف المكان بأسرار الليل',
     onyx_desc:    'من أعماق البركان — ثقل فاخر وصلابة هادئة',
@@ -78,6 +100,28 @@ const translations = {
     contact_title: 'צור קשר', contact_sub: 'אנחנו כאן לענות על כל שאלה',
     btn_whatsapp: 'וואטסאפ', btn_instagram: 'אינסטגרם',
     footer_copy: '© 2025 KON Luxury · כל הזכויות שמורות',
+    footer_tagline: 'נוצר בידיים — באהבה אמיתית 🖤',
+    footer_col_pages: 'דפים',
+    footer_col_contact: 'צור קשר',
+    // Featured section
+    feat_eyebrow: 'Featured — הנבחר',
+    feat_title_html: 'נר <em>Obsidian</em><br>היוקרתי',
+    feat_desc: 'עשויה מ-100% שעוות סויה טבעית, נמשכת מעל 50 שעות. ריחה הייחודי ממלא את המרחב בחמימות שלא ניתן לעמוד בפניה. כל נר הוא יצירת אמנות שאינה חוזרת על עצמה.',
+    feat_badge: '✦ הנמכר ביותר',
+    feat_spec1: 'שעוות סויה טבעית',
+    feat_spec2: '+50 שעות בעירה',
+    feat_spec3: 'עבודת יד 100%',
+    feat_spec4: 'אריזה יוקרתית חינם',
+    feat_btn_order: 'הזמן עכשיו',
+    feat_btn_ai: '✦ נסה עם AI',
+    // Testimonials
+    testi_title_html: 'ביקורות <span>לקוחותינו</span>',
+    testi_1_text: '"איכות מדהימה — הנר הגיע באריזה יוקרתית מאוד וריחו יפה מהצפוי. בהחלט אזמין שוב!"',
+    testi_1_name: 'Sara M.', testi_1_loc: 'חיפה 🇮🇱',
+    testi_2_text: '"קניתי ערכת מתנה לחברה שלי והתפעלתי — הפריטים עשויים במיומנות ואהבה. זה לא רק מוצר, זה אמנות!"',
+    testi_2_name: 'Rana A.', testi_2_loc: 'נצרת 🇮🇱',
+    testi_3_text: '"הרזין שהזמנתי קישט את המשרד שלי בצורה מדהימה. כל אורח שואל מאיפה קניתי. KON Luxury זה לא חנות, זו חוויה!"',
+    testi_3_name: 'Khaled N.', testi_3_loc: 'ראמאללה 🇵🇸',
     // Product descriptions
     eclipse_desc: 'מחשכת השקט — ניחוח מעושן אוחז את המקום בסודות הלילה',
     onyx_desc:    'מעומקי הוולקן — כובד מפואר ומוצקות שקטה',
@@ -119,6 +163,28 @@ const translations = {
     contact_title: 'Contact Us', contact_sub: 'We are here to answer all your questions',
     btn_whatsapp: 'WhatsApp', btn_instagram: 'Instagram',
     footer_copy: '© 2025 KON Luxury · All Rights Reserved',
+    footer_tagline: 'Crafted by hand — with real love 🖤',
+    footer_col_pages: 'Pages',
+    footer_col_contact: 'Contact',
+    // Featured section
+    feat_eyebrow: 'Featured — Our Best',
+    feat_title_html: 'The Luxury<br><em>Obsidian</em> Candle',
+    feat_desc: 'Made from 100% natural soy wax, lasting over 50 hours. Its unique scent fills the room with irresistible warmth. Every candle is a one-of-a-kind masterpiece.',
+    feat_badge: '✦ Best Seller',
+    feat_spec1: 'Natural Soy Wax',
+    feat_spec2: '50+ Burn Hours',
+    feat_spec3: '100% Handmade',
+    feat_spec4: 'Free Luxury Packaging',
+    feat_btn_order: 'Order Now',
+    feat_btn_ai: '✦ Try with AI',
+    // Testimonials
+    testi_title_html: 'Our <span>Customers</span> Say',
+    testi_1_text: '"Unbelievable quality — the candle arrived in gorgeous packaging and smells even better than expected. I\'ll definitely order again!"',
+    testi_1_name: 'Sara M.', testi_1_loc: 'Haifa 🇵🇸',
+    testi_2_text: '"I bought a gift set for my friend and was amazed — the pieces are crafted with clear skill and love. This isn\'t just a product, it\'s art!"',
+    testi_2_name: 'Rana A.', testi_2_loc: 'Nazareth 🇵🇸',
+    testi_3_text: '"The resin piece I ordered decorated my office beautifully. Every guest asks where I got it. KON Luxury isn\'t just a store, it\'s an experience!"',
+    testi_3_name: 'Khaled N.', testi_3_loc: 'Ramallah 🇵🇸',
     // Product descriptions
     eclipse_desc: 'From the silence of darkness — a smoky scent wrapping the room in night secrets',
     onyx_desc:    'From the depths of the volcano — luxurious weight and quiet solidity',
@@ -166,6 +232,11 @@ function setLanguage(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key] !== undefined) el.textContent = t[key];
+  });
+  // Elements that contain inner HTML tags (em, span, br…)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
   });
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
